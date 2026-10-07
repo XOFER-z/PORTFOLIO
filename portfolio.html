@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PORTFOLIO.EXE - Retro Pixel Art Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'crt-bg': '#070a0d',
+                        'crt-green': '#00ff88',
+                        'crt-green-dark': '#04381e',
+                        'crt-green-dim': '#082115',
+                        'crt-green-light': '#adffd8',
+                        'crt-violet': '#d946ef',
+                        'crt-violet-dark': '#3b0764',
+                        'crt-violet-dim': '#1c0528',
+                        'crt-violet-light': '#f5d0fe',
+                    },
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        terminal: ['VT323', 'monospace'],
+                        mono: ['"Share Tech Mono"', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Główne ustawienia */
+        body {
+            background-color: #070a0d;
+            color: #00ff88;
+            font-family: 'VT323', monospace;
+            overflow-x: hidden;
+            image-rendering: pixelated;
+        }
+
+        /* Tryb bez epilepsji (wyłączenie migotania/animacji) */
+        body.no-epilepsy *, 
+        body.no-epilepsy *::before, 
+        body.no-epilepsy *::after {
+            animation: none !important;
+            transition: none !important;
+        }
+        body.no-epilepsy .scanlines {
+            display: none !important;
+        }
+
+        /* Scanlines Overlay */
+        .scanlines {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%, 
+                rgba(0, 0, 0, 0.25) 50%
+            ), linear-gradient(
+                90deg,
+                rgba(255, 0, 0, 0.03),
+                rgba(0, 255, 0, 0.01),
+                rgba(0, 0, 255, 0.03)
+            );
+            background-size: 100% 4px, 6px 100%;
+            z-index: 999;
+        }
+
+        /* Efekty Glow */
+        .green-glow {
+            box-shadow: 0 0 12px rgba(0, 255, 136, 0.35), inset 0 0 8px rgba(0, 255, 136, 0.15);
+        }
+        .green-glow-text {
+            text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+        }
+        .violet-glow {
+            box-shadow: 0 0 12px rgba(217, 70, 239, 0.35), inset 0 0 8px rgba(217, 70, 239, 0.15);
+        }
+        .violet-glow-text {
+            text-shadow: 0 0 8px rgba(217, 70, 239, 0.7);
+        }
+
+        /* Ramki okien OS */
+        .pixel-box-green {
+            border: 3px solid #00ff88;
+            background-color: rgba(8, 33, 21, 0.85);
+            box-shadow: 5px 5px 0px #04381e, 0 0 15px rgba(0, 255, 136, 0.2);
+        }
+        .pixel-box-violet {
+            border: 3px solid #d946ef;
+            background-color: rgba(28, 5, 40, 0.85);
+            box-shadow: 5px 5px 0px #3b0764, 0 0 15px rgba(217, 70, 239, 0.2);
+        }
+
+        /* Wymuszenie proporcji 1:1 dla miniatur w siatce */
+        .square-card-box {
+            aspect-ratio: 1 / 1;
+        }
+
+        /* EFEKT ZAKŁÓCEŃ (STATIC NOISE) PRZED KLIKNIĘCIEM */
+        .static-overlay {
+            position: absolute;
+            top: -5%; left: -5%; width: 110%; height: 110%; /* Zapas na poruszanie się tła */
+            pointer-events: none;
+            z-index: 10;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+            mix-blend-mode: hard-light;
+            transition: opacity 0.3s ease;
+            animation: staticAnim 0.2s steps(2) infinite;
+        }
+        .static-green {
+            background-color: rgba(4, 56, 30, 0.8); /* Ciemnozielony szum */
+        }
+        .static-violet {
+            background-color: rgba(28, 5, 40, 0.8); /* Ciemnofioletowy szum dla dolnej sekcji */
+        }
+        @keyframes staticAnim {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(1%, 1%); }
+            100% { transform: translate(-1%, -1%); }
+        }
+        /* Odsłonięcie czystego obrazka po najechaniu myszką */
+        .group:hover .static-overlay {
+            opacity: 0;
+        }
+        body.no-epilepsy .static-overlay {
+            animation: none;
+        }
+
+        /* Animacja po kliknięciu miniatury (błysk) */
+        .card-click-anim {
+            animation: pixelFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
+        }
+        @keyframes pixelFlash {
+            0% { transform: scale(0.95); filter: invert(1) brightness(2); }
+            50% { transform: scale(0.98); filter: invert(0.5) brightness(1.5); }
+            100% { transform: scale(1); filter: invert(0) brightness(1); }
+        }
+
+        /* KREATYWNA ANIMACJA OTWIERANIA ZDJĘCIA (Efekt uruchamiania starego TV CRT) */
+        .crt-tv-boot {
+            animation: crtTurnOn 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards, glitchFlicker 0.15s 0.3s 2;
+        }
+
+        @keyframes crtTurnOn {
+            0% { transform: scale(0, 0.005); filter: brightness(10) contrast(4); opacity: 0; }
+            40% { transform: scale(1, 0.01); filter: brightness(5) contrast(3); opacity: 1; }
+            100% { transform: scale(1, 1); filter: brightness(1) contrast(1); opacity: 1; }
+        }
+
+        @keyframes glitchFlicker {
+            0%, 100% { transform: translate(0, 0) skew(0deg); filter: hue-rotate(0deg); }
+            25% { transform: translate(-3px, 2px) skew(2deg); filter: hue-rotate(90deg); }
+            75% { transform: translate(3px, -2px) skew(-2deg); filter: hue-rotate(-90deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #070a0d; }
+        ::-webkit-scrollbar-thumb { background: #00ff88; border: 1px solid #04381e; }
+    </style>
+</head>
+<body class="min-h-screen p-3 sm:p-6 md:p-8 relative selection:bg-crt-green selection:text-black">
+
+    <div id="scanlineOverlay" class="scanlines"></div>
+
+    <div class="max-w-6xl mx-auto space-y-6 sm:space-y-8 relative z-10">
+
+        <!-- HEADER & TOOLBAR -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            
+            <div class="pixel-box-green w-full md:w-auto flex-1 p-4 sm:p-6 relative group transition-all">
+                <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-4 font-pixel text-sm">
+                    <span>PORTFOLIO.EXE</span>
+                    <div class="flex space-x-2">
+                        <button onclick="toggleWindow('mainTitleContent')" class="hover:bg-crt-green hover:text-black px-2.5 py-1 border border-crt-green text-sm">-</button>
+                        <button class="hover:bg-crt-green hover:text-black px-2.5 py-1 border border-crt-green text-sm">□</button>
+                        <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2.5 py-1 border border-crt-green text-sm">X</button>
+                    </div>
+                </div>
+                
+                <div id="mainTitleContent" class="transition-all">
+                    <h1 class="text-4xl sm:text-6xl md:text-7xl font-pixel text-crt-green green-glow-text tracking-wider text-center md:text-left my-2">
+                        PORTFOLIO
+                    </h1>
+                    <div class="flex justify-between items-center mt-3 font-mono text-base sm:text-lg text-crt-green-light">
+                        <span>C:\> SYSTEM.BOOT</span>
+                        <span class="inline-block w-3 h-5 bg-crt-green animate-pulse"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LANG.SYS -->
+            <div class="pixel-box-green w-full md:w-auto p-4 flex flex-row md:flex-col justify-between items-center gap-3">
+                <div class="w-full flex justify-between items-center border-b border-crt-green pb-1 font-pixel text-xs">
+                    <span>LANG.SYS</span>
+                    <div class="flex space-x-1.5">
+                        <span class="border border-crt-green px-1.5 py-0.5">_</span>
+                        <span class="border border-crt-green px-1.5 py-0.5">□</span>
+                        <span class="border border-crt-green px-1.5 py-0.5">X</span>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-2.5 w-full justify-center">
+                    <span class="text-2xl">🌐</span>
+                    <button id="btn-en" onclick="setLanguage('en')" class="font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green bg-crt-green text-black font-bold transition-all hover:scale-105">EN</button>
+                    <button id="btn-pl" onclick="setLanguage('pl')" class="font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105">PL</button>
+                </div>
+                
+                <button onclick="toggleScanlines()" class="font-mono text-sm border border-crt-green/60 px-3 py-1.5 text-crt-green hover:bg-crt-green/20 w-full text-center">
+                    CRT: <span id="scanline-status">ON</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- BIO & AVATAR -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            <div class="md:col-span-4 pixel-box-green p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b border-crt-green pb-2 mb-3 font-pixel text-sm">
+                    <span>PROFILE.EXE</span>
+                    <div class="flex space-x-1.5">
+                        <button onclick="toggleWindow('avatarContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
+                        <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
+                        <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2 py-0.5 border border-crt-green text-sm">X</button>
+                    </div>
+                </div>
+                
+                <div id="avatarContent" class="square-card-box relative overflow-hidden border-2 border-crt-green bg-black flex items-center justify-center group">
+                    <img id="avatarImage" src="works/profile.png" alt="Profile" 
+                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE.PNG', '#00ff88', '#082115');" 
+                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="absolute bottom-2 left-2 bg-black/80 px-2.5 py-1.5 border border-crt-green font-mono text-xs sm:text-sm text-crt-green">
+                        > Profile
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-8 pixel-box-green p-4 sm:p-6 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center border-b border-crt-green pb-2 mb-4 font-pixel text-sm">
+                        <span>TERMINAL.BAT</span>
+                        <div class="flex space-x-1.5">
+                            <button onclick="toggleWindow('terminalContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
+                            <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
+                            <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2 py-0.5 border border-crt-green text-sm">X</button>
+                        </div>
+                    </div>
+
+                    <div id="terminalContent" class="space-y-4">
+                        <div id="bio-text" class="font-terminal text-2xl sm:text-3xl leading-snug text-crt-green green-glow-text">
+                            > HELLO! I'M XOFER. I CREATE DIGITAL ART, ANIMATIONS, AND GRAPHIC DESIGNS WITH A PIXEL-PERFECT RETRO TOUCH. WELCOME TO MY PORTFOLIO! <span class="inline-block w-3 h-6 bg-crt-green animate-pulse"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GUZIK DLA OSÓB Z EPILEPSJĄ -->
+                <div class="mt-4 pt-4 border-t border-crt-green/40 flex flex-col sm:flex-row justify-between items-center gap-4">
+                    <button onclick="toggleEpilepsyMode()" id="btn-epilepsy" 
+                        class="w-full sm:w-auto font-pixel text-xs sm:text-sm px-5 py-3 border-2 border-crt-violet bg-crt-violet-dim text-crt-violet-light font-bold hover:bg-crt-violet hover:text-black transition-all hover:scale-105 violet-glow text-center shadow-lg">
+                        <span id="epilepsy-btn-text">🛡️ EPILEPSY SAFE MODE: OFF</span>
+                    </button>
+                    
+                    <div class="flex items-center gap-4 text-xs font-mono text-crt-green-light">
+                        <span>OS: RETRO_OS v2.6</span>
+                        <span>MEM: 640KB OK</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRAMS I USE -->
+        <div class="pixel-box-green p-4 sm:p-6">
+            <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-6 font-pixel text-xs sm:text-sm">
+                <span class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 bg-crt-green inline-block"></span> 
+                    <span id="title-programs">PROGRAMS I USE</span>
+                </span>
+                <div class="flex space-x-1.5">
+                    <button onclick="toggleWindow('skillsContent')" class="hover:bg-crt-green hover:text-black px-2.5 py-0.5 border border-crt-green text-sm">-</button>
+                    <button class="hover:bg-crt-green hover:text-black px-2.5 py-0.5 border border-crt-green text-sm">□</button>
+                    <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2.5 py-0.5 border border-crt-green text-sm">X</button>
+                </div>
+            </div>
+
+            <div id="skillsContent" class="space-y-4">
+                <div class="font-mono text-sm sm:text-base text-crt-green-light border-b border-crt-green/30 pb-2 mb-4">
+                    SYS_TOOLS.EXE -- SKILL MATRIX
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> CLIP STUDIO PAINT
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">100%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> PROCREATE
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">100%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 100%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> TOONSQUID
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">85%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> ADOBE ILLUSTRATOR
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">80%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> ADOBE ANIMATE
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">70%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-crt-green-dim/60 border border-crt-green/60 p-3 sm:p-4 rounded-none hover:border-crt-green transition-all">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
+                                <span class="text-crt-green text-lg">></span> ADOBE PHOTOSHOP
+                            </span>
+                            <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">50%</span>
+                        </div>
+                        <div class="w-full bg-black border border-crt-green h-4 p-0.5">
+                            <div class="bg-crt-green h-full green-glow transition-all duration-1000" style="width: 50%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY TABS -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center">[ GRAPHICS ]</button>
+            <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">ILLUSTRATIONS</button>
+            <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">DRAWINGS</button>
+            <button onclick="switchCategory('animations')" id="tab-animations" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">2D ANIMATIONS</button>
+        </div>
+
+        <!-- WORKS MAIN (GRID) -->
+        <div class="pixel-box-green p-4 sm:p-6">
+            <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-4 font-pixel text-sm">
+                <span id="category-filename">DIR_GRAPHICS.SYS</span>
+                <div class="flex space-x-1.5">
+                    <button onclick="toggleWindow('worksGridContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
+                    <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
+                    <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2 py-0.5 border border-crt-green text-sm">X</button>
+                </div>
+            </div>
+
+            <div class="bg-black/80 border border-crt-green/50 p-3 mb-6 font-terminal text-2xl sm:text-3xl text-crt-green">
+                <span class="text-crt-green-light font-bold">> </span>
+                <span id="category-desc">MY GRAPHIC DESIGN WORKS. A MIX OF BRANDING, TYPOGRAPHY, AND LAYOUT EXPERIMENTS WITH A RETRO VIBE.</span>
+            </div>
+
+            <div id="worksGridContent" class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Dynamically Populated -->
+            </div>
+        </div>
+
+        <!-- OTHER WORKS (GRID) -->
+        <div class="pixel-box-violet p-4 sm:p-6 mt-8">
+            <div class="flex justify-between items-center border-b-2 border-crt-violet pb-2 mb-4 font-pixel text-sm">
+                <span class="text-crt-violet violet-glow-text font-pixel text-base sm:text-lg flex items-center gap-2">
+                    <span>></span> <span id="title-otherworks">OTHER WORKS _</span>
+                </span>
+                <div class="flex space-x-1.5 text-crt-violet">
+                    <button onclick="toggleWindow('otherWorksContent')" class="hover:bg-crt-violet hover:text-black px-2 py-0.5 border border-crt-violet text-sm">-</button>
+                    <button class="hover:bg-crt-violet hover:text-black px-2 py-0.5 border border-crt-violet text-sm">□</button>
+                    <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2 py-0.5 border border-crt-violet text-sm">X</button>
+                </div>
+            </div>
+
+            <div id="otherWorksContent" class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Dynamically Populated -->
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="pixel-box-green p-6 text-center space-y-6">
+            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl md:text-6xl font-pixel text-crt-green green-glow-text">
+                THANK YOU :)
+            </h2>
+
+            <div class="flex justify-center">
+                <a href="https://hakowfex.carrd.co/" target="_blank" rel="noopener noreferrer" 
+                   onclick="playBeep(600, 'triangle', 0.1)"
+                   class="inline-flex items-center gap-2 font-pixel text-sm sm:text-base px-8 py-5 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 green-glow">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                    </svg>
+                    <span id="btn-otherlinks">OTHER LINKS</span>
+                </a>
+            </div>
+
+            <!-- Tag @xofer_graphics -->
+            <div class="inline-block border-2 border-crt-green bg-black/90 px-6 py-3 shadow-lg">
+                <span class="font-terminal text-2xl sm:text-4xl font-bold text-crt-green green-glow-text tracking-wide">
+                    C:\> @xofer_graphics <span class="inline-block w-3 h-6 sm:h-8 bg-crt-green animate-pulse align-middle"></span>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VIEWER.EXE LIGHTBOX MODAL -->
+    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col justify-between p-4 sm:p-8 backdrop-blur-sm">
+        
+        <div class="flex justify-between items-center border-b-2 border-crt-green pb-3 shrink-0">
+            <div class="font-pixel text-sm sm:text-base text-crt-green green-glow-text" id="lightbox-title">
+                VIEWER.EXE
+            </div>
+            <button onclick="closeLightbox()" class="font-pixel text-base border-2 border-crt-green bg-crt-green text-black px-4 py-1.5 font-bold hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors">
+                X
+            </button>
+        </div>
+
+        <div class="flex-1 flex items-center justify-center relative my-4 overflow-hidden min-h-0">
+            <button onclick="prevImage()" class="absolute left-0 sm:left-4 z-20 font-pixel text-xl sm:text-3xl border-2 border-crt-green bg-black/80 text-crt-green p-4 sm:p-5 hover:bg-crt-green hover:text-black transition-all">
+                &lt;
+            </button>
+
+            <div id="modalCardWrapper" class="flex flex-col items-center justify-center h-full w-full px-12 sm:px-24">
+                <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border-2 border-crt-green green-glow shadow-xl">
+                
+                <div class="mt-4 shrink-0 bg-black/90 border border-crt-green px-4 py-2 font-mono text-sm sm:text-base text-crt-green flex items-center gap-4">
+                    <span id="lightbox-caption">> WORK_NAME</span>
+                    <span id="lightbox-counter" class="text-crt-green-light border-l border-crt-green pl-4">1 / 1</span>
+                </div>
+            </div>
+
+            <button onclick="nextImage()" class="absolute right-0 sm:right-4 z-20 font-pixel text-xl sm:text-3xl border-2 border-crt-green bg-black/80 text-crt-green p-4 sm:p-5 hover:bg-crt-green hover:text-black transition-all">
+                &gt;
+            </button>
+        </div>
+
+        <div class="text-center font-mono text-sm text-crt-green-light border-t border-crt-green/30 pt-2 shrink-0">
+            [ESC] CLOSE | [&lt;] PREV | [&gt;] NEXT
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script>
+        const i18n = {
+            en: {
+                bio: "> HELLO! I'M XOFER. I CREATE DIGITAL ART, ANIMATIONS, AND GRAPHIC DESIGNS WITH A PIXEL-PERFECT RETRO TOUCH. WELCOME TO MY PORTFOLIO!",
+                programsTitle: "PROGRAMS I USE",
+                otherWorksTitle: "OTHER WORKS _",
+                thankYou: "THANK YOU :)",
+                otherLinks: "OTHER LINKS",
+                catGraphics: "MY GRAPHIC DESIGN WORKS. A MIX OF BRANDING, TYPOGRAPHY, AND LAYOUT EXPERIMENTS WITH A RETRO VIBE.",
+                catIllustrations: "DIGITAL ILLUSTRATIONS FEATURING VIBRANT RETRO PALETTES AND DYNAMIC COMPOSITIONS.",
+                catDrawings: "SKETCHES, CHARACTER DESIGNS, AND PIXEL-ART SKETCHES.",
+                catAnimations: "2D FRAME-BY-FRAME RETRO ANIMATIONS AND LOOPING GRAPHICS.",
+                epilepsyOff: "🛡️ EPILEPSY SAFE MODE: OFF",
+                epilepsyOn: "🛡️ EPILEPSY SAFE MODE: ON"
+            },
+            pl: {
+                bio: "> CZEŚĆ! JESTEM XOFER. TWORZĘ GRAFIKĘ CYFROWĄ, ANIMACJE I PROJEKTY GRAFICZNE W RETRO STYLU PIXEL-ART. WITAJ W MOIM PORTFOLIO!",
+                programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
+                otherWorksTitle: "INNE PRACE _",
+                thankYou: "DZIĘKUJĘ :)",
+                otherLinks: "INNE LINKI",
+                catGraphics: "MOJE PRACE GRAFICZNE. POŁĄCZENIE BRANDINGU, TYPOGRAFII I EXPERYMENTÓW Z UKŁADEM W RETRO KLIMACIE.",
+                catIllustrations: "ILUSTRACJE CYFROWE Z ŻYWYMI PALETAMI RETRO I DYNAMICZNĄ KOMPOZYCJĄ.",
+                catDrawings: "SZKICE, PROJEKTY POSTACI ORAZ RYSUNKI W STYLU PIXEL-ART.",
+                catAnimations: "RETRO ANIMACJE 2D ORAZ ZAPĘTLONE GRAFIKI.",
+                epilepsyOff: "🛡️ TRYB BEZPIECZNY DLA EPILEPSJI: WYŁ.",
+                epilepsyOn: "🛡️ TRYB BEZPIECZNY DLA EPILEPSJI: WŁ."
+            }
+        };
+
+        let currentLang = 'en';
+        let isEpilepsySafe = false;
+
+        /* ==========================================================================
+           TUTAJ ZARZĄDZASZ SWOIMI PRACAMI Z FOLDERU "works/"
+           ========================================================================== */
+
+        const categoriesData = {
+            graphics: { 
+                filename: "DIR_GRAPHICS.SYS", 
+                descKey: "catGraphics", 
+                items: [
+                    { id: "G1", name: "Neon", img: "works/poster_neon.png" },
+                    { id: "G2", name: "Cyber City", img: "works/cyber_city.png" },
+                    { id: "G3", name: "Retro Logo", img: "works/logo_retro.png" },
+                ] 
+            },
+            illustrations: { 
+                filename: "DIR_ILLUST.SYS", 
+                descKey: "catIllustrations", 
+                items: [
+                    { id: "I1", name: "Retrowave Sunset", img: "works/sunset.png" },
+                    { id: "I2", name: "Cyberpunk Girl", img: "works/cyber_girl.png" },
+                ] 
+            },
+            drawings: { 
+                filename: "DIR_DRAWINGS.SYS", 
+                descKey: "catDrawings", 
+                items: [
+                    { id: "D1", name: "Character Sketch", img: "works/sketch_01.png" },
+                    { id: "D2", name: "Pixel Monster", img: "works/pixel_monster.png" },
+                ] 
+            },
+            animations: { 
+                filename: "DIR_2D_ANIM.SYS", 
+                descKey: "catAnimations", 
+                items: [
+                    { id: "A1", name: "Pixel Walk Cycle", img: "works/walk_cycle.gif" },
+                    { id: "A2", name: "Loading Screen", img: "works/loader.gif" },
+                ] 
+            }
+        };
+
+        const otherWorksItems = [
+            { id: "M1", name: "3D Poster Test", img: "works/poster_3d.png" },
+            { id: "M2", name: "UI Design Concept", img: "works/ui_concept.png" },
+            { id: "M3", name: "Vector Art", img: "works/vector_art.png" },
+        ];
+
+
+        let currentActiveCategory = 'graphics';
+        let currentLightboxList = [];
+        let currentLightboxIndex = 0;
+
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playBeep(freq = 440, type = 'square', duration = 0.08) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch (e) {}
+        }
+
+        // GENERATOR CANVAS DLA BRAKUJĄCYCH OBRAZKÓW
+        function generateCanvasFallback(imgElement, label, colorHex = '#00ff88', bgHex = '#082115') {
+            const canvas = document.createElement('canvas');
+            canvas.width = 400; canvas.height = 400;
+            const ctx = canvas.getContext('2d');
+            ctx.fillStyle = bgHex; ctx.fillRect(0, 0, 400, 400);
+            ctx.fillStyle = colorHex; ctx.globalAlpha = 0.1;
+            for (let i = 0; i < 400; i += 20) { ctx.fillRect(i, 0, 1, 400); ctx.fillRect(0, i, 400, 1); }
+            ctx.globalAlpha = 1.0; ctx.strokeStyle = colorHex; ctx.lineWidth = 8; ctx.strokeRect(10, 10, 380, 380);
+            ctx.fillStyle = colorHex; ctx.fillRect(150, 130, 100, 100);
+            ctx.fillStyle = bgHex; ctx.fillRect(165, 145, 70, 70);
+            ctx.fillStyle = colorHex; ctx.font = 'bold 24px "VT323", monospace'; ctx.textAlign = 'center';
+            ctx.fillText(label, 200, 300);
+            imgElement.src = canvas.toDataURL();
+        }
+
+        function renderCategoryGrid(catKey) {
+            currentActiveCategory = catKey;
+            const category = categoriesData[catKey];
+            document.getElementById('category-filename').innerText = category.filename;
+            document.getElementById('category-desc').innerText = i18n[currentLang][category.descKey];
+
+            const gridContainer = document.getElementById('worksGridContent');
+            gridContainer.innerHTML = '';
+
+            category.items.forEach((item, index) => {
+                gridContainer.innerHTML += `
+                    <div onclick="openLightboxFromGrid('${catKey}', ${index}, this)" class="pixel-box-green p-2 cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:green-glow">
+                        <div class="flex justify-between items-center text-xs font-pixel border-b border-crt-green pb-1 mb-2 text-crt-green">
+                            <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
+                        </div>
+                        <div class="square-card-box overflow-hidden border border-crt-green bg-black relative">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#00ff88', '#082115');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <!-- DODANY EFEKT SZUMU -->
+                            <div class="static-overlay static-green"></div>
+                        </div>
+                        <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-green truncate bg-black/60 py-1.5 border-t border-crt-green/40">${item.name}</div>
+                    </div>`;
+            });
+
+            ['graphics', 'illustrations', 'drawings', 'animations'].forEach(tab => {
+                document.getElementById(`tab-${tab}`).className = tab === catKey 
+                    ? "font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center" 
+                    : "font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center";
+            });
+        }
+
+        function renderOtherWorks() {
+            const container = document.getElementById('otherWorksContent');
+            container.innerHTML = '';
+            otherWorksItems.forEach((item, index) => {
+                container.innerHTML += `
+                    <div onclick="openLightboxFromOther(${index}, this)" class="pixel-box-violet p-2 cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:violet-glow">
+                        <div class="flex justify-between items-center text-xs font-pixel border-b border-crt-violet pb-1 mb-2 text-crt-violet">
+                            <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
+                        </div>
+                        <div class="square-card-box overflow-hidden border border-crt-violet bg-black relative">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#d946ef', '#1c0528');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <!-- DODANY EFEKT SZUMU -->
+                            <div class="static-overlay static-violet"></div>
+                        </div>
+                        <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-violet truncate bg-black/60 py-1.5 border-t border-crt-violet/40">${item.name}</div>
+                    </div>`;
+            });
+        }
+
+        function switchCategory(catKey) { playBeep(520, 'square', 0.08); renderCategoryGrid(catKey); }
+
+        function triggerClickAnim(element) {
+            if (element && !isEpilepsySafe) {
+                element.classList.add('card-click-anim');
+                setTimeout(() => element.classList.remove('card-click-anim'), 300);
+            }
+        }
+
+        function openLightboxFromGrid(catKey, index, element) {
+            playBeep(880, 'sine', 0.12);
+            triggerClickAnim(element);
+            currentLightboxList = categoriesData[catKey].items;
+            currentLightboxIndex = index;
+            setTimeout(showLightbox, isEpilepsySafe ? 0 : 150);
+        }
+
+        function openLightboxFromOther(index, element) {
+            playBeep(880, 'sine', 0.12);
+            triggerClickAnim(element);
+            currentLightboxList = otherWorksItems;
+            currentLightboxIndex = index;
+            setTimeout(showLightbox, isEpilepsySafe ? 0 : 150);
+        }
+
+        function showLightbox() {
+            const item = currentLightboxList[currentLightboxIndex];
+            const imgEl = document.getElementById('lightbox-img');
+            
+            imgEl.src = item.img;
+            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#00ff88', '#082115'); };
+
+            document.getElementById('lightbox-title').innerText = `VIEWER.EXE - ${item.name}`;
+            document.getElementById('lightbox-caption').innerText = `> ${item.name}`;
+            document.getElementById('lightbox-counter').innerText = `${currentLightboxIndex + 1} / ${currentLightboxList.length}`;
+
+            const wrapper = document.getElementById('modalCardWrapper');
+            wrapper.classList.remove('crt-tv-boot');
+            if (!isEpilepsySafe) {
+                void wrapper.offsetWidth;
+                wrapper.classList.add('crt-tv-boot');
+            }
+
+            document.getElementById('lightbox').classList.remove('hidden');
+            document.getElementById('lightbox').classList.add('flex');
+        }
+
+        function closeLightbox() {
+            playBeep(300, 'sawtooth', 0.1);
+            document.getElementById('lightbox').classList.add('hidden');
+            document.getElementById('lightbox').classList.remove('flex');
+        }
+
+        function nextImage() {
+            playBeep(650, 'square', 0.06);
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxList.length;
+            showLightbox();
+        }
+
+        function prevImage() {
+            playBeep(650, 'square', 0.06);
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxList.length) % currentLightboxList.length;
+            showLightbox();
+        }
+
+        function toggleEpilepsyMode() {
+            playBeep(600, 'triangle', 0.1);
+            isEpilepsySafe = !isEpilepsySafe;
+            document.body.classList.toggle('no-epilepsy', isEpilepsySafe);
+            
+            const btnText = document.getElementById('epilepsy-btn-text');
+            const btn = document.getElementById('btn-epilepsy');
+            
+            if (isEpilepsySafe) {
+                btnText.innerText = i18n[currentLang].epilepsyOn;
+                btn.className = "w-full sm:w-auto font-pixel text-xs sm:text-sm px-5 py-3 border-2 border-crt-violet bg-crt-violet text-black font-bold hover:bg-crt-violet-dim hover:text-crt-violet-light transition-all hover:scale-105 violet-glow text-center shadow-lg";
+            } else {
+                btnText.innerText = i18n[currentLang].epilepsyOff;
+                btn.className = "w-full sm:w-auto font-pixel text-xs sm:text-sm px-5 py-3 border-2 border-crt-violet bg-crt-violet-dim text-crt-violet-light font-bold hover:bg-crt-violet hover:text-black transition-all hover:scale-105 violet-glow text-center shadow-lg";
+            }
+        }
+
+        function setLanguage(lang) {
+            playBeep(750, 'triangle', 0.08);
+            currentLang = lang;
+            document.getElementById('bio-text').innerHTML = `${i18n[lang].bio} <span class="inline-block w-3 h-6 bg-crt-green animate-pulse"></span>`;
+            document.getElementById('title-programs').innerText = i18n[lang].programsTitle;
+            document.getElementById('title-otherworks').innerText = i18n[lang].otherWorksTitle;
+            document.getElementById('footer-thankyou').innerText = i18n[lang].thankYou;
+            document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
+            document.getElementById('category-desc').innerText = i18n[lang][categoriesData[currentActiveCategory].descKey];
+            
+            document.getElementById('epilepsy-btn-text').innerText = isEpilepsySafe ? i18n[lang].epilepsyOn : i18n[lang].epilepsyOff;
+
+            document.getElementById('btn-en').className = lang === 'en' ? "font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green bg-crt-green text-black font-bold transition-all hover:scale-105" : "font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105";
+            document.getElementById('btn-pl').className = lang === 'pl' ? "font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green bg-crt-green text-black font-bold transition-all hover:scale-105" : "font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105";
+        }
+
+        function toggleWindow(elementId) {
+            playBeep(400, 'square', 0.05);
+            const el = document.getElementById(elementId);
+            if (el) el.classList.toggle('hidden');
+        }
+
+        function closeWindow(btn) {
+            playBeep(250, 'sawtooth', 0.12);
+            const box = btn.closest('.pixel-box-green, .pixel-box-violet');
+            if (box) { box.style.transition = 'all 0.3s ease'; box.style.opacity = '0'; box.style.transform = 'scale(0.9)'; setTimeout(() => box.style.display = 'none', 300); }
+        }
+
+        function toggleScanlines() {
+            playBeep(500, 'sine', 0.05);
+            const overlay = document.getElementById('scanlineOverlay');
+            const status = document.getElementById('scanline-status');
+            overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+            status.innerText = overlay.style.display === 'none' ? 'OFF' : 'ON';
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('hidden')) {
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') nextImage();
+                if (e.key === 'ArrowLeft') prevImage();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCategoryGrid('graphics');
+            renderOtherWorks();
+        });
+    </script>
+</body>
+</html>
