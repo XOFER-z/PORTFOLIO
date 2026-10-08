@@ -390,14 +390,31 @@
         </section>
 
         <!-- WORKS MAIN SECTION -->
+       <!-- WORKS MAIN SECTION -->
         <section id="section-works" class="scroll-mt-24 space-y-4">
             
-            <!-- CATEGORY TABS -->
+            <!-- CATEGORY TABS (POPRAWIONE PRZYCISKI Z PIKSELOWYMI STRZAŁKAMI) -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center">[ GRAPHICS ]</button>
-                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">ILLUSTRATIONS</button>
-                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">DRAWINGS</button>
-                <button onclick="switchCategory('animations')" id="tab-animations" class="font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center">2D ANIMATIONS</button>
+                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
+                    <span class="text-xs">►</span>
+                    <span>GRAPHICS</span>
+                    <span class="text-xs">◄</span>
+                </button>
+                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
+                    <span class="text-xs opacity-60">►</span>
+                    <span>ILLUSTRATIONS</span>
+                    <span class="text-xs opacity-60">◄</span>
+                </button>
+                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
+                    <span class="text-xs opacity-60">►</span>
+                    <span>DRAWINGS</span>
+                    <span class="text-xs opacity-60">◄</span>
+                </button>
+                <button onclick="switchCategory('animations')" id="tab-animations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
+                    <span class="text-xs opacity-60">►</span>
+                    <span>2D ANIMATIONS</span>
+                    <span class="text-xs opacity-60">◄</span>
+                </button>
             </div>
 
             <!-- WORKS GRID BOX -->
