@@ -58,7 +58,7 @@
             display: none !important;
         }
 
-        /* Scanlines Overlay - wzór bez użycia gradientów */
+        /* Scanlines Overlay */
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -120,7 +120,6 @@
             50% { transform: translate(1%, 1%); }
             100% { transform: translate(-1%, -1%); }
         }
-        /* Odsłonięcie czystego obrazka po najechaniu myszką */
         .group:hover .static-overlay {
             opacity: 0;
         }
@@ -128,7 +127,7 @@
             animation: none;
         }
 
-        /* PASKI PROCENTOWE W STYLU STATIC (PIXEL NOISE + SEGMENTACJA) */
+        /* PASKI PROCENTOWE W STYLU STATIC */
         .static-progress-bar {
             background-color: #00ff88;
             background-image: 
@@ -137,7 +136,7 @@
             background-size: cover, 7px 100%;
         }
 
-        /* ANIMACJE OTWIERANIA PEŁNEGO EKRANU (CRT TV BOOT) */
+        /* ANIMACJE OTWIERANIA PEŁNEGO EKRANU */
         .card-click-anim {
             animation: pixelFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
@@ -163,7 +162,6 @@
             75% { transform: translate(3px, -2px) skew(-2deg); filter: hue-rotate(-90deg); }
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #070a0d; }
         ::-webkit-scrollbar-thumb { background: #00ff88; border: 1px solid #04381e; }
@@ -173,7 +171,7 @@
 
     <div id="scanlineOverlay" class="scanlines"></div>
 
-    <!-- PASEK SZYBKIEJ NAWIGACJI -->
+    <!-- PASEK SZYBKIEJ NAWIGACJI U GÓRY STRONY -->
     <nav class="fixed top-0 left-0 w-full z-40 bg-black/90 border-b-2 border-crt-green px-3 py-2 backdrop-blur-md flex items-center justify-between shadow-lg">
         <div class="flex items-center space-x-2 font-pixel text-xs text-crt-green">
             <span class="inline-block w-2.5 h-2.5 bg-crt-green animate-pulse"></span>
@@ -193,7 +191,6 @@
 
         <!-- HEADER & TOOLBAR -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            
             <div class="pixel-box-green w-full md:w-auto flex-1 p-4 sm:p-6 relative group transition-all">
                 <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-4 font-pixel text-sm">
                     <span>PORTFOLIO.EXE</span>
@@ -390,31 +387,35 @@
         </section>
 
         <!-- WORKS MAIN SECTION -->
-       <!-- WORKS MAIN SECTION -->
         <section id="section-works" class="scroll-mt-24 space-y-4">
             
-            <!-- CATEGORY TABS (POPRAWIONE PRZYCISKI Z PIKSELOWYMI STRZAŁKAMI) -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
-                    <span class="text-xs">►</span>
-                    <span>GRAPHICS</span>
-                    <span class="text-xs">◄</span>
-                </button>
-                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
-                    <span class="text-xs opacity-60">►</span>
-                    <span>ILLUSTRATIONS</span>
-                    <span class="text-xs opacity-60">◄</span>
-                </button>
-                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
-                    <span class="text-xs opacity-60">►</span>
-                    <span>DRAWINGS</span>
-                    <span class="text-xs opacity-60">◄</span>
-                </button>
-                <button onclick="switchCategory('animations')" id="tab-animations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center flex items-center justify-center gap-1">
-                    <span class="text-xs opacity-60">►</span>
-                    <span>2D ANIMATIONS</span>
-                    <span class="text-xs opacity-60">◄</span>
-                </button>
+            <!-- CATEGORY TABS (STRZAŁKI PO LEWEJ I PRAWEJ STRONIE BARKU SEKCJI) -->
+            <div class="flex items-center gap-2 sm:gap-3 w-full">
+                <!-- LEWA STRZAŁKA PIKSELOWA -->
+                <div class="font-pixel text-lg sm:text-2xl text-crt-green green-glow-text animate-pulse select-none px-1">
+                    ◄
+                </div>
+
+                <!-- KONTENER PRZYCISKÓW KATEGORII -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1">
+                    <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center truncate">
+                        GRAPHICS
+                    </button>
+                    <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center truncate">
+                        ILLUSTRATIONS
+                    </button>
+                    <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center truncate">
+                        DRAWINGS
+                    </button>
+                    <button onclick="switchCategory('animations')" id="tab-animations" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center truncate">
+                        2D ANIMATIONS
+                    </button>
+                </div>
+
+                <!-- PRAWA STRZAŁKA PIKSELOWA -->
+                <div class="font-pixel text-lg sm:text-2xl text-crt-green green-glow-text animate-pulse select-none px-1">
+                    ►
+                </div>
             </div>
 
             <!-- WORKS GRID BOX -->
@@ -492,9 +493,8 @@
 
     </div>
 
-    <!-- VIEWER.EXE LIGHTBOX MODAL (BEZ EFEKTU STATIC / BRACTWO ORYGINALNYCH ANIMACJI CRT) -->
+    <!-- VIEWER.EXE LIGHTBOX MODAL -->
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col justify-between p-4 sm:p-8 backdrop-blur-md">
-        
         <div class="flex justify-between items-center border-b-2 border-crt-green pb-3 shrink-0">
             <div class="font-pixel text-sm sm:text-base text-crt-green green-glow-text flex items-center gap-2" id="lightbox-title">
                 <span>VIEWER.EXE</span>
@@ -509,7 +509,6 @@
                 &lt;
             </button>
 
-            <!-- KONTENER Z PŁYNNĄ ANIMACJĄ CRT BOOT ORAZ CZYSTYM OBRAZEM -->
             <div id="modalCardWrapper" class="flex flex-col items-center justify-center h-full w-full px-12 sm:px-24">
                 <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border-2 border-crt-green green-glow shadow-2xl bg-black">
                 
@@ -563,7 +562,6 @@
         let currentLang = 'en';
         let isEpilepsySafe = false;
 
-        /* ZARZĄDZANIE PRACAMI Z FOLDERU "works/" */
         const categoriesData = {
             graphics: { 
                 filename: "DIR_GRAPHICS.SYS", 
@@ -631,7 +629,6 @@
             } catch (e) {}
         }
 
-        // GENERATOR CANVAS DLA BRAKUJĄCYCH OBRAZKÓW
         function generateCanvasFallback(imgElement, label, colorHex = '#00ff88', bgHex = '#082115') {
             const canvas = document.createElement('canvas');
             canvas.width = 400; canvas.height = 400;
@@ -664,7 +661,6 @@
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-green bg-black relative">
                             <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#00ff88', '#082115');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <!-- EFEKT ZAKŁÓCEŃ TYLKO NA MINIATURZE PRZED KLIKNIĘCIEM -->
                             <div class="static-overlay static-green"></div>
                         </div>
                         <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-green truncate bg-black/70 py-1.5 border-t border-crt-green/40">${item.name}</div>
@@ -673,8 +669,8 @@
 
             ['graphics', 'illustrations', 'drawings', 'animations'].forEach(tab => {
                 document.getElementById(`tab-${tab}`).className = tab === catKey 
-                    ? "font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center" 
-                    : "font-pixel text-sm sm:text-base py-4 px-3 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105 text-center";
+                    ? "font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center truncate" 
+                    : "font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-black text-crt-green hover:bg-crt-green/20 transition-all hover:scale-105 text-center truncate";
             });
         }
 
@@ -689,7 +685,6 @@
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-violet bg-black relative">
                             <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#d946ef', '#1c0528');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <!-- EFEKT ZAKŁÓCEŃ TYLKO NA MINIATURZE PRZED KLIKNIĘCIEM -->
                             <div class="static-overlay static-violet"></div>
                         </div>
                         <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-violet truncate bg-black/70 py-1.5 border-t border-crt-violet/40">${item.name}</div>
@@ -733,7 +728,6 @@
             document.getElementById('lightbox-caption').innerText = `> ${item.name}`;
             document.getElementById('lightbox-counter').innerText = `${currentLightboxIndex + 1} / ${currentLightboxList.length}`;
 
-            // PRZYWRÓCENIE ORYGINALNEJ ANIMACJI URUCHAMIANIA CRT TV
             const wrapper = document.getElementById('modalCardWrapper');
             wrapper.classList.remove('crt-tv-boot');
             if (!isEpilepsySafe) {
