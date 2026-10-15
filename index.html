@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO.EXE</title>
+    <title>PORTFOLIO.EXE - Retro Pixel Art Portfolio</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,14 +137,12 @@
             animation: none;
         }
 
-        /* PIKSELOWY GRADIENT FIOLETOWO-ZIELONY (BLOKOWY) DLA PASKÓW */
+        /* PŁYNNY GRADIENT FIOLETOWO-ZIELONY DLA PASKÓW */
         .static-progress-bar {
             background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E"),
-                /* Blokowy gradient retro (od fioletu do zieleni w postaci prążków/pikseli) */
-                repeating-linear-gradient(90deg, #a855f7, #a855f7 12px, #39ff14 12px, #39ff14 24px),
-                repeating-linear-gradient(90deg, transparent, transparent 5px, #000000 5px, #000000 7px);
-            background-size: cover, 100% 100%, 7px 100%;
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E"),
+                linear-gradient(90deg, #a855f7 0%, #39ff14 100%);
+            background-size: cover, 100% 100%;
         }
 
         /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) */
@@ -438,8 +436,8 @@
                     </span>
                     <div class="flex space-x-1.5">
                         <button onclick="toggleWindow('worksGridContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
-                        <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
-                        <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2 py-0.5 border border-crt-green text-sm">X</button>
+                        <button class="hover:bg-crt-green hover:text-black px-2.5 py-0.5 border border-crt-green text-sm">□</button>
+                        <button onclick="closeWindow(this)" class="hover:bg-red-500 hover:text-white px-2.5 py-0.5 border border-crt-green text-sm">X</button>
                     </div>
                 </div>
 
