@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO.EXE - Retro Pixel Art Portfolio</title>
+    <title>PORTFOLIO.EXE</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,15 +17,15 @@
             theme: {
                 extend: {
                     colors: {
-                        'crt-bg': '#070a0d',
-                        'crt-green': '#00ff88',
-                        'crt-green-dark': '#04381e',
-                        'crt-green-dim': '#082115',
-                        'crt-green-light': '#adffd8',
-                        'crt-violet': '#d946ef',
-                        'crt-violet-dark': '#3b0764',
-                        'crt-violet-dim': '#1c0528',
-                        'crt-violet-light': '#f5d0fe',
+                        'crt-bg': '#0b0f17',       /* Nieco jaśniejsze, głębokie tło */
+                        'crt-green': '#39ff14',    /* Neonowa, jaśniejsza i bardziej otwarta zieleń */
+                        'crt-green-dark': '#0f4c2c',
+                        'crt-green-dim': '#102e1c',
+                        'crt-green-light': '#c8ffe4', /* Bardzo jasny pastelowy odcień zieleni */
+                        'crt-violet': '#ec4899',   /* Żywy, jaśniejszy fiolet/róż (magenta/orchid) */
+                        'crt-violet-dark': '#581c87',
+                        'crt-violet-dim': '#2e103f',
+                        'crt-violet-light': '#fae8ff',/* Bardzo jasny pastelowy fiolet */
                     },
                     fontFamily: {
                         pixel: ['"Press Start 2P"', 'cursive'],
@@ -40,8 +40,8 @@
     <style>
         /* Główne ustawienia */
         body {
-            background-color: #070a0d;
-            color: #00ff88;
+            background-color: #0b0f17;
+            color: #39ff14;
             font-family: 'VT323', monospace;
             overflow-x: hidden;
             image-rendering: pixelated;
@@ -63,7 +63,7 @@
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             pointer-events: none;
-            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='2' fill='%23000000' fill-opacity='0.25'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100%25' height='2' fill='%23000000' fill-opacity='0.18'/%3E%3C/svg%3E");
             z-index: 999;
             transition: opacity 0.3s ease;
         }
@@ -77,30 +77,30 @@
             animation: none !important;
         }
 
-        /* Efekty Glow */
+        /* Zmodyfikowane, mocniejsze i bardziej świetliste efekty Glow */
         .green-glow {
-            box-shadow: 0 0 12px rgba(0, 255, 136, 0.4), inset 0 0 8px rgba(0, 255, 136, 0.15);
+            box-shadow: 0 0 16px rgba(57, 255, 20, 0.6), inset 0 0 10px rgba(57, 255, 20, 0.25);
         }
         .green-glow-text {
-            text-shadow: 0 0 8px rgba(0, 255, 136, 0.8);
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.9), 0 0 20px rgba(57, 255, 20, 0.4);
         }
         .violet-glow {
-            box-shadow: 0 0 12px rgba(217, 70, 239, 0.4), inset 0 0 8px rgba(217, 70, 239, 0.15);
+            box-shadow: 0 0 16px rgba(236, 72, 153, 0.6), inset 0 0 10px rgba(236, 72, 153, 0.25);
         }
         .violet-glow-text {
-            text-shadow: 0 0 8px rgba(217, 70, 239, 0.8);
+            text-shadow: 0 0 10px rgba(236, 72, 153, 0.9), 0 0 20px rgba(236, 72, 153, 0.4);
         }
 
-        /* Ramki okien OS */
+        /* Ramki okien OS z nowymi, jaśniejszymi efektami głębi */
         .pixel-box-green {
-            border: 3px solid #00ff88;
-            background-color: rgba(8, 33, 21, 0.92);
-            box-shadow: 5px 5px 0px #04381e, 0 0 15px rgba(0, 255, 136, 0.2);
+            border: 3px solid #39ff14;
+            background-color: rgba(16, 46, 28, 0.88);
+            box-shadow: 5px 5px 0px #0f4c2c, 0 0 20px rgba(57, 255, 20, 0.25);
         }
         .pixel-box-violet {
-            border: 3px solid #d946ef;
-            background-color: rgba(28, 5, 40, 0.92);
-            box-shadow: 5px 5px 0px #3b0764, 0 0 15px rgba(217, 70, 239, 0.2);
+            border: 3px solid #ec4899;
+            background-color: rgba(46, 16, 63, 0.88);
+            box-shadow: 5px 5px 0px #581c87, 0 0 20px rgba(236, 72, 153, 0.25);
         }
 
         /* Proporcje 1:1 dla miniatur */
@@ -114,16 +114,16 @@
             top: -5%; left: -5%; width: 110%; height: 110%;
             pointer-events: none;
             z-index: 10;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.45'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.35'/%3E%3C/svg%3E");
             mix-blend-mode: hard-light;
             transition: opacity 0.3s ease;
             animation: staticAnim 0.2s steps(2) infinite;
         }
         .static-green {
-            background-color: rgba(4, 56, 30, 0.85);
+            background-color: rgba(15, 76, 44, 0.75);
         }
         .static-violet {
-            background-color: rgba(28, 5, 40, 0.85);
+            background-color: rgba(88, 28, 135, 0.75);
         }
         @keyframes staticAnim {
             0% { transform: translate(0, 0); }
@@ -139,21 +139,21 @@
 
         /* PASKI PROCENTOWE W STYLU STATIC */
         .static-progress-bar {
-            background-color: #00ff88;
+            background-color: #39ff14;
             background-image: 
-                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.35'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E"),
                 repeating-linear-gradient(90deg, transparent, transparent 5px, #000000 5px, #000000 7px);
             background-size: cover, 7px 100%;
         }
 
-        /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) */
+        /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) Z EFEKTEM CHROMATYCZNYM */
         .card-click-anim {
             animation: pixelFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
         @keyframes pixelFlash {
-            0% { transform: scale(0.95); filter: invert(1) brightness(2); }
-            50% { transform: scale(0.98); filter: invert(0.5) brightness(1.5); }
-            100% { transform: scale(1); filter: invert(0) brightness(1); }
+            0% { transform: scale(0.95); filter: hue-rotate(45deg) brightness(2.2); }
+            50% { transform: scale(0.98); filter: hue-rotate(-45deg) brightness(1.7); }
+            100% { transform: scale(1); filter: hue-rotate(0deg) brightness(1); }
         }
 
         .crt-tv-boot {
@@ -161,20 +161,20 @@
         }
 
         @keyframes crtTurnOn {
-            0% { transform: scale(0, 0.005); filter: brightness(10) contrast(4); opacity: 0; }
-            40% { transform: scale(1, 0.01); filter: brightness(5) contrast(3); opacity: 1; }
+            0% { transform: scale(0, 0.005); filter: brightness(12) contrast(4); opacity: 0; }
+            40% { transform: scale(1, 0.01); filter: brightness(6) contrast(3); opacity: 1; }
             100% { transform: scale(1, 1); filter: brightness(1) contrast(1); opacity: 1; }
         }
 
         @keyframes glitchFlicker {
             0%, 100% { transform: translate(0, 0) skew(0deg); filter: hue-rotate(0deg); }
-            25% { transform: translate(-3px, 2px) skew(2deg); filter: hue-rotate(90deg); }
-            75% { transform: translate(3px, -2px) skew(-2deg); filter: hue-rotate(-90deg); }
+            25% { transform: translate(-3px, 2px) skew(2deg); filter: hue-rotate(90deg) saturate(2); }
+            75% { transform: translate(3px, -2px) skew(-2deg); filter: hue-rotate(-90deg) saturate(2); }
         }
 
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #070a0d; }
-        ::-webkit-scrollbar-thumb { background: #00ff88; border: 1px solid #04381e; }
+        ::-webkit-scrollbar-track { background: #0b0f17; }
+        ::-webkit-scrollbar-thumb { background: #39ff14; border: 1px solid #0f4c2c; }
     </style>
 </head>
 <body class="min-h-screen p-3 sm:p-6 md:p-8 relative selection:bg-crt-green selection:text-black pt-16 sm:pt-20">
@@ -259,7 +259,7 @@
                 
                 <div id="avatarContent" class="square-card-box relative overflow-hidden border-2 border-crt-green bg-black flex items-center justify-center group">
                     <img id="avatarImage" src="works/profile.png" alt="Profile" 
-                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE.PNG', '#00ff88', '#082115');" 
+                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE.PNG', '#39ff14', '#102e1c');" 
                          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                     <div class="absolute bottom-2 left-2 bg-black/90 px-2.5 py-1.5 border border-crt-green font-mono text-xs sm:text-sm text-crt-green">
                         > Profile
@@ -321,7 +321,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> CLIP STUDIO PAINT
@@ -333,7 +333,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> PROCREATE
@@ -345,7 +345,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> TOONSQUID
@@ -357,7 +357,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> ADOBE ILLUSTRATOR
@@ -369,7 +369,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> ADOBE ANIMATE
@@ -381,7 +381,7 @@
                         </div>
                     </div>
 
-                    <div class="bg-crt-green-dim/80 border border-crt-green/60 p-3 sm:p-4 hover:border-crt-green transition-all">
+                    <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
                                 <span class="text-crt-green text-lg">></span> ADOBE PHOTOSHOP
@@ -399,7 +399,7 @@
         <!-- WORKS MAIN SECTION -->
         <section id="section-works" class="scroll-mt-24 space-y-4">
             
-            <!-- CATEGORY TABS (STRZAŁKI PO LEWEJ I PRAWEJ STRONIE BARKU SEKCJI) -->
+            <!-- CATEGORY TABS -->
             <div class="flex items-center gap-2 sm:gap-3 w-full">
                 <!-- LEWA STRZAŁKA PIKSELOWA -->
                 <div class="font-pixel text-lg sm:text-2xl text-crt-green green-glow-text animate-pulse select-none px-1">
@@ -640,12 +640,12 @@
             } catch (e) {}
         }
 
-        function generateCanvasFallback(imgElement, label, colorHex = '#00ff88', bgHex = '#082115') {
+        function generateCanvasFallback(imgElement, label, colorHex = '#39ff14', bgHex = '#102e1c') {
             const canvas = document.createElement('canvas');
             canvas.width = 400; canvas.height = 400;
             const ctx = canvas.getContext('2d');
             ctx.fillStyle = bgHex; ctx.fillRect(0, 0, 400, 400);
-            ctx.fillStyle = colorHex; ctx.globalAlpha = 0.1;
+            ctx.fillStyle = colorHex; ctx.globalAlpha = 0.12;
             for (let i = 0; i < 400; i += 20) { ctx.fillRect(i, 0, 1, 400); ctx.fillRect(0, i, 400, 1); }
             ctx.globalAlpha = 1.0; ctx.strokeStyle = colorHex; ctx.lineWidth = 8; ctx.strokeRect(10, 10, 380, 380);
             ctx.fillStyle = colorHex; ctx.fillRect(150, 130, 100, 100);
@@ -671,7 +671,7 @@
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-green bg-black relative">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#00ff88', '#082115');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#39ff14', '#102e1c');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                             <div class="static-overlay static-green"></div>
                         </div>
                         <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-green truncate bg-black/70 py-1.5 border-t border-crt-green/40">${item.name}</div>
@@ -695,7 +695,7 @@
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-violet bg-black relative">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#d946ef', '#1c0528');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#ec4899', '#2e103f');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                             <div class="static-overlay static-violet"></div>
                         </div>
                         <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-violet truncate bg-black/70 py-1.5 border-t border-crt-violet/40">${item.name}</div>
@@ -733,13 +733,12 @@
             const imgEl = document.getElementById('lightbox-img');
             
             imgEl.src = item.img;
-            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#00ff88', '#082115'); };
+            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#39ff14', '#102e1c'); };
 
             document.getElementById('lightbox-title').innerText = `VIEWER.EXE - ${item.name}`;
             document.getElementById('lightbox-caption').innerText = `> ${item.name}`;
             document.getElementById('lightbox-counter').innerText = `${currentLightboxIndex + 1} / ${currentLightboxList.length}`;
 
-            // EFEKT URUCHAMIANIA TELEWIZORA CRT (ANIMACJA CRT BOOT)
             const wrapper = document.getElementById('modalCardWrapper');
             wrapper.classList.remove('crt-tv-boot');
             if (!isEpilepsySafe) {
@@ -747,7 +746,6 @@
                 wrapper.classList.add('crt-tv-boot');
             }
 
-            // WYŁĄCZANIE EFEKTÓW ZAKŁÓCEŃ I SCANLINES PODCZAS OTWARTYCH PRAC
             document.body.classList.add('fx-disabled');
 
             document.getElementById('lightbox').classList.remove('hidden');
@@ -756,8 +754,6 @@
 
         function closeLightbox() {
             playBeep(300, 'sawtooth', 0.1);
-            
-            // PRZYWRACANIE EFEKTÓW EKRANOWYCH I EFEKTU STATIC PO ZAMKNIĘCIU PODGLĄDU
             document.body.classList.remove('fx-disabled');
 
             document.getElementById('lightbox').classList.add('hidden');
