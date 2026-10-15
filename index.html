@@ -17,15 +17,15 @@
             theme: {
                 extend: {
                     colors: {
-                        'crt-bg': '#0b0f17',       /* Nieco jaśniejsze, głębokie tło */
-                        'crt-green': '#39ff14',    /* Neonowa, jaśniejsza i bardziej otwarta zieleń */
+                        'crt-bg': '#0b0f17',       /* Tło strony */
+                        'crt-green': '#39ff14',    /* Jasna, neonowa zieleń */
                         'crt-green-dark': '#0f4c2c',
                         'crt-green-dim': '#102e1c',
-                        'crt-green-light': '#c8ffe4', /* Bardzo jasny pastelowy odcień zieleni */
-                        'crt-violet': '#ec4899',   /* Żywy, jaśniejszy fiolet/róż (magenta/orchid) */
-                        'crt-violet-dark': '#581c87',
-                        'crt-violet-dim': '#2e103f',
-                        'crt-violet-light': '#fae8ff',/* Bardzo jasny pastelowy fiolet */
+                        'crt-green-light': '#c8ffe4', 
+                        'crt-violet': '#a855f7',   /* Jasny, otwarty fiolet (zastąpił róż) */
+                        'crt-violet-dark': '#4c1d95',
+                        'crt-violet-dim': '#221147',
+                        'crt-violet-light': '#f3e8ff',/* Bardzo jasny pastelowy fiolet */
                     },
                     fontFamily: {
                         pixel: ['"Press Start 2P"', 'cursive'],
@@ -77,7 +77,7 @@
             animation: none !important;
         }
 
-        /* Zmodyfikowane, mocniejsze i bardziej świetliste efekty Glow */
+        /* Efekty Glow */
         .green-glow {
             box-shadow: 0 0 16px rgba(57, 255, 20, 0.6), inset 0 0 10px rgba(57, 255, 20, 0.25);
         }
@@ -85,22 +85,22 @@
             text-shadow: 0 0 10px rgba(57, 255, 20, 0.9), 0 0 20px rgba(57, 255, 20, 0.4);
         }
         .violet-glow {
-            box-shadow: 0 0 16px rgba(236, 72, 153, 0.6), inset 0 0 10px rgba(236, 72, 153, 0.25);
+            box-shadow: 0 0 16px rgba(168, 85, 247, 0.6), inset 0 0 10px rgba(168, 85, 247, 0.25);
         }
         .violet-glow-text {
-            text-shadow: 0 0 10px rgba(236, 72, 153, 0.9), 0 0 20px rgba(236, 72, 153, 0.4);
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.9), 0 0 20px rgba(168, 85, 247, 0.4);
         }
 
-        /* Ramki okien OS z nowymi, jaśniejszymi efektami głębi */
+        /* Ramki okien OS */
         .pixel-box-green {
             border: 3px solid #39ff14;
             background-color: rgba(16, 46, 28, 0.88);
             box-shadow: 5px 5px 0px #0f4c2c, 0 0 20px rgba(57, 255, 20, 0.25);
         }
         .pixel-box-violet {
-            border: 3px solid #ec4899;
-            background-color: rgba(46, 16, 63, 0.88);
-            box-shadow: 5px 5px 0px #581c87, 0 0 20px rgba(236, 72, 153, 0.25);
+            border: 3px solid #a855f7;
+            background-color: rgba(34, 17, 71, 0.88);
+            box-shadow: 5px 5px 0px #4c1d95, 0 0 20px rgba(168, 85, 247, 0.25);
         }
 
         /* Proporcje 1:1 dla miniatur */
@@ -123,7 +123,7 @@
             background-color: rgba(15, 76, 44, 0.75);
         }
         .static-violet {
-            background-color: rgba(88, 28, 135, 0.75);
+            background-color: rgba(76, 29, 149, 0.75);
         }
         @keyframes staticAnim {
             0% { transform: translate(0, 0); }
@@ -146,7 +146,7 @@
             background-size: cover, 7px 100%;
         }
 
-        /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) Z EFEKTEM CHROMATYCZNYM */
+        /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) */
         .card-click-anim {
             animation: pixelFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
@@ -285,11 +285,11 @@
                     </div>
                 </div>
 
-                <!-- GUZIK DLA OSÓB Z EPILEPSJĄ -->
+                <!-- GUZIK DLA OSÓB Z EPILEPSJĄ (EMOTKA USUNIĘTA) -->
                 <div class="mt-4 pt-4 border-t border-crt-green/40 flex flex-col sm:flex-row justify-between items-center gap-4">
                     <button onclick="toggleEpilepsyMode()" id="btn-epilepsy" 
                         class="w-full sm:w-auto font-pixel text-xs sm:text-sm px-5 py-3 border-2 border-crt-violet bg-crt-violet-dim text-crt-violet-light font-bold hover:bg-crt-violet hover:text-black transition-all hover:scale-105 violet-glow text-center shadow-lg">
-                        <span id="epilepsy-btn-text">🛡️ EPILEPSY SAFE MODE: OFF</span>
+                        <span id="epilepsy-btn-text">EPILEPSY SAFE MODE: OFF</span>
                     </button>
                     
                     <div class="flex items-center gap-4 text-xs font-mono text-crt-green-light">
@@ -695,7 +695,7 @@
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-violet bg-black relative">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#ec4899', '#2e103f');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#a855f7', '#221147');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
                             <div class="static-overlay static-violet"></div>
                         </div>
                         <div class="mt-2 text-center font-pixel text-xs sm:text-sm text-crt-violet truncate bg-black/70 py-1.5 border-t border-crt-violet/40">${item.name}</div>
