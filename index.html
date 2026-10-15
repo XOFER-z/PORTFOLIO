@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PORTFOLIO.EXE</title>
+    <title>BIOHAZARD.SYS - Retro Pixel Art Portfolio</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,7 +25,7 @@
                         'crt-violet': '#a855f7',   /* Jasny, otwarty fiolet */
                         'crt-violet-dark': '#4c1d95',
                         'crt-violet-dim': '#221147',
-                        'crt-violet-light': '#f3e8ff',/* Bardzo jasny pastelowy fiolet */
+                        'crt-violet-light': '#f3e8ff',
                     },
                     fontFamily: {
                         pixel: ['"Press Start 2P"', 'cursive'],
@@ -68,7 +68,6 @@
             transition: opacity 0.3s ease;
         }
 
-        /* Klasa pauzująca efekty FX podczas otwartego podglądu */
         body.fx-disabled .scanlines {
             opacity: 0 !important;
         }
@@ -77,7 +76,7 @@
             animation: none !important;
         }
 
-        /* Efekty Glow */
+        /* Efekty Glow w stylu Biohazard */
         .green-glow {
             box-shadow: 0 0 16px rgba(57, 255, 20, 0.6), inset 0 0 10px rgba(57, 255, 20, 0.25);
         }
@@ -103,12 +102,11 @@
             box-shadow: 5px 5px 0px #4c1d95, 0 0 20px rgba(168, 85, 247, 0.25);
         }
 
-        /* Proporcje 1:1 dla miniatur */
         .square-card-box {
             aspect-ratio: 1 / 1;
         }
 
-        /* EFEKT ZAKŁÓCEŃ (STATIC NOISE) PRZED KLIKNIĘCIEM */
+        /* EFEKT ZAKŁÓCEŃ (STATIC NOISE) */
         .static-overlay {
             position: absolute;
             top: -5%; left: -5%; width: 110%; height: 110%;
@@ -137,7 +135,7 @@
             animation: none;
         }
 
-        /* PŁYNNY GRADIENT FIOLETOWO-ZIELONY DLA PASKÓW */
+        /* PASKI PROCENTOWE - PŁYNNY GRADIENT (FIOLET -> ZIELEŃ) */
         .static-progress-bar {
             background-image: 
                 url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.25'/%3E%3C/svg%3E"),
@@ -145,7 +143,6 @@
             background-size: cover, 100% 100%;
         }
 
-        /* ANIMACJE KLIKNIĘCIA ORAZ URUCHAMIANIA OKNA (CRT TV BOOT) */
         .card-click-anim {
             animation: pixelFlash 0.3s cubic-bezier(0.1, 0.9, 0.2, 1);
         }
@@ -184,14 +181,14 @@
     <nav class="fixed top-0 left-0 w-full z-40 bg-black/90 border-b-2 border-crt-green px-3 py-2 backdrop-blur-md flex items-center justify-between shadow-lg">
         <div class="flex items-center space-x-2 font-pixel text-xs text-crt-green">
             <span class="inline-block w-2.5 h-2.5 bg-crt-green animate-pulse"></span>
-            <span class="hidden sm:inline">QUICK_NAV.SYS //</span>
+            <span class="hidden sm:inline">☣ HAZARD_NAV.SYS //</span>
         </div>
         
         <div class="flex items-center space-x-1 sm:space-x-3 font-pixel text-[10px] sm:text-xs">
             <a href="#section-profile" onclick="playBeep(450, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[01. PROFILE]</a>
-            <a href="#section-skills" onclick="playBeep(500, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[02. SKILLS]</a>
-            <a href="#section-works" onclick="playBeep(550, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[03. WORKS]</a>
-            <a href="#section-other" onclick="playBeep(600, 'square', 0.05)" class="px-2 py-1 border border-crt-violet text-crt-violet hover:bg-crt-violet hover:text-black transition-colors">[04. OTHER]</a>
+            <a href="#section-skills" onclick="playBeep(500, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[02. TOXIC_SKILLS]</a>
+            <a href="#section-works" onclick="playBeep(550, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[03. SPECIMENS]</a>
+            <a href="#section-other" onclick="playBeep(600, 'square', 0.05)" class="px-2 py-1 border border-crt-violet text-crt-violet hover:bg-crt-violet hover:text-black transition-colors">[04. MUTATIONS]</a>
             <a href="#section-contact" onclick="playBeep(650, 'square', 0.05)" class="px-2 py-1 border border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-colors">[05. CONTACT]</a>
         </div>
     </nav>
@@ -202,7 +199,7 @@
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div class="pixel-box-green w-full md:w-auto flex-1 p-4 sm:p-6 relative group transition-all">
                 <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-4 font-pixel text-sm">
-                    <span>PORTFOLIO.EXE</span>
+                    <span>☣ BIOHAZARD.EXE</span>
                     <div class="flex space-x-2">
                         <button onclick="toggleWindow('mainTitleContent')" class="hover:bg-crt-green hover:text-black px-2.5 py-1 border border-crt-green text-sm">-</button>
                         <button class="hover:bg-crt-green hover:text-black px-2.5 py-1 border border-crt-green text-sm">□</button>
@@ -212,10 +209,10 @@
                 
                 <div id="mainTitleContent" class="transition-all">
                     <h1 class="text-4xl sm:text-6xl md:text-7xl font-pixel text-crt-green green-glow-text tracking-wider text-center md:text-left my-2">
-                        PORTFOLIO
+                        BIOHAZARD
                     </h1>
                     <div class="flex justify-between items-center mt-3 font-mono text-base sm:text-lg text-crt-green-light">
-                        <span>C:\> SYSTEM.BOOT --READY</span>
+                        <span>C:\> CONTAINMENT_BREACH --ACTIVE</span>
                         <span class="inline-block w-3 h-5 bg-crt-green animate-pulse"></span>
                     </div>
                 </div>
@@ -224,7 +221,7 @@
             <!-- LANG.SYS -->
             <div class="pixel-box-green w-full md:w-auto p-4 flex flex-row md:flex-col justify-between items-center gap-3">
                 <div class="w-full flex justify-between items-center border-b border-crt-green pb-1 font-pixel text-xs">
-                    <span>LANG.SYS</span>
+                    <span>☣ LANG.SYS</span>
                     <div class="flex space-x-1.5">
                         <span class="border border-crt-green px-1.5 py-0.5">_</span>
                         <span class="border border-crt-green px-1.5 py-0.5">□</span>
@@ -233,7 +230,7 @@
                 </div>
                 
                 <div class="flex items-center gap-2.5 w-full justify-center">
-                    <span class="text-2xl">🌐</span>
+                    <span class="text-2xl">☣</span>
                     <button id="btn-en" onclick="setLanguage('en')" class="font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green bg-crt-green text-black font-bold transition-all hover:scale-105">EN</button>
                     <button id="btn-pl" onclick="setLanguage('pl')" class="font-pixel text-sm sm:text-base px-4 py-2.5 border-2 border-crt-green text-crt-green hover:bg-crt-green hover:text-black transition-all hover:scale-105">PL</button>
                 </div>
@@ -248,7 +245,7 @@
         <section id="section-profile" class="scroll-mt-24 grid grid-cols-1 md:grid-cols-12 gap-6">
             <div class="md:col-span-4 pixel-box-green p-4 flex flex-col justify-between">
                 <div class="flex justify-between items-center border-b border-crt-green pb-2 mb-3 font-pixel text-sm">
-                    <span>DIR 01 // PROFILE.EXE</span>
+                    <span>DIR 01 // SPECIMEN.EXE</span>
                     <div class="flex space-x-1.5">
                         <button onclick="toggleWindow('avatarContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
                         <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
@@ -258,10 +255,10 @@
                 
                 <div id="avatarContent" class="square-card-box relative overflow-hidden border-2 border-crt-green bg-black flex items-center justify-center group">
                     <img id="avatarImage" src="works/profile.png" alt="Profile" 
-                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE.PNG', '#39ff14', '#102e1c');" 
+                         onerror="this.onerror=null; generateCanvasFallback(this, '☣ PROFILE', '#39ff14', '#102e1c');" 
                          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
                     <div class="absolute bottom-2 left-2 bg-black/90 px-2.5 py-1.5 border border-crt-green font-mono text-xs sm:text-sm text-crt-green">
-                        > Profile
+                        > HAZARD_ID: XOFER
                     </div>
                 </div>
             </div>
@@ -269,7 +266,7 @@
             <div class="md:col-span-8 pixel-box-green p-4 sm:p-6 flex flex-col justify-between">
                 <div>
                     <div class="flex justify-between items-center border-b border-crt-green pb-2 mb-4 font-pixel text-sm">
-                        <span>TERMINAL.BAT</span>
+                        <span>☣ TOXIC_TERMINAL.BAT</span>
                         <div class="flex space-x-1.5">
                             <button onclick="toggleWindow('terminalContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
                             <button class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">□</button>
@@ -279,7 +276,7 @@
 
                     <div id="terminalContent" class="space-y-4">
                         <div id="bio-text" class="font-terminal text-2xl sm:text-3xl leading-snug text-crt-green green-glow-text">
-                            > HELLO! I'M XOFER. I CREATE DIGITAL ART, ANIMATIONS, AND GRAPHIC DESIGNS WITH A PIXEL-PERFECT RETRO TOUCH. WELCOME TO MY PORTFOLIO! <span class="inline-block w-3 h-6 bg-crt-green animate-pulse"></span>
+                            > WARNING: BIOLOGICAL SIGNATURE DETECTED. I'M XOFER. INFECTING THE DIGITAL REALM WITH RETRO PIXEL ART, ANIMATIONS, AND TOXIC DESIGNS. WELCOME TO THE LAB! <span class="inline-block w-3 h-6 bg-crt-green animate-pulse"></span>
                         </div>
                     </div>
                 </div>
@@ -292,8 +289,8 @@
                     </button>
                     
                     <div class="flex items-center gap-4 text-xs font-mono text-crt-green-light">
-                        <span>OS: RETRO_OS v3.0</span>
-                        <span>MEM: 640KB OK</span>
+                        <span>HAZARD_LVL: ☣ HIGH</span>
+                        <span>STATUS: QUARANTINED</span>
                     </div>
                 </div>
             </div>
@@ -305,7 +302,7 @@
                 <span class="flex items-center gap-2">
                     <span class="w-2.5 h-2.5 bg-crt-green inline-block"></span> 
                     <span>DIR 02 // </span>
-                    <span id="title-programs">PROGRAMS I USE</span>
+                    <span id="title-programs">TOXIC_TOOLS.SYS</span>
                 </span>
                 <div class="flex space-x-1.5">
                     <button onclick="toggleWindow('skillsContent')" class="hover:bg-crt-green hover:text-black px-2.5 py-0.5 border border-crt-green text-sm">-</button>
@@ -316,14 +313,14 @@
 
             <div id="skillsContent" class="space-y-4">
                 <div class="font-mono text-sm sm:text-base text-crt-green-light border-b border-crt-green/30 pb-2 mb-4">
-                    SYS_TOOLS.EXE -- SKILL MATRIX
+                    ☣ INFECTION_VECTORS -- SKILL MATRIX
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> CLIP STUDIO PAINT
+                                <span class="text-crt-green text-lg">☣</span> CLIP STUDIO PAINT
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">100%</span>
                         </div>
@@ -335,7 +332,7 @@
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> PROCREATE
+                                <span class="text-crt-green text-lg">☣</span> PROCREATE
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">100%</span>
                         </div>
@@ -347,7 +344,7 @@
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> TOONSQUID
+                                <span class="text-crt-green text-lg">☣</span> TOONSQUID
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">85%</span>
                         </div>
@@ -359,7 +356,7 @@
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> ADOBE ILLUSTRATOR
+                                <span class="text-crt-green text-lg">☣</span> ADOBE ILLUSTRATOR
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">80%</span>
                         </div>
@@ -371,7 +368,7 @@
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> ADOBE ANIMATE
+                                <span class="text-crt-green text-lg">☣</span> ADOBE ANIMATE
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">70%</span>
                         </div>
@@ -383,7 +380,7 @@
                     <div class="bg-crt-green-dim/90 border border-crt-green/70 p-3 sm:p-4 hover:border-crt-green transition-all">
                         <div class="flex justify-between items-center mb-2">
                             <span class="font-terminal text-2xl sm:text-3xl font-bold text-crt-green green-glow-text flex items-center gap-2">
-                                <span class="text-crt-green text-lg">></span> ADOBE PHOTOSHOP
+                                <span class="text-crt-green text-lg">☣</span> ADOBE PHOTOSHOP
                             </span>
                             <span class="font-pixel text-sm sm:text-lg text-black bg-crt-green px-2 py-0.5 font-bold">50%</span>
                         </div>
@@ -400,12 +397,10 @@
             
             <!-- CATEGORY TABS -->
             <div class="flex items-center gap-2 sm:gap-3 w-full">
-                <!-- LEWA STRZAŁKA PIKSELOWA -->
                 <div class="font-pixel text-lg sm:text-2xl text-crt-green green-glow-text animate-pulse select-none px-1">
-                    ◄
+                    ☣
                 </div>
 
-                <!-- KONTENER PRZYCISKÓW KATEGORII -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 flex-1">
                     <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-pixel text-xs sm:text-sm py-4 px-2 border-2 border-crt-green bg-crt-green text-black font-bold green-glow transition-all hover:scale-105 text-center truncate">
                         GRAPHICS
@@ -421,9 +416,8 @@
                     </button>
                 </div>
 
-                <!-- PRAWA STRZAŁKA PIKSELOWA -->
                 <div class="font-pixel text-lg sm:text-2xl text-crt-green green-glow-text animate-pulse select-none px-1">
-                    ►
+                    ☣
                 </div>
             </div>
 
@@ -432,7 +426,7 @@
                 <div class="flex justify-between items-center border-b-2 border-crt-green pb-2 mb-4 font-pixel text-sm">
                     <span class="flex items-center gap-2">
                         <span>DIR 03 // </span>
-                        <span id="category-filename">DIR_GRAPHICS.SYS</span>
+                        <span id="category-filename">DIR_SPECIMENS.SYS</span>
                     </span>
                     <div class="flex space-x-1.5">
                         <button onclick="toggleWindow('worksGridContent')" class="hover:bg-crt-green hover:text-black px-2 py-0.5 border border-crt-green text-sm">-</button>
@@ -443,7 +437,7 @@
 
                 <div class="bg-black/80 border border-crt-green/50 p-3 mb-6 font-terminal text-2xl sm:text-3xl text-crt-green">
                     <span class="text-crt-green-light font-bold">> </span>
-                    <span id="category-desc">MY GRAPHIC DESIGN WORKS. A MIX OF BRANDING, TYPOGRAPHY, AND LAYOUT EXPERIMENTS WITH A RETRO VIBE.</span>
+                    <span id="category-desc">CONTAINED GRAPHIC SPECIMENS. A TOXIC MIX OF BRANDING, TYPOGRAPHY, AND HAZARDOUS LAYOUT EXPERIMENTS.</span>
                 </div>
 
                 <div id="worksGridContent" class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -456,7 +450,7 @@
         <section id="section-other" class="scroll-mt-24 pixel-box-violet p-4 sm:p-6">
             <div class="flex justify-between items-center border-b-2 border-crt-violet pb-2 mb-4 font-pixel text-sm">
                 <span class="text-crt-violet violet-glow-text font-pixel text-base sm:text-lg flex items-center gap-2">
-                    <span>DIR 04 //</span> <span id="title-otherworks">OTHER WORKS _</span>
+                    <span>DIR 04 //</span> <span id="title-otherworks">MUTATED_DATA _</span>
                 </span>
                 <div class="flex space-x-1.5 text-crt-violet">
                     <button onclick="toggleWindow('otherWorksContent')" class="hover:bg-crt-violet hover:text-black px-2 py-0.5 border border-crt-violet text-sm">-</button>
@@ -473,12 +467,12 @@
         <!-- FOOTER / CONTACT SECTION -->
         <footer id="section-contact" class="scroll-mt-24 pixel-box-green p-6 text-center space-y-6">
             <div class="flex justify-between items-center border-b border-crt-green/40 pb-2 font-pixel text-xs text-crt-green">
-                <span>DIR 05 // CONTACT & OUTRO</span>
-                <span class="animate-pulse">● ONLINE</span>
+                <span>DIR 05 // HAZARD_OUTRO</span>
+                <span class="animate-pulse">☣ WARNING: LIVE</span>
             </div>
 
             <h2 id="footer-thankyou" class="text-3xl sm:text-5xl md:text-6xl font-pixel text-crt-green green-glow-text">
-                THANK YOU :)
+                STAY TOXIC :)
             </h2>
 
             <div class="flex justify-center">
@@ -488,14 +482,14 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
-                    <span id="btn-otherlinks">OTHER LINKS</span>
+                    <span id="btn-otherlinks">HAZARD LINKS</span>
                 </a>
             </div>
 
             <!-- Tag @xofer_graphics -->
             <div class="inline-block border-2 border-crt-green bg-black/90 px-6 py-3 shadow-lg">
                 <span class="font-terminal text-2xl sm:text-4xl font-bold text-crt-green green-glow-text tracking-wide">
-                    C:\> @xofer_graphics <span class="inline-block w-3 h-6 sm:h-8 bg-crt-green animate-pulse align-middle"></span>
+                    ☣ C:\> @xofer_graphics <span class="inline-block w-3 h-6 sm:h-8 bg-crt-green animate-pulse align-middle"></span>
                 </span>
             </div>
         </footer>
@@ -506,7 +500,7 @@
     <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col justify-between p-4 sm:p-8 backdrop-blur-md">
         <div class="flex justify-between items-center border-b-2 border-crt-green pb-3 shrink-0">
             <div class="font-pixel text-sm sm:text-base text-crt-green green-glow-text flex items-center gap-2" id="lightbox-title">
-                <span>VIEWER.EXE</span>
+                <span>HAZARD_VIEWER.EXE</span>
             </div>
             <button onclick="closeLightbox()" class="font-pixel text-base border-2 border-crt-green bg-crt-green text-black px-4 py-1.5 font-bold hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors">
                 X
@@ -518,12 +512,11 @@
                 &lt;
             </button>
 
-            <!-- KONTENER Z PŁYNNĄ ANIMACJĄ CRT BOOT ORAZ BEZ ZAKŁÓCEŃ (CZYSTY OBRAZ) -->
             <div id="modalCardWrapper" class="flex flex-col items-center justify-center h-full w-full px-12 sm:px-24">
                 <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border-2 border-crt-green green-glow shadow-2xl bg-black">
                 
                 <div class="mt-4 shrink-0 bg-black/95 border border-crt-green px-4 py-2 font-mono text-sm sm:text-base text-crt-green flex items-center gap-4">
-                    <span id="lightbox-caption">> WORK_NAME</span>
+                    <span id="lightbox-caption">> SPECIMEN_NAME</span>
                     <span id="lightbox-counter" class="text-crt-green-light border-l border-crt-green pl-4">1 / 1</span>
                 </div>
             </div>
@@ -542,28 +535,28 @@
     <script>
         const i18n = {
             en: {
-                bio: "> HELLO! I'M XOFER. I CREATE DIGITAL ART, ANIMATIONS, AND GRAPHIC DESIGNS WITH A PIXEL-PERFECT RETRO TOUCH. WELCOME TO MY PORTFOLIO!",
-                programsTitle: "PROGRAMS I USE",
-                otherWorksTitle: "OTHER WORKS _",
-                thankYou: "THANK YOU :)",
-                otherLinks: "OTHER LINKS",
-                catGraphics: "MY GRAPHIC DESIGN WORKS. A MIX OF BRANDING, TYPOGRAPHY, AND LAYOUT EXPERIMENTS WITH A RETRO VIBE.",
-                catIllustrations: "DIGITAL ILLUSTRATIONS FEATURING VIBRANT RETRO PALETTES AND DYNAMIC COMPOSITIONS.",
-                catDrawings: "SKETCHES, CHARACTER DESIGNS, AND PIXEL-ART SKETCHES.",
-                catAnimations: "2D FRAME-BY-FRAME RETRO ANIMATIONS AND LOOPING GRAPHICS.",
+                bio: "> WARNING: BIOLOGICAL SIGNATURE DETECTED. I'M XOFER. INFECTING THE DIGITAL REALM WITH RETRO PIXEL ART, ANIMATIONS, AND TOXIC DESIGNS. WELCOME TO THE LAB!",
+                programsTitle: "TOXIC_TOOLS.SYS",
+                otherWorksTitle: "MUTATED_DATA _",
+                thankYou: "STAY TOXIC :)",
+                otherLinks: "HAZARD LINKS",
+                catGraphics: "CONTAINED GRAPHIC SPECIMENS. A TOXIC MIX OF BRANDING, TYPOGRAPHY, AND HAZARDOUS LAYOUT EXPERIMENTS.",
+                catIllustrations: "QUARANTINED DIGITAL ILLUSTRATIONS WITH VIBRANT TOXIC PALETTES AND UNSTABLE COMPOSITIONS.",
+                catDrawings: "BIO-HAZARD SKETCHES, INFECTED CHARACTER DESIGNS, AND PIXEL-ART SAMPLES.",
+                catAnimations: "MUTATED 2D FRAME-BY-FRAME ANIMATIONS AND LOOPING TOXIC GLITCHES.",
                 epilepsyOff: "EPILEPSY SAFE MODE: OFF",
                 epilepsyOn: "EPILEPSY SAFE MODE: ON"
             },
             pl: {
-                bio: "> CZEŚĆ! JESTEM XOFER. TWORZĘ GRAFIKĘ CYFROWĄ, ANIMACJE I PROJEKTY GRAFICZNE W RETRO STYLU PIXEL-ART. WITAJ W MOIM PORTFOLIO!",
-                programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
-                otherWorksTitle: "INNE PRACE _",
-                thankYou: "DZIĘKUJĘ :)",
-                otherLinks: "INNE LINKI",
-                catGraphics: "MOJE PRACE GRAFICZNE. POŁĄCZENIE BRANDINGU, TYPOGRAFII I EXPERYMENTÓW Z UKŁADEM W RETRO KLIMACIE.",
-                catIllustrations: "ILUSTRACJE CYFROWE Z ŻYWYMI PALETAMI RETRO I DYNAMICZNĄ KOMPOZYCJĄ.",
-                catDrawings: "SZKICE, PROJEKTY POSTACI ORAZ RYSUNKI W STYLU PIXEL-ART.",
-                catAnimations: "RETRO ANIMACJE 2D ORAZ ZAPĘTLONE GRAFIKI.",
+                bio: "> OSTRZEŻENIE: WYKRYTO SYGNATURĘ BIOLOGICZNĄ. JESTEM XOFER. INFEKUJĘ CYFROWY ŚWIAT RETRO PIXEL ARTEM, ANIMACJAMI I TOKSYCZNYMI PROJEKTAMI. WITAJ W LABORATORIUM!",
+                programsTitle: "TOXIC_TOOLS.SYS",
+                otherWorksTitle: "ZMUTOWANE_DANE _",
+                thankYou: "ZOSTAŃ TOKSYCZNY :)",
+                otherLinks: "LINKI SKAŻONE",
+                catGraphics: "ZAWARTE PRACE GRAFICZNE. TOKSYCZNA MIESZANKA BRANDINGU, TYPOGRAFII I NIEBEZPIECZNYCH EKSPERYMENTÓW Z UKŁADEM.",
+                catIllustrations: "PODDANÉ KWARANTANNIE ILUSTRACJE CYFROWE Z ŻYWYMI, TOKSYCZNYMI PALETAMI I DYNAMICZNĄ KOMPOZYCJĄ.",
+                catDrawings: "SKETCHE BIOHAZARD, ZAINFEKOWANE PROJEKTY POSTACI ORAZ PRÓBKI PIXEL-ART.",
+                catAnimations: "ZMUTOWANE ANIMACJE 2D KLATKA PO KLATCE ORAZ ZAPĘTLONE TOKSYCZNE USTERKI.",
                 epilepsyOff: "TRYB BEZPIECZNY DLA EPILEPSJI: WYŁ.",
                 epilepsyOn: "TRYB BEZPIECZNY DLA EPILEPSJI: WŁ."
             }
@@ -574,48 +567,48 @@
 
         const categoriesData = {
             graphics: { 
-                filename: "DIR_GRAPHICS.SYS", 
+                filename: "DIR_SPECIMENS.SYS", 
                 descKey: "catGraphics", 
                 items: [
-                    { id: "G1", name: "Neon", img: "works/poster_neon.png" },
-                    { id: "G2", name: "Cyber City", img: "works/cyber_city.png" },
-                    { id: "G3", name: "Retro Logo", img: "works/logo_retro.png" },
-                    { id: "G4", name: "Retro Logo", img: "works/logo_retro.png" },
+                    { id: "G1", name: "Neon Hazard", img: "works/poster_neon.png" },
+                    { id: "G2", name: "Toxic City", img: "works/cyber_city.png" },
+                    { id: "G3", name: "Bio Logo", img: "works/logo_retro.png" },
+                    { id: "G4", name: "Bio Logo v2", img: "works/logo_retro.png" },
                 ] 
             },
             illustrations: { 
-                filename: "DIR_ILLUST.SYS", 
+                filename: "DIR_QUARANTINE.SYS", 
                 descKey: "catIllustrations", 
                 items: [
-                    { id: "I1", name: "Stalowe Wieże - The Maruders", img: "works/Stalowe_Wieze.jpeg" },
-                    { id: "I2", name: "Cyberpunk Girl", img: "works/cyber_girl.png" },
+                    { id: "I1", name: "Stalowe Wieże", img: "works/Stalowe_Wieze.jpeg" },
+                    { id: "I2", name: "Infected Girl", img: "works/cyber_girl.png" },
                 ] 
             },
             drawings: { 
-                filename: "DIR_DRAWINGS.SYS", 
+                filename: "DIR_MUTATIONS.SYS", 
                 descKey: "catDrawings", 
                 items: [
                     { id: "D1", name: "The Cure", img: "works/The_cure.jpeg" },
-                    { id: "D2", name: "Raven", img: "works/Raven.png" },
-                    { id: "D3", name: "Raven with red outline", img: "works/RAVEN-red.jpeg" },
-                    { id: "D4", name: "Kakadu", img: "works/Cockatoo.png" },
-                    { id: "D5", name: "-", img: "works/Greennn.jpeg" },
+                    { id: "D2", name: "Raven Hazard", img: "works/Raven.png" },
+                    { id: "D3", name: "Raven Red toxin", img: "works/RAVEN-red.jpeg" },
+                    { id: "D4", name: "Mutated Kakadu", img: "works/Cockatoo.png" },
+                    { id: "D5", name: "Green Spora", img: "works/Greennn.jpeg" },
                 ] 
             },
             animations: { 
-                filename: "DIR_2D_ANIM.SYS", 
+                filename: "DIR_GLITCH_ANIM.SYS", 
                 descKey: "catAnimations", 
                 items: [
-                    { id: "A1", name: "Pixel Walk Cycle", img: "works/walk_cycle.gif" },
-                    { id: "A2", name: "Loading Screen", img: "works/loader.gif" },
+                    { id: "A1", name: "Infected Walk Cycle", img: "works/walk_cycle.gif" },
+                    { id: "A2", name: "Contamination Loader", img: "works/loader.gif" },
                 ] 
             }
         };
 
         const otherWorksItems = [
-            { id: "M1", name: "3D Poster Test", img: "works/poster_3d.png" },
-            { id: "M2", name: "UI Design Concept", img: "works/ui_concept.png" },
-            { id: "M3", name: "Vector Art", img: "works/vector_art.png" },
+            { id: "M1", name: "3D Bio-Test", img: "works/poster_3d.png" },
+            { id: "M2", name: "Hazard UI Concept", img: "works/ui_concept.png" },
+            { id: "M3", name: "Toxic Vector", img: "works/vector_art.png" },
         ];
 
         let currentActiveCategory = 'graphics';
@@ -667,7 +660,7 @@
                 gridContainer.innerHTML += `
                     <div onclick="openLightboxFromGrid('${catKey}', ${index}, this)" class="pixel-box-green p-2 cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:green-glow">
                         <div class="flex justify-between items-center text-xs font-pixel border-b border-crt-green pb-1 mb-2 text-crt-green">
-                            <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
+                            <span>${item.id}.TOX</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-green bg-black relative">
                             <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#39ff14', '#102e1c');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
@@ -691,7 +684,7 @@
                 container.innerHTML += `
                     <div onclick="openLightboxFromOther(${index}, this)" class="pixel-box-violet p-2 cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:violet-glow">
                         <div class="flex justify-between items-center text-xs font-pixel border-b border-crt-violet pb-1 mb-2 text-crt-violet">
-                            <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
+                            <span>${item.id}.MUT</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border border-crt-violet bg-black relative">
                             <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#a855f7', '#221147');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
@@ -734,7 +727,7 @@
             imgEl.src = item.img;
             imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#39ff14', '#102e1c'); };
 
-            document.getElementById('lightbox-title').innerText = `VIEWER.EXE - ${item.name}`;
+            document.getElementById('lightbox-title').innerText = `☣ HAZARD_VIEWER - ${item.name}`;
             document.getElementById('lightbox-caption').innerText = `> ${item.name}`;
             document.getElementById('lightbox-counter').innerText = `${currentLightboxIndex + 1} / ${currentLightboxList.length}`;
 
