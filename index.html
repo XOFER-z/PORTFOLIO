@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOFER // Digital Artist & Graphic Designer Portfolio</title>
     
-    <!-- Google Fonts: Space Grotesk / Chamfer Gothic Ludlow, Outfit, Share Tech Mono -->
+    <!-- Google Fonts: Chakra Petch (Chamfer / Industrial Style), Outfit (Czytelny tekst), Share Tech Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Outfit:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +38,7 @@
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
-                        display: ['"Chamfer Gothic Ludlow"', '"Space Grotesk"', 'sans-serif'],
+                        display: ['"Chakra Petch"', 'sans-serif'],
                         mono: ['"Share Tech Mono"', 'monospace'],
                     }
                 }
@@ -47,12 +47,6 @@
     </script>
     
     <style>
-        @font-face {
-            font-family: 'Chamfer Gothic Ludlow';
-            src: local('Chamfer Gothic Ludlow'), local('ChamferGothicLudlow');
-            font-display: swap;
-        }
-
         body {
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
@@ -60,8 +54,8 @@
         }
 
         h1, h2, h3, .font-display {
-            font-family: 'Chamfer Gothic Ludlow', 'Space Grotesk', sans-serif;
-            letter-spacing: 0.02em;
+            font-family: 'Chakra Petch', sans-serif;
+            letter-spacing: 0.03em;
         }
 
         .olive-box {
@@ -118,7 +112,7 @@
             <div class="font-mono text-xs text-olive-accent">SYSTEM.BOOT // WELCOME</div>
             
             <div class="space-y-2">
-                <h1 class="text-4xl sm:text-5xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
+                <h1 class="text-4xl sm:text-5xl font-display font-bold uppercase tracking-wider dark:text-white light:text-oliveLight-text">
                     XOFER<span class="text-olive-highlight">.</span>
                 </h1>
                 <p id="welcome-subtitle" class="text-base font-sans text-olive-muted">
@@ -147,7 +141,7 @@
 
             <!-- PRZYCISK PRZEJDŹ DALEJ -->
             <div class="pt-4 border-t-2 border-olive-border">
-                <button onclick="enterMainSite()" class="w-full font-display font-bold text-base sm:text-lg py-3.5 px-6 rounded border-2 border-olive-accent bg-olive-accent text-black hover:bg-olive-highlight transition-all shadow-md tracking-wide uppercase">
+                <button onclick="enterMainSite()" class="w-full font-display font-bold text-base sm:text-lg py-3.5 px-6 rounded border-2 border-olive-accent bg-olive-accent text-black hover:bg-olive-highlight transition-all shadow-md tracking-wider uppercase">
                     <span id="welcome-btn-enter">PRZEJDŹ DALEJ &rarr;</span>
                 </button>
             </div>
@@ -187,7 +181,7 @@
                 
                 <div id="mainTitleContent" class="transition-all">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-2">
-                        <h1 class="text-4xl sm:text-6xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
+                        <h1 class="text-4xl sm:text-6xl font-display font-bold uppercase tracking-wider dark:text-white light:text-oliveLight-text">
                             XOFER<span class="text-olive-highlight">.</span>
                         </h1>
                         
@@ -255,7 +249,7 @@
                     </div>
 
                     <div id="terminalContent" class="space-y-4">
-                        <h2 class="text-2xl sm:text-3xl font-display font-bold dark:text-white light:text-oliveLight-text">
+                        <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-wide dark:text-white light:text-oliveLight-text">
                             Cześć! Jestem Xofer.
                         </h2>
                         <p id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
@@ -289,7 +283,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">CLIP STUDIO PAINT</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
@@ -299,7 +293,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">PROCREATE</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
@@ -309,7 +303,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">TOONSQUID</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">85%</span>
                         </div>
@@ -319,7 +313,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE ILLUSTRATOR</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">80%</span>
                         </div>
@@ -329,7 +323,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE ANIMATE</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">70%</span>
                         </div>
@@ -339,7 +333,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE PHOTOSHOP</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">50%</span>
                         </div>
@@ -350,7 +344,7 @@
 
                     <!-- BLENDER 45% -->
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">BLENDER</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">45%</span>
                         </div>
@@ -360,7 +354,7 @@
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
+                        <div class="flex justify-between items-center mb-2 font-display text-base font-semibold tracking-wide">
                             <span class="dark:text-white light:text-oliveLight-text">NOMAD SCULPT</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">20%</span>
                         </div>
@@ -378,16 +372,16 @@
             
             <!-- CATEGORY TABS -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm">
+                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide">
                     GRAPHICS
                 </button>
-                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate">
+                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide">
                     ILLUSTRATIONS
                 </button>
-                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate">
+                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide">
                     DRAWINGS
                 </button>
-                <button onclick="switchCategory('animations')" id="tab-animations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate">
+                <button onclick="switchCategory('animations')" id="tab-animations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide">
                     2D ANIMATIONS
                 </button>
             </div>
@@ -451,14 +445,14 @@
                 <span class="text-olive-accent font-semibold">● ONLINE</span>
             </div>
 
-            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
+            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-wider dark:text-white light:text-oliveLight-text">
                 DZIĘKUJĘ ZA UWAGĘ :)
             </h2>
 
             <div class="flex justify-center">
                 <a href="https://hakowfex.carrd.co/" target="_blank" rel="noopener noreferrer" 
                    onclick="playBeep(600, 'sine', 0.05)"
-                   class="inline-flex items-center gap-2 font-display font-semibold text-sm px-6 py-3.5 rounded border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md">
+                   class="inline-flex items-center gap-2 font-display font-semibold text-sm px-6 py-3.5 rounded border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md tracking-wide uppercase">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -624,7 +618,7 @@
             ctx.fillStyle = colorHex; ctx.globalAlpha = 0.08;
             for (let i = 0; i < 400; i += 30) { ctx.fillRect(i, 0, 1, 400); ctx.fillRect(0, i, 400, 1); }
             ctx.globalAlpha = 1.0; ctx.strokeStyle = colorHex; ctx.lineWidth = 4; ctx.strokeRect(20, 20, 360, 360);
-            ctx.fillStyle = colorHex; ctx.font = 'bold 18px "Space Grotesk", sans-serif'; ctx.textAlign = 'center';
+            ctx.fillStyle = colorHex; ctx.font = 'bold 18px "Chakra Petch", sans-serif'; ctx.textAlign = 'center';
             ctx.fillText(label, 200, 205);
             imgElement.src = canvas.toDataURL();
         }
@@ -691,9 +685,9 @@
             ['graphics', 'illustrations', 'drawings', 'animations'].forEach(tab => {
                 const btn = document.getElementById(`tab-${tab}`);
                 if (tab === catKey) {
-                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm";
+                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide";
                 } else {
-                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate";
+                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide";
                 }
             });
         }
@@ -837,3 +831,4 @@
     </script>
 </body>
 </html>
+```[cite: 1]
