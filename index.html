@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOFER // Digital Artist & Graphic Designer Portfolio</title>
     
-    <!-- Google Fonts: Space Grotesk (Nowoczesny, wyrazisty) + Outfit (Super czytelny) + Share Tech Mono -->
+    <!-- Google Fonts: Space Grotesk / Chamfer Gothic Ludlow, Outfit, Share Tech Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=Space+Grotesk:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +38,7 @@
                     },
                     fontFamily: {
                         sans: ['Outfit', 'sans-serif'],
-                        display: ['"Space Grotesk"', 'sans-serif'],
+                        display: ['"Chamfer Gothic Ludlow"', '"Space Grotesk"', 'sans-serif'],
                         mono: ['"Share Tech Mono"', 'monospace'],
                     }
                 }
@@ -47,6 +47,12 @@
     </script>
     
     <style>
+        @font-face {
+            font-family: 'Chamfer Gothic Ludlow';
+            src: local('Chamfer Gothic Ludlow'), local('ChamferGothicLudlow');
+            font-display: swap;
+        }
+
         body {
             font-family: 'Outfit', sans-serif;
             overflow-x: hidden;
@@ -54,7 +60,8 @@
         }
 
         h1, h2, h3, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: 'Chamfer Gothic Ludlow', 'Space Grotesk', sans-serif;
+            letter-spacing: 0.02em;
         }
 
         .olive-box {
@@ -111,7 +118,7 @@
             <div class="font-mono text-xs text-olive-accent">SYSTEM.BOOT // WELCOME</div>
             
             <div class="space-y-2">
-                <h1 class="text-4xl sm:text-5xl font-display font-bold tracking-tight dark:text-white light:text-oliveLight-text">
+                <h1 class="text-4xl sm:text-5xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
                     XOFER<span class="text-olive-highlight">.</span>
                 </h1>
                 <p id="welcome-subtitle" class="text-base font-sans text-olive-muted">
@@ -180,7 +187,7 @@
                 
                 <div id="mainTitleContent" class="transition-all">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 my-2">
-                        <h1 class="text-4xl sm:text-6xl font-display font-bold tracking-tight dark:text-white light:text-oliveLight-text">
+                        <h1 class="text-4xl sm:text-6xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
                             XOFER<span class="text-olive-highlight">.</span>
                         </h1>
                         
@@ -248,7 +255,7 @@
                     </div>
 
                     <div id="terminalContent" class="space-y-4">
-                        <h2 class="text-2xl sm:text-3xl font-display font-bold leading-tight dark:text-white light:text-oliveLight-text">
+                        <h2 class="text-2xl sm:text-3xl font-display font-bold dark:text-white light:text-oliveLight-text">
                             Cześć! Jestem Xofer.
                         </h2>
                         <p id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
@@ -341,13 +348,14 @@
                         </div>
                     </div>
 
+                    <!-- BLENDER 45% -->
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
                         <div class="flex justify-between items-center mb-2 font-display text-base font-semibold">
                             <span class="dark:text-white light:text-oliveLight-text">BLENDER</span>
-                            <span class="text-olive-accent font-mono text-xs font-bold">20%</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">45%</span>
                         </div>
                         <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
-                            <div class="olive-progress-bar h-full" style="width: 20%;"></div>
+                            <div class="olive-progress-bar h-full" style="width: 45%;"></div>
                         </div>
                     </div>
 
@@ -407,7 +415,7 @@
             </div>
         </section>
 
-        <!-- OTHER WORKS SECTION (KARUSELA ZE STRZAŁKAMI Z OBU STRON) -->
+        <!-- OTHER WORKS SECTION -->
         <section id="section-other" class="scroll-mt-24 olive-box p-5 sm:p-6">
             <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs">
                 <span class="text-olive-highlight font-semibold flex items-center gap-2">
@@ -443,7 +451,7 @@
                 <span class="text-olive-accent font-semibold">● ONLINE</span>
             </div>
 
-            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-display font-bold tracking-tight dark:text-white light:text-oliveLight-text">
+            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-tight dark:text-white light:text-oliveLight-text">
                 DZIĘKUJĘ ZA UWAGĘ :)
             </h2>
 
@@ -829,4 +837,3 @@
     </script>
 </body>
 </html>
-```[cite: 1]
