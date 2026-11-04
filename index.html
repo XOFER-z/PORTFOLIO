@@ -5,29 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOFER // Digital Artist & Graphic Designer Portfolio</title>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: Syne (Kreatywny/Artystyczny), Inter (Czytelny), Share Tech Mono (Techniczny akcent) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;500;600&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Share+Tech+Mono&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'studio-bg': '#0f1115',       
-                        'studio-panel': '#161920',    
-                        'studio-border': '#2a2f3d',
-                        'studio-accent': '#38bdf8',   
-                        'studio-accent-hover': '#0ea5e9',
-                        'studio-muted': '#94a3b8',
-                        'studio-violet': '#818cf8',
+                        // Paleta oliwkowa Ciemna (Dark)
+                        olive: {
+                            bg: '#121410',          // Bardzo ciemna oliwka / zieleń
+                            panel: '#1a1d17',       // Tło paneli
+                            border: '#2f3529',      // Subtelne ramki
+                            accent: '#a3b18a',      // Ciepła, oliwkowa szałwia (główny akcent)
+                            hover: '#cbd5e1',
+                            text: '#e2e8f0',
+                            muted: '#8f9e8b',
+                            highlight: '#d4a373',  // Złocisto-oliwkowy akcent
+                        },
+                        // Paleta oliwkowa Jasna (Light)
+                        oliveLight: {
+                            bg: '#f4f5f0',          // Jasne, oliwkowo-kremowe tło
+                            panel: '#ffffff',       // Białe czyste panele
+                            border: '#d8decb',      // Jasno-oliwkowe krawędzie
+                            text: '#22251e',        // Ciemny czytelny tekst
+                            muted: '#606a59',
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        terminal: ['VT323', 'monospace'],
+                        display: ['Syne', 'sans-serif'],
                         mono: ['"Share Tech Mono"', 'monospace'],
                     }
                 }
@@ -37,60 +50,68 @@
     
     <style>
         body {
-            background-color: #0f1115;
-            color: #e2e8f0;
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* Eleganckie ramki w stylu nowoczesnego workspace grafika */
-        .studio-box {
-            border: 1px solid #2a2f3d;
-            background-color: #161920;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-            border-radius: 6px;
-            position: relative;
+        h1, h2, h3, .font-display {
+            font-family: 'Syne', sans-serif;
         }
 
-        .studio-box-violet {
-            border: 1px solid #3730a3;
-            background-color: #161920;
-            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-            border-radius: 6px;
-            position: relative;
+        /* Styl paneli dla ciemnego i jasnego motywu */
+        .olive-box {
+            border: 1px solid var(--border-color, #2f3529);
+            background-color: var(--panel-bg, #1a1d17);
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .dark {
+            --border-color: #2f3529;
+            --panel-bg: #1a1d17;
+            background-color: #121410;
+            color: #e2e8f0;
+        }
+
+        .light {
+            --border-color: #d8decb;
+            --panel-bg: #ffffff;
+            background-color: #f4f5f0;
+            color: #22251e;
         }
 
         .square-card-box {
             aspect-ratio: 1 / 1;
         }
 
-        /* Paski postępu w stylu profesjonalnych paneli */
-        .studio-progress-bar {
-            background: linear-gradient(90deg, #38bdf8 0%, #818cf8 100%);
-            border-radius: 2px;
+        .olive-progress-bar {
+            background: linear-gradient(90deg, #a3b18a 0%, #d4a373 100%);
+            border-radius: 3px;
         }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0f1115; }
-        ::-webkit-scrollbar-thumb { background: #2a2f3d; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #38bdf8; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #586352; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #a3b18a; }
     </style>
 </head>
-<body class="min-h-screen p-3 sm:p-6 md:p-8 relative selection:bg-studio-accent selection:text-black pt-16 sm:pt-20">
+<body class="dark min-h-screen p-3 sm:p-6 md:p-8 relative pt-16 sm:pt-20">
 
-    <!-- PASEK SZYBKIEJ NAWIGACJI U GÓRY STRONY -->
-    <nav class="fixed top-0 left-0 w-full z-40 bg-[#0f1115]/95 border-b border-studio-border px-4 py-2.5 backdrop-blur-md flex items-center justify-between shadow-md">
-        <div class="flex items-center space-x-2 font-mono text-xs text-studio-accent">
-            <span class="inline-block w-2 h-2 rounded-full bg-studio-accent"></span>
-            <span class="hidden sm:inline">WORKSPACE //</span>
+    <!-- PASEK SZYBKIEJ NAWIGACJI -->
+    <nav class="fixed top-0 left-0 w-full z-40 bg-olive-bg/90 dark:bg-olive-bg/90 dark:border-olive-border light:bg-oliveLight-bg/90 border-b border-oliveLight-border px-4 py-2.5 backdrop-blur-md flex items-center justify-between shadow-sm transition-colors duration-300">
+        <div class="flex items-center space-x-2 font-mono text-xs text-olive-accent font-semibold">
+            <span class="inline-block w-2.5 h-2.5 rounded-full bg-olive-accent"></span>
+            <span class="hidden sm:inline">STUDIO //</span>
         </div>
         
-        <div class="flex items-center space-x-1 sm:space-x-3 font-mono text-xs">
-            <a href="#section-profile" onclick="playBeep(450, 'sine', 0.03)" class="px-2.5 py-1 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">[01. PROFILE]</a>
-            <a href="#section-skills" onclick="playBeep(500, 'sine', 0.03)" class="px-2.5 py-1 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">[02. SKILLS]</a>
-            <a href="#section-works" onclick="playBeep(550, 'sine', 0.03)" class="px-2.5 py-1 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">[03. WORKS]</a>
-            <a href="#section-other" onclick="playBeep(600, 'sine', 0.03)" class="px-2.5 py-1 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">[04. OTHER]</a>
-            <a href="#section-contact" onclick="playBeep(650, 'sine', 0.03)" class="px-2.5 py-1 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">[05. CONTACT]</a>
+        <div class="flex items-center space-x-1 sm:space-x-2 font-mono text-xs">
+            <a href="#section-profile" onclick="playBeep(450, 'sine', 0.03)" class="px-2.5 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[01. PROFILE]</a>
+            <a href="#section-skills" onclick="playBeep(500, 'sine', 0.03)" class="px-2.5 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[02. SKILLS]</a>
+            <a href="#section-works" onclick="playBeep(550, 'sine', 0.03)" class="px-2.5 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[03. WORKS]</a>
+            <a href="#section-other" onclick="playBeep(600, 'sine', 0.03)" class="px-2.5 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[04. OTHER]</a>
+            <a href="#section-contact" onclick="playBeep(650, 'sine', 0.03)" class="px-2.5 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[05. CONTACT]</a>
         </div>
     </nav>
 
@@ -98,166 +119,176 @@
 
         <!-- HEADER & TOOLBAR -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-            <div class="studio-box w-full md:w-auto flex-1 p-5 sm:p-6 relative group transition-all">
-                <div class="flex justify-between items-center border-b border-studio-border pb-3 mb-4 font-mono text-xs text-studio-muted">
-                    <span class="text-studio-accent font-semibold">PORTFOLIO_MASTER.PSD</span>
+            <div class="olive-box w-full md:w-auto flex-1 p-5 sm:p-6 relative group">
+                <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs text-olive-muted">
+                    <span class="text-olive-accent font-semibold">XOFER_WORKSTATION.PSD</span>
                     <div class="flex space-x-1.5">
-                        <button onclick="toggleWindow('mainTitleContent')" class="hover:bg-studio-border px-2 py-0.5 rounded text-studio-muted hover:text-white transition-colors">-</button>
-                        <button class="hover:bg-studio-border px-2 py-0.5 rounded text-studio-muted hover:text-white transition-colors">□</button>
-                        <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded text-studio-muted hover:text-white transition-colors">X</button>
+                        <button onclick="toggleWindow('mainTitleContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10 transition-colors">-</button>
+                        <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10 transition-colors">□</button>
+                        <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10 transition-colors">X</button>
                     </div>
                 </div>
                 
                 <div id="mainTitleContent" class="transition-all">
-                    <h1 class="text-4xl sm:text-6xl font-sans font-bold text-white tracking-tight text-center md:text-left my-2">
-                        XOFER.
+                    <h1 class="text-5xl sm:text-7xl font-display font-extrabold tracking-tight text-center md:text-left my-1 dark:text-white light:text-oliveLight-text">
+                        XOFER<span class="text-olive-highlight">.</span>
                     </h1>
-                    <div class="flex justify-between items-center mt-3 font-mono text-sm text-studio-muted">
-                        <span>// DIGITAL ARTIST & GRAPHIC DESIGNER</span>
-                        <span class="inline-block w-2 h-4 bg-studio-accent animate-pulse"></span>
+                    <div class="flex justify-between items-center mt-3 font-mono text-xs sm:text-sm text-olive-muted">
+                        <span>// DIGITAL ART & GRAPHIC DESIGN</span>
+                        <span class="inline-block w-2 h-4 bg-olive-accent animate-pulse"></span>
                     </div>
                 </div>
             </div>
 
-            <!-- LANG.SYS / PANEL STEROWANIA -->
-            <div class="studio-box w-full md:w-auto p-4 flex flex-row md:flex-col justify-between items-center gap-3">
-                <div class="w-full flex justify-between items-center border-b border-studio-border pb-2 font-mono text-xs text-studio-muted">
-                    <span>SETTINGS.CFG</span>
+            <!-- MOTYW (DARK/LIGHT) ORAZ JĘZYK -->
+            <div class="olive-box w-full md:w-auto p-4 flex flex-row md:flex-col justify-between items-center gap-3">
+                <div class="w-full flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-2 font-mono text-xs text-olive-muted">
+                    <span>THEME & LANG</span>
                     <div class="flex space-x-1">
-                        <span class="px-1.5 py-0.5">_</span>
-                        <span class="px-1.5 py-0.5">□</span>
-                        <span class="px-1.5 py-0.5">X</span>
+                        <span class="px-1">_</span>
+                        <span class="px-1">□</span>
+                        <span class="px-1">X</span>
                     </div>
                 </div>
                 
-                <div class="flex items-center gap-2.5 w-full justify-center">
-                    <span class="text-lg">🌐</span>
-                    <button id="btn-en" onclick="setLanguage('en')" class="font-mono text-xs px-3.5 py-2 rounded border border-studio-accent bg-studio-accent text-black font-semibold transition-all">EN</button>
-                    <button id="btn-pl" onclick="setLanguage('pl')" class="font-mono text-xs px-3.5 py-2 rounded border border-studio-border text-studio-muted hover:text-white hover:bg-studio-border transition-all">PL</button>
+                <div class="flex items-center gap-2 w-full justify-center">
+                    <!-- Przełącznik motywu -->
+                    <button id="btn-theme" onclick="toggleTheme()" class="font-mono text-xs px-3 py-2 rounded border border-olive-border dark:border-olive-border light:border-oliveLight-border text-olive-accent hover:bg-olive-accent/10 transition-all font-semibold flex items-center gap-1.5">
+                        <span id="theme-icon">🌙</span> <span id="theme-text">DARK</span>
+                    </button>
+
+                    <div class="h-6 w-[1px] bg-olive-border dark:bg-olive-border light:bg-oliveLight-border mx-1"></div>
+
+                    <!-- Przełącznik języka -->
+                    <button id="btn-en" onclick="setLanguage('en')" class="font-mono text-xs px-3 py-2 rounded border border-olive-border text-olive-muted hover:text-olive-accent transition-all">EN</button>
+                    <button id="btn-pl" onclick="setLanguage('pl')" class="font-mono text-xs px-3 py-2 rounded border border-olive-accent bg-olive-accent text-black font-semibold transition-all">PL</button>
                 </div>
             </div>
         </header>
 
         <!-- BIO & AVATAR SECTION -->
         <section id="section-profile" class="scroll-mt-24 grid grid-cols-1 md:grid-cols-12 gap-6">
-            <div class="md:col-span-4 studio-box p-4 flex flex-col justify-between">
-                <div class="flex justify-between items-center border-b border-studio-border pb-2 mb-3 font-mono text-xs text-studio-muted">
-                    <span>AVATAR.PNG</span>
+            <div class="md:col-span-4 olive-box p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-2 mb-3 font-mono text-xs text-olive-muted">
+                    <span>PROFILE_IMAGE.PNG</span>
                     <div class="flex space-x-1">
-                        <button onclick="toggleWindow('avatarContent')" class="hover:bg-studio-border px-2 py-0.5 rounded">-</button>
-                        <button class="hover:bg-studio-border px-2 py-0.5 rounded">□</button>
-                        <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded">X</button>
+                        <button onclick="toggleWindow('avatarContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">-</button>
+                        <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10">□</button>
+                        <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">X</button>
                     </div>
                 </div>
                 
-                <div id="avatarContent" class="square-card-box relative overflow-hidden rounded bg-black flex items-center justify-center group">
+                <div id="avatarContent" class="square-card-box relative overflow-hidden rounded bg-black/5 dark:bg-black/40 light:bg-stone-100 flex items-center justify-center group border border-olive-border dark:border-olive-border light:border-oliveLight-border">
                     <img id="avatarImage" src="works/profile.png" alt="Profile" 
-                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE', '#38bdf8', '#161920');" 
-                         class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
-                    <div class="absolute bottom-2 left-2 bg-black/80 backdrop-blur px-2.5 py-1 rounded border border-studio-border font-mono text-xs text-studio-accent">
-                        Layer: Base
+                         onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE', '#a3b18a', '#1a1d17');" 
+                         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute bottom-2 left-2 bg-olive-panel/90 dark:bg-olive-panel/90 light:bg-white/90 backdrop-blur px-2.5 py-1 rounded border border-olive-border dark:border-olive-border light:border-oliveLight-border font-mono text-xs text-olive-accent">
+                        Artist Layer
                     </div>
                 </div>
             </div>
 
-            <div class="md:col-span-8 studio-box p-5 sm:p-6 flex flex-col justify-between">
+            <div class="md:col-span-8 olive-box p-5 sm:p-6 flex flex-col justify-between">
                 <div>
-                    <div class="flex justify-between items-center border-b border-studio-border pb-2 mb-4 font-mono text-xs text-studio-muted">
+                    <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-2 mb-4 font-mono text-xs text-olive-muted">
                         <span>ABOUT_ME.TXT</span>
                         <div class="flex space-x-1">
-                            <button onclick="toggleWindow('terminalContent')" class="hover:bg-studio-border px-2 py-0.5 rounded">-</button>
-                            <button class="hover:bg-studio-border px-2 py-0.5 rounded">□</button>
-                            <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded">X</button>
+                            <button onclick="toggleWindow('terminalContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">-</button>
+                            <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10">□</button>
+                            <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">X</button>
                         </div>
                     </div>
 
                     <div id="terminalContent" class="space-y-4">
-                        <div id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-slate-300">
-                            Cześć! Jestem Xofer. Tworzę grafikę cyfrową, ilustracje oraz projekty o unikalnym klimacie. Witam w moim portfolio!
-                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-display font-bold leading-snug dark:text-white light:text-oliveLight-text">
+                            Cześć! Jestem Xofer.
+                        </h2>
+                        <p id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
+                            Tworzę grafikę cyfrową, ilustracje oraz projekty 2D o unikalnym klimacie. Witam w moim portfolio!
+                        </p>
                     </div>
                 </div>
 
-                <div class="mt-6 pt-4 border-t border-studio-border flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-studio-muted">
-                    <span>TOOLS: PROCREATE, CLIP STUDIO, ADOBE SUITE</span>
-                    <span class="text-studio-accent">STATUS: AVAILABLE FOR PROJECTS</span>
+                <div class="mt-6 pt-4 border-t border-olive-border dark:border-olive-border light:border-oliveLight-border flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-olive-muted">
+                    <span>TOOLS: CLIP STUDIO, PROCREATE, ADOBE SUITE</span>
+                    <span class="text-olive-accent font-semibold">● AVAILABLE FOR PROJECTS</span>
                 </div>
             </div>
         </section>
 
         <!-- PROGRAMS I USE SECTION -->
-        <section id="section-skills" class="scroll-mt-24 studio-box p-5 sm:p-6">
-            <div class="flex justify-between items-center border-b border-studio-border pb-3 mb-6 font-mono text-xs">
-                <span class="flex items-center gap-2 text-studio-accent font-semibold">
-                    <span class="w-2 h-2 rounded-full bg-studio-accent inline-block"></span> 
+        <section id="section-skills" class="scroll-mt-24 olive-box p-5 sm:p-6">
+            <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-6 font-mono text-xs">
+                <span class="flex items-center gap-2 text-olive-accent font-semibold">
+                    <span class="w-2 h-2 rounded-full bg-olive-accent inline-block"></span> 
                     <span id="title-programs">SOFTWARE SKILLS</span>
                 </span>
-                <div class="flex space-x-1 text-studio-muted">
-                    <button onclick="toggleWindow('skillsContent')" class="hover:bg-studio-border px-2 py-0.5 rounded">-</button>
-                    <button class="hover:bg-studio-border px-2 py-0.5 rounded">□</button>
-                    <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded">X</button>
+                <div class="flex space-x-1 text-olive-muted">
+                    <button onclick="toggleWindow('skillsContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">-</button>
+                    <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10">□</button>
+                    <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">X</button>
                 </div>
             </div>
 
             <div id="skillsContent" class="space-y-4">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">CLIP STUDIO PAINT</span>
-                            <span class="text-studio-accent font-semibold">100%</span>
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">CLIP STUDIO PAINT</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 100%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">PROCREATE</span>
-                            <span class="text-studio-accent font-semibold">100%</span>
-                        </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 100%;"></div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 100%;"></div>
                         </div>
                     </div>
 
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">TOONSQUID</span>
-                            <span class="text-studio-accent font-semibold">85%</span>
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">PROCREATE</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 85%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">ADOBE ILLUSTRATOR</span>
-                            <span class="text-studio-accent font-semibold">80%</span>
-                        </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 80%;"></div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 100%;"></div>
                         </div>
                     </div>
 
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">ADOBE ANIMATE</span>
-                            <span class="text-studio-accent font-semibold">70%</span>
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">TOONSQUID</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">85%</span>
                         </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 70%;"></div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 85%;"></div>
                         </div>
                     </div>
 
-                    <div class="bg-[#111318] border border-studio-border p-3.5 rounded hover:border-studio-accent/50 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-mono text-sm">
-                            <span class="text-white font-medium">ADOBE PHOTOSHOP</span>
-                            <span class="text-studio-accent font-semibold">50%</span>
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">ADOBE ILLUSTRATOR</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">80%</span>
                         </div>
-                        <div class="w-full bg-[#161920] rounded h-2 p-0.5 border border-studio-border">
-                            <div class="studio-progress-bar h-full transition-all duration-1000" style="width: 50%;"></div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">ADOBE ANIMATE</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">70%</span>
+                        </div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg hover:border-olive-accent/60 transition-all">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm sm:text-base font-semibold">
+                            <span class="dark:text-white light:text-oliveLight-text">ADOBE PHOTOSHOP</span>
+                            <span class="text-olive-accent font-mono text-xs font-bold">50%</span>
+                        </div>
+                        <div class="w-full bg-black/20 dark:bg-black/40 light:bg-stone-200 rounded h-2 p-0.5 border border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                            <div class="olive-progress-bar h-full transition-all duration-1000" style="width: 50%;"></div>
                         </div>
                     </div>
                 </div>
@@ -269,34 +300,34 @@
             
             <!-- CATEGORY TABS -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-accent bg-studio-accent text-black font-semibold transition-all text-center truncate">
+                <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm">
                     GRAPHICS
                 </button>
-                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-border bg-studio-panel text-studio-muted hover:text-white hover:border-studio-accent/50 transition-all text-center truncate">
+                <button onclick="switchCategory('illustrations')" id="tab-illustrations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent hover:border-olive-accent/50 transition-all text-center truncate">
                     ILLUSTRATIONS
                 </button>
-                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-border bg-studio-panel text-studio-muted hover:text-white hover:border-studio-accent/50 transition-all text-center truncate">
+                <button onclick="switchCategory('drawings')" id="tab-drawings" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent hover:border-olive-accent/50 transition-all text-center truncate">
                     DRAWINGS
                 </button>
-                <button onclick="switchCategory('animations')" id="tab-animations" class="font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-border bg-studio-panel text-studio-muted hover:text-white hover:border-studio-accent/50 transition-all text-center truncate">
+                <button onclick="switchCategory('animations')" id="tab-animations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent hover:border-olive-accent/50 transition-all text-center truncate">
                     2D ANIMATIONS
                 </button>
             </div>
 
             <!-- WORKS GRID BOX -->
-            <div class="studio-box p-5 sm:p-6">
-                <div class="flex justify-between items-center border-b border-studio-border pb-3 mb-4 font-mono text-xs text-studio-muted">
+            <div class="olive-box p-5 sm:p-6">
+                <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs text-olive-muted">
                     <span class="flex items-center gap-2">
-                        <span class="text-studio-accent" id="category-filename">GALLERY_GRAPHICS.DIR</span>
+                        <span class="text-olive-accent" id="category-filename">GALLERY_GRAPHICS.DIR</span>
                     </span>
                     <div class="flex space-x-1">
-                        <button onclick="toggleWindow('worksGridContent')" class="hover:bg-studio-border px-2 py-0.5 rounded">-</button>
-                        <button class="hover:bg-studio-border px-2 py-0.5 rounded">□</button>
-                        <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded">X</button>
+                        <button onclick="toggleWindow('worksGridContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">-</button>
+                        <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10">□</button>
+                        <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">X</button>
                     </div>
                 </div>
 
-                <div class="bg-[#111318] border border-studio-border p-3.5 rounded mb-6 font-sans text-sm text-slate-300">
+                <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-4 rounded-lg mb-6 font-sans text-sm dark:text-slate-300 light:text-oliveLight-muted">
                     <span id="category-desc">Moje prace graficzne. Połączenie brandingu, typografii i eksperymentów z układem wizualnym.</span>
                 </div>
 
@@ -307,15 +338,15 @@
         </section>
 
         <!-- OTHER WORKS SECTION -->
-        <section id="section-other" class="scroll-mt-24 studio-box-violet p-5 sm:p-6">
-            <div class="flex justify-between items-center border-b border-indigo-900/50 pb-3 mb-4 font-mono text-xs">
-                <span class="text-studio-violet font-semibold flex items-center gap-2">
-                    <span id="title-otherworks">OTHER_WORKS.DIR</span>
+        <section id="section-other" class="scroll-mt-24 olive-box p-5 sm:p-6">
+            <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs">
+                <span class="text-olive-highlight font-semibold flex items-center gap-2">
+                    <span id="title-otherworks">OTHER_PROJECTS.DIR</span>
                 </span>
-                <div class="flex space-x-1 text-studio-muted">
-                    <button onclick="toggleWindow('otherWorksContent')" class="hover:bg-studio-border px-2 py-0.5 rounded">-</button>
-                    <button class="hover:bg-studio-border px-2 py-0.5 rounded">□</button>
-                    <button onclick="closeWindow(this)" class="hover:bg-studio-border px-2 py-0.5 rounded">X</button>
+                <div class="flex space-x-1 text-olive-muted">
+                    <button onclick="toggleWindow('otherWorksContent')" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">-</button>
+                    <button class="px-2 py-0.5 rounded hover:bg-olive-accent/10">□</button>
+                    <button onclick="closeWindow(this)" class="px-2 py-0.5 rounded hover:bg-olive-accent/10">X</button>
                 </div>
             </div>
 
@@ -325,20 +356,20 @@
         </section>
 
         <!-- FOOTER / CONTACT SECTION -->
-        <footer id="section-contact" class="scroll-mt-24 studio-box p-6 text-center space-y-6">
-            <div class="flex justify-between items-center border-b border-studio-border pb-2 font-mono text-xs text-studio-muted">
-                <span>CONTACT.SYS</span>
-                <span class="text-studio-accent">● ONLINE</span>
+        <footer id="section-contact" class="scroll-mt-24 olive-box p-6 text-center space-y-6">
+            <div class="flex justify-between items-center border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-2 font-mono text-xs text-olive-muted">
+                <span>CONTACT & OUTRO</span>
+                <span class="text-olive-accent font-semibold">● ONLINE</span>
             </div>
 
-            <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-sans font-bold text-white tracking-tight">
+            <h2 id="footer-thankyou" class="text-4xl sm:text-6xl font-display font-extrabold tracking-tight dark:text-white light:text-oliveLight-text">
                 DZIĘKUJĘ ZA UWAGĘ :)
             </h2>
 
             <div class="flex justify-center">
                 <a href="https://hakowfex.carrd.co/" target="_blank" rel="noopener noreferrer" 
                    onclick="playBeep(600, 'sine', 0.05)"
-                   class="inline-flex items-center gap-2 font-mono text-sm px-6 py-3.5 rounded border border-studio-accent bg-studio-accent text-black font-semibold hover:bg-studio-accent-hover transition-all">
+                   class="inline-flex items-center gap-2 font-mono text-sm px-6 py-3.5 rounded-lg border border-olive-accent bg-olive-accent text-black font-semibold hover:bg-olive-highlight transition-all shadow-md">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                     </svg>
@@ -346,8 +377,8 @@
                 </a>
             </div>
 
-            <div class="inline-block border border-studio-border bg-[#111318] px-5 py-2.5 rounded">
-                <span class="font-mono text-lg text-studio-accent font-medium">
+            <div class="inline-block border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-black/20 dark:bg-black/30 light:bg-stone-50 px-5 py-2.5 rounded-lg">
+                <span class="font-mono text-lg text-olive-accent font-semibold">
                     @xofer_graphics
                 </span>
             </div>
@@ -357,35 +388,35 @@
 
     <!-- VIEWER.EXE LIGHTBOX MODAL -->
     <div id="lightbox" class="fixed inset-0 bg-black/90 z-50 hidden flex-col justify-between p-4 sm:p-8 backdrop-blur-md">
-        <div class="flex justify-between items-center border-b border-studio-border pb-3 shrink-0">
+        <div class="flex justify-between items-center border-b border-olive-border pb-3 shrink-0">
             <div class="font-mono text-sm text-white flex items-center gap-2" id="lightbox-title">
                 <span>VIEWER</span>
             </div>
-            <button onclick="closeLightbox()" class="font-mono text-xs border border-studio-border px-3 py-1.5 rounded text-studio-muted hover:text-white hover:bg-studio-border transition-colors">
+            <button onclick="closeLightbox()" class="font-mono text-xs border border-olive-border px-3 py-1.5 rounded text-olive-muted hover:text-white transition-colors">
                 X
             </button>
         </div>
 
         <div class="flex-1 flex items-center justify-center relative my-4 overflow-hidden min-h-0">
-            <button onclick="prevImage()" class="absolute left-0 sm:left-4 z-20 font-mono text-xl border border-studio-border bg-[#161920] text-white p-3 rounded hover:bg-studio-border transition-all">
+            <button onclick="prevImage()" class="absolute left-0 sm:left-4 z-20 font-mono text-xl border border-olive-border bg-olive-panel text-white p-3 rounded-lg hover:bg-olive-border transition-all">
                 &lt;
             </button>
 
             <div id="modalCardWrapper" class="flex flex-col items-center justify-center h-full w-full px-12 sm:px-24">
-                <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border border-studio-border rounded bg-black shadow-2xl">
+                <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border border-olive-border rounded-lg bg-black/50 shadow-2xl">
                 
-                <div class="mt-4 shrink-0 bg-[#161920] border border-studio-border px-4 py-2 rounded font-mono text-sm text-slate-300 flex items-center gap-4">
+                <div class="mt-4 shrink-0 bg-olive-panel border border-olive-border px-4 py-2 rounded-lg font-mono text-sm text-slate-200 flex items-center gap-4">
                     <span id="lightbox-caption">WORK_NAME</span>
-                    <span id="lightbox-counter" class="text-studio-muted border-l border-studio-border pl-4">1 / 1</span>
+                    <span id="lightbox-counter" class="text-olive-muted border-l border-olive-border pl-4">1 / 1</span>
                 </div>
             </div>
 
-            <button onclick="nextImage()" class="absolute right-0 sm:right-4 z-20 font-mono text-xl border border-studio-border bg-[#161920] text-white p-3 rounded hover:bg-studio-border transition-all">
+            <button onclick="nextImage()" class="absolute right-0 sm:right-4 z-20 font-mono text-xl border border-olive-border bg-olive-panel text-white p-3 rounded-lg hover:bg-olive-border transition-all">
                 &gt;
             </button>
         </div>
 
-        <div class="text-center font-mono text-xs text-studio-muted border-t border-studio-border pt-2 shrink-0">
+        <div class="text-center font-mono text-xs text-olive-muted border-t border-olive-border pt-2 shrink-0">
             [ESC] CLOSE | [&lt;] PREV | [&gt;] NEXT
         </div>
     </div>
@@ -394,30 +425,31 @@
     <script>
         const i18n = {
             en: {
-                bio: "Hello! I'm Xofer. I create digital art, illustrations, and graphic designs with a clean touch. Welcome to my portfolio!",
+                bio: "I create digital art, illustrations, and 2D designs with a distinct atmospheric feel. Welcome to my portfolio!",
                 programsTitle: "SOFTWARE SKILLS",
-                otherWorksTitle: "OTHER_WORKS.DIR",
+                otherWorksTitle: "OTHER_PROJECTS.DIR",
                 thankYou: "THANK YOU :)",
                 otherLinks: "OTHER LINKS",
                 catGraphics: "My graphic design works. A mix of branding, typography, and layout experiments.",
-                catIllustrations: "Digital illustrations featuring vibrant palettes and dynamic compositions.",
+                catIllustrations: "Digital illustrations featuring rich olive palettes and dynamic compositions.",
                 catDrawings: "Sketches, character designs, and digital drawings.",
                 catAnimations: "2D frame-by-frame animations and looping graphics."
             },
             pl: {
-                bio: "Cześć! Jestem Xofer. Tworzę grafikę cyfrową, ilustracje oraz projekty o unikalnym klimacie. Witam w moim portfolio!",
+                bio: "Tworzę grafikę cyfrową, ilustracje oraz projekty 2D o unikalnym klimacie. Witam w moim portfolio!",
                 programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
                 otherWorksTitle: "INNE PRACE",
                 thankYou: "DZIĘKUJĘ ZA UWAGĘ :)",
                 otherLinks: "INNE LINKI",
                 catGraphics: "Moje prace graficzne. Połączenie brandingu, typografii i eksperymentów z układem wizualnym.",
-                catIllustrations: "Ilustracje cyfrowe z żywymi paletami kolorów i dynamiczną kompozycją.",
+                catIllustrations: "Ilustracje cyfrowe z żywymi, oliwkowymi paletami kolorów i dynamiczną kompozycją.",
                 catDrawings: "Szkice, projekty postaci oraz rysunki cyfrowe.",
                 catAnimations: "Animacje 2D klatka po klatce oraz zapętlone grafiki."
             }
         };
 
-        let currentLang = 'pl'; // Domyślnie PL
+        let currentLang = 'pl';
+        let currentTheme = 'dark';
 
         const categoriesData = {
             graphics: { 
@@ -486,7 +518,7 @@
             } catch (e) {}
         }
 
-        function generateCanvasFallback(imgElement, label, colorHex = '#38bdf8', bgHex = '#161920') {
+        function generateCanvasFallback(imgElement, label, colorHex = '#a3b18a', bgHex = '#1a1d17') {
             const canvas = document.createElement('canvas');
             canvas.width = 400; canvas.height = 400;
             const ctx = canvas.getContext('2d');
@@ -494,9 +526,20 @@
             ctx.fillStyle = colorHex; ctx.globalAlpha = 0.08;
             for (let i = 0; i < 400; i += 30) { ctx.fillRect(i, 0, 1, 400); ctx.fillRect(0, i, 400, 1); }
             ctx.globalAlpha = 1.0; ctx.strokeStyle = colorHex; ctx.lineWidth = 2; ctx.strokeRect(20, 20, 360, 360);
-            ctx.fillStyle = colorHex; ctx.font = '500 20px "Inter", sans-serif'; ctx.textAlign = 'center';
+            ctx.fillStyle = colorHex; ctx.font = 'bold 20px "Syne", sans-serif'; ctx.textAlign = 'center';
             ctx.fillText(label, 200, 205);
             imgElement.src = canvas.toDataURL();
+        }
+
+        function toggleTheme() {
+            playBeep(600, 'sine', 0.04);
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.body.classList.remove('dark', 'light');
+            document.body.classList.add(currentTheme);
+
+            document.getElementById('theme-icon').innerText = currentTheme === 'dark' ? '🌙' : '☀️';
+            document.getElementById('theme-text').innerText = currentTheme === 'dark' ? 'DARK' : 'LIGHT';
         }
 
         function renderCategoryGrid(catKey) {
@@ -510,23 +553,23 @@
 
             category.items.forEach((item, index) => {
                 gridContainer.innerHTML += `
-                    <div onclick="openLightboxFromGrid('${catKey}', ${index})" class="bg-[#111318] border border-studio-border p-2.5 rounded cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:border-studio-accent/60">
-                        <div class="flex justify-between items-center text-xs font-mono text-studio-muted border-b border-studio-border pb-1.5 mb-2">
+                    <div onclick="openLightboxFromGrid('${catKey}', ${index})" class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-2.5 rounded-lg cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:border-olive-accent/70">
+                        <div class="flex justify-between items-center text-xs font-mono text-olive-muted border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-1.5 mb-2">
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
-                        <div class="square-card-box overflow-hidden rounded border border-studio-border bg-black relative">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#38bdf8', '#161920');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="square-card-box overflow-hidden rounded-md border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-black/40 relative">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#a3b18a', '#1a1d17');" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
-                        <div class="mt-2 text-center font-sans text-xs sm:text-sm text-slate-300 truncate py-1">${item.name}</div>
+                        <div class="mt-2 text-center font-display font-medium text-xs sm:text-sm dark:text-slate-200 light:text-oliveLight-text truncate py-1">${item.name}</div>
                     </div>`;
             });
 
             ['graphics', 'illustrations', 'drawings', 'animations'].forEach(tab => {
                 const btn = document.getElementById(`tab-${tab}`);
                 if (tab === catKey) {
-                    btn.className = "font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-accent bg-studio-accent text-black font-semibold transition-all text-center truncate";
+                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm";
                 } else {
-                    btn.className = "font-mono text-xs sm:text-sm py-3 px-3 rounded border border-studio-border bg-studio-panel text-studio-muted hover:text-white hover:border-studio-accent/50 transition-all text-center truncate";
+                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded-lg border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent hover:border-olive-accent/50 transition-all text-center truncate";
                 }
             });
         }
@@ -536,14 +579,14 @@
             container.innerHTML = '';
             otherWorksItems.forEach((item, index) => {
                 container.innerHTML += `
-                    <div onclick="openLightboxFromOther(${index})" class="bg-[#111318] border border-studio-border p-2.5 rounded cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:border-studio-violet/60">
-                        <div class="flex justify-between items-center text-xs font-mono text-studio-muted border-b border-studio-border pb-1.5 mb-2">
+                    <div onclick="openLightboxFromOther(${index})" class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border border-olive-border dark:border-olive-border light:border-oliveLight-border p-2.5 rounded-lg cursor-pointer group transition-all duration-200 hover:-translate-y-1 hover:border-olive-highlight/70">
+                        <div class="flex justify-between items-center text-xs font-mono text-olive-muted border-b border-olive-border dark:border-olive-border light:border-oliveLight-border pb-1.5 mb-2">
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
-                        <div class="square-card-box overflow-hidden rounded border border-studio-border bg-black relative">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#818cf8', '#161920');" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
+                        <div class="square-card-box overflow-hidden rounded-md border border-olive-border dark:border-olive-border light:border-oliveLight-border bg-black/40 relative">
+                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#d4a373', '#1a1d17');" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
-                        <div class="mt-2 text-center font-sans text-xs sm:text-sm text-slate-300 truncate py-1">${item.name}</div>
+                        <div class="mt-2 text-center font-display font-medium text-xs sm:text-sm dark:text-slate-200 light:text-oliveLight-text truncate py-1">${item.name}</div>
                     </div>`;
             });
         }
@@ -569,7 +612,7 @@
             const imgEl = document.getElementById('lightbox-img');
             
             imgEl.src = item.img;
-            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#38bdf8', '#161920'); };
+            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#a3b18a', '#1a1d17'); };
 
             document.getElementById('lightbox-title').innerText = `VIEWER // ${item.name}`;
             document.getElementById('lightbox-caption').innerText = item.name;
@@ -607,8 +650,8 @@
             document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
             document.getElementById('category-desc').innerText = i18n[lang][categoriesData[currentActiveCategory].descKey];
             
-            document.getElementById('btn-en').className = lang === 'en' ? "font-mono text-xs px-3.5 py-2 rounded border border-studio-accent bg-studio-accent text-black font-semibold transition-all" : "font-mono text-xs px-3.5 py-2 rounded border border-studio-border text-studio-muted hover:text-white hover:bg-studio-border transition-all";
-            document.getElementById('btn-pl').className = lang === 'pl' ? "font-mono text-xs px-3.5 py-2 rounded border border-studio-accent bg-studio-accent text-black font-semibold transition-all" : "font-mono text-xs px-3.5 py-2 rounded border border-studio-border text-studio-muted hover:text-white hover:bg-studio-border transition-all";
+            document.getElementById('btn-en').className = lang === 'en' ? "font-mono text-xs px-3 py-2 rounded border border-olive-accent bg-olive-accent text-black font-semibold transition-all" : "font-mono text-xs px-3 py-2 rounded border border-olive-border text-olive-muted hover:text-olive-accent transition-all";
+            document.getElementById('btn-pl').className = lang === 'pl' ? "font-mono text-xs px-3 py-2 rounded border border-olive-accent bg-olive-accent text-black font-semibold transition-all" : "font-mono text-xs px-3 py-2 rounded border border-olive-border text-olive-muted hover:text-olive-accent transition-all";
         }
 
         function toggleWindow(elementId) {
@@ -617,10 +660,9 @@
             if (el) el.classList.toggle('hidden');
         }
 
-        // ZMIANA: Przycisk "X" już nie zamyka ani nie usuwa okien (zabezpieczone przed przypadkowym kliknięciem)
+        // ZMIANA: Przycisk "X" odtwarza dźwięk, ale NIE zamyka okna (zgodnie z życzeniem)
         function closeWindow(btn) {
             playBeep(250, 'sine', 0.06);
-            // Okno pozostaje na swoim miejscu
         }
 
         window.addEventListener('keydown', (e) => {
@@ -634,7 +676,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             renderCategoryGrid('graphics');
             renderOtherWorks();
-            setLanguage('pl'); // Ustawienie polskiego jako domyślny na start
+            setLanguage('pl');
         });
     </script>
 </body>
