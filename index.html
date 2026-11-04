@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOFER // Digital Artist & Graphic Designer Portfolio</title>
     
-    <!-- Google Fonts: Syne (Kreatywny), Inter (Czytelny), Share Tech Mono -->
+    <!-- Google Fonts: Plus Jakarta Sans (Nowoczesne nagłówki) + Inter (Czytelna treść) + Share Tech Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Share+Tech+Mono&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -38,7 +38,7 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
-                        display: ['Syne', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'sans-serif'],
                         mono: ['"Share Tech Mono"', 'monospace'],
                     }
                 }
@@ -54,14 +54,14 @@
         }
 
         h1, h2, h3, .font-display {
-            font-family: 'Syne', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         .olive-box {
             border: 3px solid var(--border-color, #3f4837);
             background-color: var(--panel-bg, #1a1d17);
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.4);
-            border-radius: 6px;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
 
@@ -85,10 +85,10 @@
 
         .olive-progress-bar {
             background: linear-gradient(90deg, #a3b18a 0%, #d4a373 100%);
-            border-radius: 0px;
+            border-radius: 2px;
         }
 
-        /* Płynny mini efekt otwierania projektu */
+        /* Płynny mini efekt otwierania kart */
         .project-card {
             transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
         }
@@ -96,39 +96,77 @@
             transform: translateY(-4px) scale(1.01);
         }
 
-        /* Ukrywanie paska przewijania dla karuzeli przy zachowaniu płynności */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        /* Ukrywanie paska przewijania w karuzeli */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #586352; border: 1px solid #3f4837; }
     </style>
 </head>
-<body class="dark min-h-screen p-3 sm:p-6 md:p-8 relative pt-20 sm:pt-24">
+<body class="dark min-h-screen relative">
 
-    <!-- PASEK SZYBKIEJ NAWIGACJI U GÓRY -->
-    <nav class="fixed top-0 left-0 w-full z-40 bg-olive-bg/95 dark:bg-olive-bg/95 dark:border-olive-border light:bg-oliveLight-bg/95 border-b-2 border-oliveLight-border px-4 py-3 backdrop-blur-md flex items-center justify-between gap-3 shadow-md transition-colors duration-300">
-        <div class="flex items-center space-x-2 font-mono text-xs text-olive-accent font-semibold">
-            <span class="inline-block w-2.5 h-2.5 bg-olive-accent animate-pulse"></span>
-            <span>STUDIO.SYS</span>
+    <!-- EKRAN STARTOWY / SPLASH SCREEN -->
+    <div id="welcome-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-olive-bg dark:bg-olive-bg light:bg-oliveLight-bg transition-opacity duration-500">
+        <div class="olive-box max-w-lg w-full p-6 sm:p-8 text-center space-y-6">
+            <div class="font-mono text-xs text-olive-accent">SYSTEM.BOOT // WELCOME</div>
+            
+            <div class="space-y-2">
+                <h1 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tight dark:text-white light:text-oliveLight-text">
+                    XOFER STUDIO<span class="text-olive-highlight">.</span>
+                </h1>
+                <p id="welcome-subtitle" class="text-sm font-sans text-olive-muted">
+                    Wybierz preferowany motyw i język przed przejściem do portfolia.
+                </p>
+            </div>
+
+            <!-- PRZYCISKI WYBORU MOTYWU I JĘZYKA -->
+            <div class="space-y-4 pt-2">
+                <div class="space-y-1.5">
+                    <label id="welcome-label-theme" class="block font-mono text-xs text-olive-muted uppercase">Motyw / Theme</label>
+                    <div class="flex justify-center gap-3">
+                        <button id="welcome-theme-dark" onclick="setTheme('dark')" class="font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all">DARK</button>
+                        <button id="welcome-theme-light" onclick="setTheme('light')" class="font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">LIGHT</button>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <label id="welcome-label-lang" class="block font-mono text-xs text-olive-muted uppercase">Język / Language</label>
+                    <div class="flex justify-center gap-3">
+                        <button id="welcome-lang-pl" onclick="setLanguage('pl')" class="font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all">PL</button>
+                        <button id="welcome-lang-en" onclick="setLanguage('en')" class="font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">EN</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRZYCISK PRZEJDŹ DALEJ -->
+            <div class="pt-4 border-t-2 border-olive-border">
+                <button onclick="enterMainSite()" class="w-full font-display font-extrabold text-sm sm:text-base py-3.5 px-6 rounded border-2 border-olive-accent bg-olive-accent text-black hover:bg-olive-highlight transition-all shadow-md tracking-wide uppercase">
+                    <span id="welcome-btn-enter">PRZEJDŹ DALEJ &rarr;</span>
+                </button>
+            </div>
         </div>
+    </div>
 
-        <div class="flex items-center space-x-1 sm:space-x-3 font-mono text-xs">
-            <a href="#section-profile" onclick="playBeep(450, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[01. PROFILE]</a>
-            <a href="#section-skills" onclick="playBeep(500, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[02. SKILLS]</a>
-            <a href="#section-works" onclick="playBeep(550, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[03. WORKS]</a>
-            <a href="#section-other" onclick="playBeep(600, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[04. OTHER]</a>
-            <a href="#section-contact" onclick="playBeep(650, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[05. CONTACT]</a>
-        </div>
-    </nav>
+    <!-- ZAWARTOŚĆ GŁÓWNA STRONY -->
+    <div id="main-content" class="p-3 sm:p-6 md:p-8 pt-20 sm:pt-24 max-w-6xl mx-auto space-y-8 sm:space-y-10 relative z-10 hidden">
 
-    <div class="max-w-6xl mx-auto space-y-8 sm:space-y-10 relative z-10">
+        <!-- PASEK SZYBKIEJ NAWIGACJI U GÓRY -->
+        <nav class="fixed top-0 left-0 w-full z-40 bg-olive-bg/95 dark:bg-olive-bg/95 dark:border-olive-border light:bg-oliveLight-bg/95 border-b-2 border-oliveLight-border px-4 py-3 backdrop-blur-md flex items-center justify-between gap-3 shadow-md transition-colors duration-300">
+            <div class="flex items-center space-x-2 font-mono text-xs text-olive-accent font-semibold">
+                <span class="inline-block w-2.5 h-2.5 bg-olive-accent animate-pulse"></span>
+                <span>STUDIO.SYS</span>
+            </div>
+
+            <div class="flex items-center space-x-1 sm:space-x-3 font-mono text-xs">
+                <a href="#section-profile" onclick="playBeep(450, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[01. PROFILE]</a>
+                <a href="#section-skills" onclick="playBeep(500, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[02. SKILLS]</a>
+                <a href="#section-works" onclick="playBeep(550, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[03. WORKS]</a>
+                <a href="#section-other" onclick="playBeep(600, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[04. OTHER]</a>
+                <a href="#section-contact" onclick="playBeep(650, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[05. CONTACT]</a>
+            </div>
+        </nav>
 
         <!-- HEADER & TOOLBAR -->
         <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
@@ -148,8 +186,8 @@
                             XOFER<span class="text-olive-highlight">.</span>
                         </h1>
                         
-                        <!-- WYRAŹNY PRZYCISK ZMIANY MOTYWU (PRZENIESIONY TUTAJ DLA WYGODY) -->
-                        <button id="btn-theme" onclick="toggleTheme()" class="font-display font-bold text-xs px-4 py-3 border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md flex items-center justify-center gap-2">
+                        <!-- PRZYCISK ZMIANY MOTYWU W NAGŁÓWKU -->
+                        <button id="btn-theme" onclick="toggleTheme()" class="font-display font-bold text-xs px-4 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md flex items-center justify-center gap-2">
                             <span>MOTYW:</span> <span id="theme-text" class="underline uppercase">DARK</span>
                         </button>
                     </div>
@@ -191,11 +229,11 @@
                     </div>
                 </div>
                 
-                <div id="avatarContent" class="square-card-box relative overflow-hidden bg-black/5 dark:bg-black/40 light:bg-stone-100 flex items-center justify-center group border-2 border-olive-border dark:border-olive-border light:border-oliveLight-border">
+                <div id="avatarContent" class="square-card-box relative overflow-hidden bg-black/5 dark:bg-black/40 light:bg-stone-100 flex items-center justify-center group border-2 border-olive-border dark:border-olive-border light:border-oliveLight-border rounded">
                     <img id="avatarImage" src="works/profile.png" alt="Profile" 
                          onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE', '#a3b18a', '#1a1d17');" 
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                    <div class="absolute bottom-2 left-2 bg-olive-panel/90 dark:bg-olive-panel/90 light:bg-white/90 backdrop-blur px-2.5 py-1 border-2 border-olive-border font-mono text-xs text-olive-accent">
+                    <div class="absolute bottom-2 left-2 bg-olive-panel/90 dark:bg-olive-panel/90 light:bg-white/90 backdrop-blur px-2.5 py-1 border-2 border-olive-border font-mono text-xs text-olive-accent rounded">
                         Artist
                     </div>
                 </div>
@@ -213,10 +251,10 @@
                     </div>
 
                     <div id="terminalContent" class="space-y-4">
-                        <h2 class="text-xl sm:text-2xl font-display font-bold leading-tight dark:text-white light:text-oliveLight-text">
+                        <h2 class="text-2xl sm:text-3xl font-display font-bold leading-tight dark:text-white light:text-oliveLight-text">
                             Cześć! Jestem Xofer.
                         </h2>
-                        <p id="bio-text" class="font-sans text-sm sm:text-base leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
+                        <p id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
                             Tworzę grafikę cyfrową, ilustracje oraz projekty 2D i 3D o unikalnym klimacie. Witam w moim portfolio!
                         </p>
                     </div>
@@ -247,81 +285,81 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">CLIP STUDIO PAINT</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 100%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">PROCREATE</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">100%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 100%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">BLENDER</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">75%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 75%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">TOONSQUID</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">85%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 85%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE ILLUSTRATOR</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">80%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 80%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE ANIMATE</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">70%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 70%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">ADOBE PHOTOSHOP</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">50%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 50%;"></div>
                         </div>
                     </div>
 
                     <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded hover:border-olive-accent/70 transition-all">
-                        <div class="flex justify-between items-center mb-2 font-display text-xs sm:text-sm font-bold">
+                        <div class="flex justify-between items-center mb-2 font-display text-sm font-bold">
                             <span class="dark:text-white light:text-oliveLight-text">NOMAD SCULPT</span>
                             <span class="text-olive-accent font-mono text-xs font-bold">20%</span>
                         </div>
-                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3 p-0.5 border-2 border-olive-border">
+                        <div class="w-full bg-black/30 dark:bg-black/50 light:bg-stone-200 h-3.5 p-0.5 border-2 border-olive-border rounded-sm">
                             <div class="olive-progress-bar h-full" style="width: 20%;"></div>
                         </div>
                     </div>
@@ -372,7 +410,7 @@
             </div>
         </section>
 
-        <!-- OTHER WORKS SECTION (JAKO KARUSELA ZE STRZAŁKAMI Z OBU STRON) -->
+        <!-- OTHER WORKS SECTION (KARUSELA ZE STRZAŁKAMI Z OBU STRON) -->
         <section id="section-other" class="scroll-mt-24 olive-box p-5 sm:p-6">
             <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs">
                 <span class="text-olive-highlight font-semibold flex items-center gap-2">
@@ -385,19 +423,16 @@
                 </div>
             </div>
 
-            <!-- KONTENER KARUZELI ZE STRZAŁKAMI Z OBU STRON -->
+            <!-- KONTENER KARUZELI -->
             <div id="otherWorksContainer" class="relative flex items-center group">
-                <!-- LEWA STRZAŁKA KARUZELI -->
                 <button onclick="scrollOtherCarousel(-1)" class="absolute -left-3 sm:-left-5 z-20 font-mono text-lg bg-olive-panel border-2 border-olive-border text-white px-3 py-4 hover:bg-olive-accent hover:text-black transition-all shadow-lg rounded">
                     &lt;
                 </button>
 
-                <!-- KAFELKI PRZESUWANE POZIOMO -->
                 <div id="otherWorksContent" class="w-full flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth px-2 py-2">
                     <!-- Dynamic Content -->
                 </div>
 
-                <!-- PRAWA STRZAŁKA KARUZELI -->
                 <button onclick="scrollOtherCarousel(1)" class="absolute -right-3 sm:-right-5 z-20 font-mono text-lg bg-olive-panel border-2 border-olive-border text-white px-3 py-4 hover:bg-olive-accent hover:text-black transition-all shadow-lg rounded">
                     &gt;
                 </button>
@@ -451,7 +486,6 @@
                 &lt;
             </button>
 
-            <!-- KONTENER Z MINI EFECTEM OTWIERANIA (SCALE / FADE-IN) -->
             <div id="modalCardWrapper" class="flex flex-col items-center justify-center h-full w-full px-12 sm:px-24 transition-all duration-300 transform scale-95 opacity-0">
                 <img id="lightbox-img" src="" alt="Work Preview" class="max-w-full max-h-[75vh] object-contain border-2 border-olive-border bg-black/50 shadow-2xl rounded">
                 
@@ -475,6 +509,10 @@
     <script>
         const i18n = {
             en: {
+                subtitle: "Choose your preferred theme and language before proceeding to the portfolio.",
+                labelTheme: "Theme",
+                labelLang: "Language",
+                btnEnter: "ENTER PORTFOLIO &rarr;",
                 bio: "I create digital art, illustrations, and 2D/3D designs with a distinct atmospheric feel. Welcome to my portfolio!",
                 programsTitle: "SOFTWARE SKILLS",
                 otherWorksTitle: "OTHER_PROJECTS.DIR",
@@ -486,6 +524,10 @@
                 catAnimations: "2D frame-by-frame animations and looping graphics."
             },
             pl: {
+                subtitle: "Wybierz preferowany motyw i język przed przejściem do portfolia.",
+                labelTheme: "Motyw",
+                labelLang: "Język",
+                btnEnter: "PRZEJDŹ DALEJ &rarr;",
                 bio: "Tworzę grafikę cyfrową, ilustracje oraz projekty 2D i 3D o unikalnym klimacie. Witam w moim portfolio!",
                 programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
                 otherWorksTitle: "INNE PRACE",
@@ -577,19 +619,47 @@
             ctx.fillStyle = colorHex; ctx.globalAlpha = 0.08;
             for (let i = 0; i < 400; i += 30) { ctx.fillRect(i, 0, 1, 400); ctx.fillRect(0, i, 400, 1); }
             ctx.globalAlpha = 1.0; ctx.strokeStyle = colorHex; ctx.lineWidth = 4; ctx.strokeRect(20, 20, 360, 360);
-            ctx.fillStyle = colorHex; ctx.font = 'bold 16px "Syne", sans-serif'; ctx.textAlign = 'center';
+            ctx.fillStyle = colorHex; ctx.font = 'bold 18px "Plus Jakarta Sans", sans-serif'; ctx.textAlign = 'center';
             ctx.fillText(label, 200, 205);
             imgElement.src = canvas.toDataURL();
         }
 
-        function toggleTheme() {
+        function setTheme(theme) {
             playBeep(600, 'sine', 0.04);
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            currentTheme = theme;
             
             document.body.classList.remove('dark', 'light');
             document.body.classList.add(currentTheme);
 
-            document.getElementById('theme-text').innerText = currentTheme === 'dark' ? 'DARK' : 'LIGHT';
+            document.getElementById('theme-text').innerText = currentTheme.toUpperCase();
+
+            // Przyciski w welcome screen
+            const btnDark = document.getElementById('welcome-theme-dark');
+            const btnLight = document.getElementById('welcome-theme-light');
+            
+            if (theme === 'dark') {
+                btnDark.className = "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all";
+                btnLight.className = "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
+            } else {
+                btnLight.className = "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all";
+                btnDark.className = "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
+            }
+        }
+
+        function toggleTheme() {
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function enterMainSite() {
+            playBeep(700, 'sine', 0.08);
+            const welcome = document.getElementById('welcome-screen');
+            const main = document.getElementById('main-content');
+            
+            welcome.style.opacity = '0';
+            setTimeout(() => {
+                welcome.style.display = 'none';
+                main.classList.remove('hidden');
+            }, 400);
         }
 
         function renderCategoryGrid(catKey) {
@@ -641,7 +711,6 @@
             });
         }
 
-        // Obsługa karuzeli dla "Innych prac"
         function scrollOtherCarousel(direction) {
             playBeep(500, 'sine', 0.03);
             const container = document.getElementById('otherWorksContent');
@@ -682,7 +751,6 @@
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
 
-            // Uruchomienie mini efektu powiększenia przy otwieraniu
             setTimeout(() => {
                 wrapper.classList.remove('scale-95', 'opacity-0');
                 wrapper.classList.add('scale-100', 'opacity-100');
@@ -716,6 +784,12 @@
         function setLanguage(lang) {
             playBeep(750, 'sine', 0.05);
             currentLang = lang;
+            
+            document.getElementById('welcome-subtitle').innerText = i18n[lang].subtitle;
+            document.getElementById('welcome-label-theme').innerText = i18n[lang].labelTheme;
+            document.getElementById('welcome-label-lang').innerText = i18n[lang].labelLang;
+            document.getElementById('welcome-btn-enter').innerHTML = i18n[lang].btnEnter;
+
             document.getElementById('bio-text').innerText = i18n[lang].bio;
             document.getElementById('title-programs').innerText = i18n[lang].programsTitle;
             document.getElementById('title-otherworks').innerText = i18n[lang].otherWorksTitle;
@@ -723,6 +797,13 @@
             document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
             document.getElementById('category-desc').innerText = i18n[lang][categoriesData[currentActiveCategory].descKey];
             
+            // Welcome screen buttons
+            const btnPlW = document.getElementById('welcome-lang-pl');
+            const btnEnW = document.getElementById('welcome-lang-en');
+            btnPlW.className = lang === 'pl' ? "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all" : "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
+            btnEnW.className = lang === 'en' ? "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all" : "font-mono text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
+
+            // Main screen buttons
             document.getElementById('btn-en').className = lang === 'en' ? "font-mono text-xs px-4 py-2 border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all" : "font-mono text-xs px-4 py-2 border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
             document.getElementById('btn-pl').className = lang === 'pl' ? "font-mono text-xs px-4 py-2 border-2 border-olive-accent bg-olive-accent text-black font-bold transition-all" : "font-mono text-xs px-4 py-2 border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all";
         }
@@ -750,6 +831,7 @@
             renderCategoryGrid('graphics');
             renderOtherWorks();
             setLanguage('pl');
+            setTheme('dark');
         });
     </script>
 </body>
