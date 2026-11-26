@@ -162,7 +162,7 @@
                 <a href="#section-profile" onclick="playBeep(450, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[01. PROFILE]</a>
                 <a href="#section-skills" onclick="playBeep(500, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[02. SKILLS]</a>
                 <a href="#section-works" onclick="playBeep(550, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[03. WORKS]</a>
-                <a href="#section-other" onclick="playBeep(600, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[04. OTHER]</a>
+                <a href="#section-collab" onclick="playBeep(600, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[04. COLLAB]</a>
                 <a href="#section-contact" onclick="playBeep(650, 'sine', 0.03)" class="px-2 py-1 rounded text-olive-muted hover:text-olive-accent transition-colors">[05. CONTACT]</a>
             </div>
         </nav>
@@ -370,8 +370,8 @@
         <!-- WORKS MAIN SECTION -->
         <section id="section-works" class="scroll-mt-24 space-y-4">
             
-            <!-- CATEGORY TABS -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <!-- CATEGORY TABS (5 ZAKŁADEK: GRAPHICS, ILLUSTRATIONS, DRAWINGS, 2D ANIMATIONS, 3D) -->
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
                 <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide">
                     GRAPHICS
                 </button>
@@ -383,6 +383,9 @@
                 </button>
                 <button onclick="switchCategory('animations')" id="tab-animations" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide">
                     2D ANIMATIONS
+                </button>
+                <button onclick="switchCategory('models3d')" id="tab-models3d" class="col-span-2 sm:col-span-1 font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide">
+                    3D
                 </button>
             </div>
 
@@ -409,32 +412,47 @@
             </div>
         </section>
 
-        <!-- OTHER WORKS SECTION (W PEŁNI UNIKALNE PLIKI - BEZ POWTOARZEŃ) -->
-        <section id="section-other" class="scroll-mt-24 olive-box p-5 sm:p-6">
-            <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-4 font-mono text-xs">
+        <!-- COLLABORATIONS / TEAMS SECTION (STATYCZNA RAMKA JAK SPONSORZY, BEZ KARUZELI) -->
+        <section id="section-collab" class="scroll-mt-24 olive-box p-5 sm:p-6">
+            <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-6 font-mono text-xs">
                 <span class="text-olive-highlight font-semibold flex items-center gap-2">
-                    <span id="title-otherworks">OTHER_PROJECTS.DIR</span>
+                    <span class="w-2.5 h-2.5 bg-olive-highlight inline-block"></span>
+                    <span id="title-collab">OSOBY I ZESPOŁY, Z KTÓRYMI WSPÓŁPRACUJĘ</span>
                 </span>
                 <div class="flex space-x-1 text-olive-muted">
-                    <button onclick="toggleWindow('otherWorksContainer')" class="px-2 py-0.5 border border-olive-border hover:bg-olive-accent/10">-</button>
+                    <button onclick="toggleWindow('collabContainer')" class="px-2 py-0.5 border border-olive-border hover:bg-olive-accent/10">-</button>
                     <button class="px-2 py-0.5 border border-olive-border hover:bg-olive-accent/10">□</button>
                     <button onclick="closeWindow(this)" class="px-2 py-0.5 border border-olive-border hover:bg-olive-accent/10">X</button>
                 </div>
             </div>
 
-            <!-- KONTENER KARUZELI -->
-            <div id="otherWorksContainer" class="relative flex items-center group">
-                <button onclick="scrollOtherCarousel(-1)" class="absolute -left-3 sm:-left-5 z-20 font-mono text-lg bg-olive-panel border-2 border-olive-border text-white px-3 py-4 hover:bg-olive-accent hover:text-black transition-all shadow-lg rounded">
-                    &lt;
-                </button>
-
-                <div id="otherWorksContent" class="w-full flex gap-4 sm:gap-6 overflow-x-auto no-scrollbar scroll-smooth px-2 py-2">
-                    <!-- Dynamic Content -->
+            <!-- STATYCZNY KONTENER PARTNERÓW / ZESPOŁÓW -->
+            <div id="collabContainer" class="flex flex-wrap justify-center items-stretch gap-6 sm:gap-10 py-2">
+                
+                <!-- ZESPÓŁ 1: The Maruders -->
+                <div class="project-card w-44 sm:w-52 bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border hover:border-olive-accent p-4 rounded flex flex-col items-center text-center transition-all">
+                    <div class="w-full square-card-box overflow-hidden border-2 border-olive-border bg-black/40 rounded mb-3 flex items-center justify-center">
+                        <img src="works/the_maruders.png" alt="The Maruders" 
+                             onerror="this.onerror=null; generateCanvasFallback(this, 'THE MARUDERS', '#d4a373', '#1a1d17');" 
+                             class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <h3 class="font-display font-bold text-base sm:text-lg tracking-wide uppercase dark:text-white light:text-oliveLight-text">
+                        The Maruders
+                    </h3>
                 </div>
 
-                <button onclick="scrollOtherCarousel(1)" class="absolute -right-3 sm:-right-5 z-20 font-mono text-lg bg-olive-panel border-2 border-olive-border text-white px-3 py-4 hover:bg-olive-accent hover:text-black transition-all shadow-lg rounded">
-                    &gt;
-                </button>
+                <!-- ZESPÓŁ 2: Spektrum -->
+                <div class="project-card w-44 sm:w-52 bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border hover:border-olive-accent p-4 rounded flex flex-col items-center text-center transition-all">
+                    <div class="w-full square-card-box overflow-hidden border-2 border-olive-border bg-black/40 rounded mb-3 flex items-center justify-center">
+                        <img src="works/spektrum.png" alt="Spektrum" 
+                             onerror="this.onerror=null; generateCanvasFallback(this, 'SPEKTRUM', '#a3b18a', '#1a1d17');" 
+                             class="w-full h-full object-contain p-2 transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <h3 class="font-display font-bold text-base sm:text-lg tracking-wide uppercase dark:text-white light:text-oliveLight-text">
+                        Spektrum
+                    </h3>
+                </div>
+
             </div>
         </section>
 
@@ -514,13 +532,14 @@
                 btnEnter: "ENTER PORTFOLIO &rarr;",
                 bio: "I create digital art, illustrations, and 2D/3D designs with a distinct atmospheric feel. Welcome to my portfolio!",
                 programsTitle: "SOFTWARE SKILLS",
-                otherWorksTitle: "OTHER_PROJECTS.DIR",
+                collabTitle: "PEOPLE & TEAMS I COLLABORATE WITH",
                 thankYou: "THANK YOU :)",
                 otherLinks: "OTHER LINKS",
                 catGraphics: "My graphic design works. A mix of branding, typography, and layout experiments.",
                 catIllustrations: "Digital illustrations featuring rich olive palettes and dynamic compositions.",
                 catDrawings: "Sketches, character designs, and digital drawings.",
-                catAnimations: "2D frame-by-frame animations and looping graphics."
+                catAnimations: "2D frame-by-frame animations and looping graphics.",
+                catModels3d: "3D models, renders, and spatial experiments created in Blender and Nomad Sculpt."
             },
             pl: {
                 subtitle: "Wybierz preferowany motyw i język przed przejściem do portfolia.",
@@ -529,13 +548,14 @@
                 btnEnter: "PRZEJDŹ DALEJ &rarr;",
                 bio: "Tworzę grafikę cyfrową, ilustracje oraz projekty 2D i 3D o unikalnym klimacie. Witam w moim portfolio!",
                 programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
-                otherWorksTitle: "INNE PRACE",
+                collabTitle: "OSOBY I ZESPOŁY, Z KTÓRYMI WSPÓŁPRACUJĘ",
                 thankYou: "DZIĘKUJĘ ZA UWAGĘ :)",
                 otherLinks: "INNE LINKI",
                 catGraphics: "Moje prace graficzne. Połączenie brandingu, typografii i eksperymentów z układem wizualnym.",
                 catIllustrations: "Ilustracje cyfrowe z żywymi, oliwkowymi paletami kolorów i dynamiczną kompozycją.",
                 catDrawings: "Szkice, projekty postaci oraz rysunki cyfrowe.",
-                catAnimations: "Animacje 2D klatka po klatce oraz zapętlone grafiki."
+                catAnimations: "Animacje 2D klatka po klatce oraz zapętlone grafiki.",
+                catModels3d: "Modele 3D, rendery i eksperymenty przestrzenne tworzone w Blenderze oraz Nomad Sculpt."
             }
         };
 
@@ -614,15 +634,17 @@
                     { id: "A5", name: "Scene for my animation", img: "works/Animation6.gif" },
                     { id: "A6", name: "Taniec", img: "works/testdance.gif" },
                     { id: "A7", name: "Scene for Fundamental Paper Education", img: "works/fundamental.gif" },
-                    { id: "A7", name: "Kula", img: "works/kula.gif" },
+                    { id: "A8", name: "Kula", img: "works/kula.gif" },
                 ] 
+            },
+            models3d: {
+                filename: "GALLERY_3D.DIR",
+                descKey: "catModels3d",
+                items: [
+                    { id: "3D1", name: "Crystals - Blender", img: "works/crystals.png" }
+                ]
             }
         };
-
-        // GWARANTOWANE UNIKALNE PLIKI DLA SEKCJI "OTHER_PROJECTS"
-        const otherWorksItems = [
-            { id: "M1", name: "Crystals - Blender", img: "works/crystals.png" },
-        ];
 
         let currentActiveCategory = 'graphics';
         let currentLightboxList = [];
@@ -717,38 +739,15 @@
                     </div>`;
             });
 
-            ['graphics', 'illustrations', 'drawings', 'animations'].forEach(tab => {
+            ['graphics', 'illustrations', 'drawings', 'animations', 'models3d'].forEach(tab => {
                 const btn = document.getElementById(`tab-${tab}`);
+                const spanClass = tab === 'models3d' ? 'col-span-2 sm:col-span-1 ' : '';
                 if (tab === catKey) {
-                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide";
+                    btn.className = spanClass + "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide";
                 } else {
-                    btn.className = "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide";
+                    btn.className = spanClass + "font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-border bg-olive-panel dark:bg-olive-panel light:bg-white text-olive-muted hover:text-olive-accent transition-all text-center truncate tracking-wide";
                 }
             });
-        }
-
-        function renderOtherWorks() {
-            const container = document.getElementById('otherWorksContent');
-            container.innerHTML = '';
-            otherWorksItems.forEach((item, index) => {
-                container.innerHTML += `
-                    <div onclick="openLightboxFromOther(${index})" class="project-card min-w-[200px] sm:min-w-[240px] flex-1 bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-2.5 rounded cursor-pointer group">
-                        <div class="flex justify-between items-center text-[10px] font-mono text-olive-muted border-b-2 border-olive-border pb-1.5 mb-2">
-                            <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
-                        </div>
-                        <div class="square-card-box overflow-hidden border-2 border-olive-border bg-black/40 relative rounded">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#d4a373', '#1a1d17');" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        </div>
-                        <div class="mt-2 text-center font-display font-semibold text-xs sm:text-sm dark:text-slate-200 light:text-oliveLight-text truncate py-1">${item.name}</div>
-                    </div>`;
-            });
-        }
-
-        function scrollOtherCarousel(direction) {
-            playBeep(500, 'sine', 0.03);
-            const container = document.getElementById('otherWorksContent');
-            const scrollAmount = 280;
-            container.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
         }
 
         function switchCategory(catKey) { playBeep(520, 'sine', 0.04); renderCategoryGrid(catKey); }
@@ -756,13 +755,6 @@
         function openLightboxFromGrid(catKey, index) {
             playBeep(880, 'sine', 0.08);
             currentLightboxList = categoriesData[catKey].items;
-            currentLightboxIndex = index;
-            showLightbox();
-        }
-
-        function openLightboxFromOther(index) {
-            playBeep(880, 'sine', 0.08);
-            currentLightboxList = otherWorksItems;
             currentLightboxIndex = index;
             showLightbox();
         }
@@ -825,7 +817,7 @@
 
             document.getElementById('bio-text').innerText = i18n[lang].bio;
             document.getElementById('title-programs').innerText = i18n[lang].programsTitle;
-            document.getElementById('title-otherworks').innerText = i18n[lang].otherWorksTitle;
+            document.getElementById('title-collab').innerText = i18n[lang].collabTitle;
             document.getElementById('footer-thankyou').innerText = i18n[lang].thankYou;
             document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
             document.getElementById('category-desc').innerText = i18n[lang][categoriesData[currentActiveCategory].descKey];
@@ -859,7 +851,6 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             renderCategoryGrid('graphics');
-            renderOtherWorks();
             setLanguage('pl');
             setTheme('dark');
         });
