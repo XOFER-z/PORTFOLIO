@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pl" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XOFER // Digital Artist & Graphic Designer Portfolio</title>
     
-    <!-- Google Fonts: Chakra Petch (Industrial Style), Outfit (Czytelny tekst), Share Tech Mono -->
+    <!-- Google Fonts: Chakra Petch (Industrial Style), Outfit (Readable text), Share Tech Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Outfit:wght@400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -106,7 +106,7 @@
 </head>
 <body class="dark min-h-screen relative">
 
-    <!-- EKRAN STARTOWY / SPLASH SCREEN -->
+    <!-- SPLASH / WELCOME SCREEN -->
     <div id="welcome-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-olive-bg dark:bg-olive-bg light:bg-oliveLight-bg transition-opacity duration-500">
         <div class="olive-box max-w-lg w-full p-6 sm:p-8 text-center space-y-6">
             <div class="font-mono text-xs text-olive-accent">SYSTEM.BOOT // WELCOME</div>
@@ -116,14 +116,14 @@
                     XOFER<span class="text-olive-highlight">.</span>
                 </h1>
                 <p id="welcome-subtitle" class="text-base font-sans text-olive-muted">
-                    Wybierz preferowany motyw i język przed przejściem do portfolia.
+                    Choose your preferred theme and language before proceeding to the portfolio.
                 </p>
             </div>
 
-            <!-- PRZYCISKI WYBORU MOTYWU I JĘZYKA -->
+            <!-- THEME & LANGUAGE SELECTORS -->
             <div class="space-y-4 pt-2">
                 <div class="space-y-1.5">
-                    <label id="welcome-label-theme" class="block font-mono text-xs text-olive-muted uppercase">Motyw / Theme</label>
+                    <label id="welcome-label-theme" class="block font-mono text-xs text-olive-muted uppercase">Theme</label>
                     <div class="flex justify-center gap-3">
                         <button id="welcome-theme-dark" onclick="setTheme('dark')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all">DARK</button>
                         <button id="welcome-theme-light" onclick="setTheme('light')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">LIGHT</button>
@@ -131,27 +131,27 @@
                 </div>
 
                 <div class="space-y-1.5">
-                    <label id="welcome-label-lang" class="block font-mono text-xs text-olive-muted uppercase">Język / Language</label>
+                    <label id="welcome-label-lang" class="block font-mono text-xs text-olive-muted uppercase">Language</label>
                     <div class="flex justify-center gap-3">
-                        <button id="welcome-lang-pl" onclick="setLanguage('pl')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all">PL</button>
-                        <button id="welcome-lang-en" onclick="setLanguage('en')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">EN</button>
+                        <button id="welcome-lang-pl" onclick="setLanguage('pl')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">PL</button>
+                        <button id="welcome-lang-en" onclick="setLanguage('en')" class="font-display font-semibold text-xs px-5 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all">EN</button>
                     </div>
                 </div>
             </div>
 
-            <!-- PRZYCISK PRZEJDŹ DALEJ -->
+            <!-- ENTER BUTTON -->
             <div class="pt-4 border-t-2 border-olive-border">
                 <button onclick="enterMainSite()" class="w-full font-display font-bold text-base sm:text-lg py-3.5 px-6 rounded border-2 border-olive-accent bg-olive-accent text-black hover:bg-olive-highlight transition-all shadow-md tracking-wider uppercase">
-                    <span id="welcome-btn-enter">PRZEJDŹ DALEJ &rarr;</span>
+                    <span id="welcome-btn-enter">ENTER PORTFOLIO &rarr;</span>
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- ZAWARTOŚĆ GŁÓWNA STRONY -->
+    <!-- MAIN SITE CONTENT -->
     <div id="main-content" class="p-3 sm:p-6 md:p-8 pt-20 sm:pt-24 max-w-6xl mx-auto space-y-8 sm:space-y-10 relative z-10 hidden">
 
-        <!-- PASEK SZYBKIEJ NAWIGACJI U GÓRY -->
+        <!-- TOP NAVIGATION BAR -->
         <nav class="fixed top-0 left-0 w-full z-40 bg-olive-bg/95 dark:bg-olive-bg/95 dark:border-olive-border light:bg-oliveLight-bg/95 border-b-2 border-oliveLight-border px-4 py-3 backdrop-blur-md flex items-center justify-between gap-3 shadow-md transition-colors duration-300">
             <div class="flex items-center space-x-2 font-mono text-xs text-olive-accent font-semibold">
                 <span class="inline-block w-2.5 h-2.5 bg-olive-accent animate-pulse"></span>
@@ -186,7 +186,7 @@
                         </h1>
                         
                         <button id="btn-theme" onclick="toggleTheme()" class="font-display font-semibold text-xs px-4 py-2.5 rounded border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md flex items-center justify-center gap-2">
-                            <span>MOTYW:</span> <span id="theme-text" class="underline uppercase">DARK</span>
+                            <span id="theme-label">THEME:</span> <span id="theme-text" class="underline uppercase">DARK</span>
                         </button>
                     </div>
 
@@ -209,8 +209,8 @@
                 </div>
                 
                 <div class="flex items-center gap-2.5 w-full justify-center">
-                    <button id="btn-en" onclick="setLanguage('en')" class="font-display font-semibold text-xs px-4 py-2 border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">EN</button>
-                    <button id="btn-pl" onclick="setLanguage('pl')" class="font-display font-semibold text-xs px-4 py-2 border-2 border-olive-accent bg-olive-accent text-black transition-all">PL</button>
+                    <button id="btn-en" onclick="setLanguage('en')" class="font-display font-semibold text-xs px-4 py-2 border-2 border-olive-accent bg-olive-accent text-black transition-all">EN</button>
+                    <button id="btn-pl" onclick="setLanguage('pl')" class="font-display font-semibold text-xs px-4 py-2 border-2 border-olive-border text-olive-muted hover:text-olive-accent transition-all">PL</button>
                 </div>
             </div>
         </header>
@@ -228,7 +228,7 @@
                 </div>
                 
                 <div id="avatarContent" class="square-card-box relative overflow-hidden bg-black/5 dark:bg-black/40 light:bg-stone-100 flex items-center justify-center group border-2 border-olive-border dark:border-olive-border light:border-oliveLight-border rounded">
-                    <img id="avatarImage" src="works/profile.png" alt="Profile" 
+                    <img id="avatarImage" src="works/mee.jpg" alt="Profile" 
                          onerror="this.onerror=null; generateCanvasFallback(this, 'PROFILE', '#a3b18a', '#1a1d17');" 
                          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                     <div class="absolute bottom-2 left-2 bg-olive-panel/90 dark:bg-olive-panel/90 light:bg-white/90 backdrop-blur px-2.5 py-1 border-2 border-olive-border font-mono text-xs text-olive-accent rounded">
@@ -249,18 +249,18 @@
                     </div>
 
                     <div id="terminalContent" class="space-y-4">
-                        <h2 class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-wide dark:text-white light:text-oliveLight-text">
-                            Cześć! Jestem Xofer.
+                        <h2 id="bio-greeting" class="text-2xl sm:text-3xl font-display font-bold uppercase tracking-wide dark:text-white light:text-oliveLight-text">
+                            Hi! I'm Xofer.
                         </h2>
                         <p id="bio-text" class="font-sans text-base sm:text-lg leading-relaxed text-olive-muted dark:text-slate-300 light:text-oliveLight-muted">
-                            Jestem osobą która ma fascynację na kreatywność. Kocham stworzyć dla siebie, jak i dla zespołów obrazy. Na moim portfolio możesz zobaczyć jakie obrazy juz stworzyłam!
+                            I'm someone with a passion for creativity. I love creating artwork both for myself and for teams. In my portfolio, you can see the pieces I've already made!
                         </p>
                     </div>
                 </div>
 
                 <div class="mt-6 pt-4 border-t-2 border-olive-border dark:border-olive-border light:border-oliveLight-border flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs text-olive-muted">
-                    <span>TOOLS: 2D & 3D WORKFLOW</span>
-                    <span class="text-olive-accent font-semibold">● AVAILABLE FOR PROJECTS</span>
+                    <span id="tools-label">TOOLS: 2D & 3D WORKFLOW</span>
+                    <span id="status-label" class="text-olive-accent font-semibold">● AVAILABLE FOR PROJECTS</span>
                 </div>
             </div>
         </section>
@@ -270,7 +270,7 @@
             <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-6 font-mono text-xs">
                 <span class="flex items-center gap-2 text-olive-accent font-semibold">
                     <span class="w-2.5 h-2.5 bg-olive-accent inline-block"></span> 
-                    <span id="title-programs">SOFTWARE SKILLS</span>
+                    <span id="title-programs">SOFTWARE I USE</span>
                 </span>
                 <div class="flex space-x-1 text-olive-muted">
                     <button onclick="toggleWindow('skillsContent')" class="px-2 py-0.5 border border-olive-border">-</button>
@@ -370,7 +370,7 @@
         <!-- WORKS MAIN SECTION -->
         <section id="section-works" class="scroll-mt-24 space-y-4">
             
-            <!-- CATEGORY TABS (5 ZAKŁADEK: GRAPHICS, ILLUSTRATIONS, DRAWINGS, 2D ANIMATIONS, 3D) -->
+            <!-- CATEGORY TABS -->
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
                 <button onclick="switchCategory('graphics')" id="tab-graphics" class="font-display font-semibold text-xs sm:text-sm py-3 px-3 rounded border-2 border-olive-accent bg-olive-accent text-black transition-all text-center truncate shadow-sm tracking-wide">
                     GRAPHICS
@@ -403,7 +403,7 @@
                 </div>
 
                 <div class="bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-4 rounded mb-6 font-sans text-sm dark:text-slate-300 light:text-oliveLight-muted">
-                    <span id="category-desc">Moje prace graficzne. Plakaty.</span>
+                    <span id="category-desc">My graphic design works. Posters.</span>
                 </div>
 
                 <div id="worksGridContent" class="grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6">
@@ -412,12 +412,12 @@
             </div>
         </section>
 
-        <!-- COLLABORATIONS / TEAMS SECTION (STATYCZNA RAMKA JAK SPONSORZY, BEZ KARUZELI) -->
+        <!-- COLLABORATIONS / TEAMS SECTION -->
         <section id="section-collab" class="scroll-mt-24 olive-box p-5 sm:p-6">
             <div class="flex justify-between items-center border-b-2 border-olive-border dark:border-olive-border light:border-oliveLight-border pb-3 mb-6 font-mono text-xs">
                 <span class="text-olive-highlight font-semibold flex items-center gap-2">
                     <span class="w-2.5 h-2.5 bg-olive-highlight inline-block"></span>
-                    <span id="title-collab">OSOBY I ZESPOŁY, Z KTÓRYMI WSPÓŁPRACUJĘ</span>
+                    <span id="title-collab">PEOPLE & TEAMS I COLLABORATE WITH</span>
                 </span>
                 <div class="flex space-x-1 text-olive-muted">
                     <button onclick="toggleWindow('collabContainer')" class="px-2 py-0.5 border border-olive-border hover:bg-olive-accent/10">-</button>
@@ -426,10 +426,9 @@
                 </div>
             </div>
 
-            <!-- STATYCZNY KONTENER PARTNERÓW / ZESPOŁÓW -->
             <div id="collabContainer" class="flex flex-wrap justify-center items-stretch gap-6 sm:gap-10 py-2">
                 
-                <!-- ZESPÓŁ 1: The Maruders -->
+                <!-- TEAM 1: The Maruders -->
                 <div class="project-card w-44 sm:w-52 bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border hover:border-olive-accent p-4 rounded flex flex-col items-center text-center transition-all">
                     <div class="w-full square-card-box overflow-hidden border-2 border-olive-border bg-black/40 rounded mb-3 flex items-center justify-center">
                         <img src="Photos/Maruders.jpg" alt="The Maruders" 
@@ -441,7 +440,7 @@
                     </h3>
                 </div>
 
-                <!-- ZESPÓŁ 2: Spektrum -->
+                <!-- TEAM 2: Spektrum -->
                 <div class="project-card w-44 sm:w-52 bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border hover:border-olive-accent p-4 rounded flex flex-col items-center text-center transition-all">
                     <div class="w-full square-card-box overflow-hidden border-2 border-olive-border bg-black/40 rounded mb-3 flex items-center justify-center">
                         <img src="Photos/Spektrum.jpeg" alt="Spektrum" 
@@ -464,7 +463,7 @@
             </div>
 
             <h2 id="footer-thankyou" class="text-3xl sm:text-5xl font-display font-bold uppercase tracking-wider dark:text-white light:text-oliveLight-text">
-                DZIĘKUJĘ ZA UWAGĘ :)
+                THANK YOU FOR YOUR ATTENTION :)
             </h2>
 
             <div class="flex justify-center">
@@ -530,15 +529,19 @@
                 labelTheme: "Theme",
                 labelLang: "Language",
                 btnEnter: "ENTER PORTFOLIO &rarr;",
-                bio: "I create digital art, illustrations, and 2D/3D designs with a distinct atmospheric feel. Welcome to my portfolio!",
-                programsTitle: "SOFTWARE SKILLS",
+                themeLabel: "THEME:",
+                bioGreeting: "Hi! I'm Xofer.",
+                bio: "I'm someone with a passion for creativity. I love creating artwork both for myself and for teams. In my portfolio, you can see the pieces I've already made!",
+                toolsLabel: "TOOLS: 2D & 3D WORKFLOW",
+                statusLabel: "● AVAILABLE FOR PROJECTS",
+                programsTitle: "SOFTWARE I USE",
                 collabTitle: "PEOPLE & TEAMS I COLLABORATE WITH",
-                thankYou: "THANK YOU :)",
+                thankYou: "THANK YOU FOR YOUR ATTENTION :)",
                 otherLinks: "OTHER LINKS",
-                catGraphics: "My graphic design works. A mix of branding, typography, and layout experiments.",
-                catIllustrations: "Digital illustrations featuring rich olive palettes and dynamic compositions.",
-                catDrawings: "Sketches, character designs, and digital drawings.",
-                catAnimations: "2D frame-by-frame animations and looping graphics.",
+                catGraphics: "My graphic design works. Posters.",
+                catIllustrations: "Digital illustrations. Hand-drawn.",
+                catDrawings: "Hand-drawn sketches on regular paper / in a sketchbook.",
+                catAnimations: "2D frame-by-frame and tween animations.",
                 catModels3d: "3D models, renders, and spatial experiments created in Blender and Nomad Sculpt."
             },
             pl: {
@@ -546,7 +549,11 @@
                 labelTheme: "Motyw",
                 labelLang: "Język",
                 btnEnter: "PRZEJDŹ DALEJ &rarr;",
+                themeLabel: "MOTYW:",
+                bioGreeting: "Cześć! Jestem Xofer.",
                 bio: "Jestem osobą która ma fascynację na kreatywność. Kocham stworzyć dla siebie, jak i dla zespołów obrazy. Na moim portfolio możesz zobaczyć jakie obrazy juz stworzyłam!",
+                toolsLabel: "NARZĘDZIA: WORKFLOW 2D I 3D",
+                statusLabel: "● DOSTĘPNA NA PROJEKTY",
                 programsTitle: "PROGRAMY KTÓRYCH UŻYWAM",
                 collabTitle: "OSOBY I ZESPOŁY, Z KTÓRYMI WSPÓŁPRACUJĘ",
                 thankYou: "DZIĘKUJĘ ZA UWAGĘ :)",
@@ -559,7 +566,7 @@
             }
         };
 
-        let currentLang = 'pl';
+        let currentLang = 'en';
         let currentTheme = 'dark';
 
         const categoriesData = {
@@ -567,81 +574,84 @@
                 filename: "GALLERY_GRAPHICS.DIR", 
                 descKey: "catGraphics", 
                 items: [
-                    { id: "G1", name: "Neon", img: "works/poster_neon.png" },
-                    { id: "G2", name: "-", img: "works/orang.png" },
-                    { id: "G3", name: "My friend poster", img: "works/pacyfist.png" },
-                    { id: "G4", name: "My friend poster", img: "works/PUNK.png" },
-                    { id: "G5", name: "Freedom", img: "works/mountains-freedom.png" },
-                    { id: "G6", name: "RANDOMIZER", img: "works/randomizer.png" },
-                    { id: "G7", name: "XOFER", img: "works/XOFER.png" },
-                    { id: "G8", name: "-", img: "works/purple.png" },
-                    { id: "G9", name: "-", img: "works/square.png" },
-                    { id: "G10", name: "LIE", img: "works/snake.png" },
+                    { id: "G1", name: { en: "Neon", pl: "Neon" }, img: "works/poster_neon.png" },
+                    { id: "G2", name: { en: "-", pl: "-" }, img: "works/orang.png" },
+                    { id: "G3", name: { en: "My friend poster", pl: "Plakat dla znajomego" }, img: "works/pacyfist.png" },
+                    { id: "G4", name: { en: "My friend poster", pl: "Plakat dla znajomego" }, img: "works/PUNK.png" },
+                    { id: "G5", name: { en: "Freedom", pl: "Wolność" }, img: "works/mountains-freedom.png" },
+                    { id: "G6", name: { en: "RANDOMIZER", pl: "RANDOMIZER" }, img: "works/randomizer.png" },
+                    { id: "G7", name: { en: "XOFER", pl: "XOFER" }, img: "works/XOFER.png" },
+                    { id: "G8", name: { en: "-", pl: "-" }, img: "works/purple.png" },
+                    { id: "G9", name: { en: "-", pl: "-" }, img: "works/square.png" },
+                    { id: "G10", name: { en: "LIE", pl: "KŁAMSTWO" }, img: "works/snake.png" },
                 ] 
             },
             illustrations: { 
                 filename: "GALLERY_ILLUST.DIR", 
                 descKey: "catIllustrations", 
                 items: [
-                    { id: "I1", name: "Stalowe Wieże - The Maruders", img: "works/Stalowe_Wieze.jpeg" },
-                    { id: "I2", name: "Cockatoo", img: "works/cockatoo.png" },
-                    { id: "I3", name: "Raven", img: "works/raven.png" },
-                    { id: "I4", name: "Harpy Eagle", img: "works/hawk.png" },
-                    { id: "I5", name: "Toucan", img: "works/toucan.png" },
-                    { id: "I6", name: "Bearded Vulture", img: "works/bearded.png" },
-                    { id: "I7", name: "Macaw", img: "works/parrot.png" },
-                    { id: "I8", name: "Logo Tree", img: "works/Logo_tree.png" },
-                    { id: "I9", name: "Necrozma Pokemon GO", img: "works/necrozma.png" },
-                    { id: "I10", name: "Water giving life", img: "works/water.png" },
-                    { id: "I11", name: "REFERENCE FOR BLENDER", img: "works/reference.png" },
-                    { id: "I12", name: "SWORD FOR BLENDER", img: "works/sword.png" },
-                    { id: "I13", name: "REALITY? (Cover for yt)", img: "works/reality.png" },
-                    { id: "I14", name: "I'm FIne", img: "works/fine.png" },
-                    { id: "I15", name: "NO_MOON.JAR", img: "works/no_moonjar.png" },
-                    { id: "I16", name: "SHARK STEAMPUNK", img: "works/steampunk.png" },
+                    { id: "I1", name: { en: "Steel Towers - The Maruders", pl: "Stalowe Wieże - The Maruders" }, img: "works/Stalowe_Wieze.jpeg" },
+                    { id: "I2", name: { en: "Cockatoo", pl: "Kakadu" }, img: "works/cockatoo.png" },
+                    { id: "I3", name: { en: "Raven", pl: "Kruk" }, img: "works/raven.png" },
+                    { id: "I4", name: { en: "Harpy Eagle", pl: "Harpia" }, img: "works/hawk.png" },
+                    { id: "I5", name: { en: "Toucan", pl: "Tukan" }, img: "works/toucan.png" },
+                    { id: "I6", name: { en: "Bearded Vulture", pl: "Orłosęp" }, img: "works/bearded.png" },
+                    { id: "I7", name: { en: "Macaw", pl: "Ara" }, img: "works/parrot.png" },
+                    { id: "I8", name: { en: "Logo Tree", pl: "Drzewo (Logo)" }, img: "works/Logo_tree.png" },
+                    { id: "I9", name: { en: "Necrozma Pokemon GO", pl: "Necrozma Pokemon GO" }, img: "works/necrozma.png" },
+                    { id: "I10", name: { en: "Water giving life", pl: "Woda dająca życie" }, img: "works/water.png" },
+                    { id: "I11", name: { en: "REFERENCE FOR BLENDER", pl: "REFERENCJA DO BLENDERA" }, img: "works/reference.png" },
+                    { id: "I12", name: { en: "SWORD FOR BLENDER", pl: "MIECZ DO BLENDERA" }, img: "works/sword.png" },
+                    { id: "I13", name: { en: "REALITY? (Cover for YT)", pl: "REALITY? (Okładka na YT)" }, img: "works/reality.png" },
+                    { id: "I14", name: { en: "I'm Fine", pl: "Jestem w porządku" }, img: "works/fine.png" },
+                    { id: "I15", name: { en: "NO_MOON.JAR", pl: "NO_MOON.JAR" }, img: "works/no_moonjar.png" },
+                    { id: "I16", name: { en: "STEAMPUNK SHARK", pl: "STEAMPUNKOWY REKIN" }, img: "works/steampunk.png" },
                 ] 
             },
             drawings: { 
                 filename: "GALLERY_DRAWINGS.DIR", 
                 descKey: "catDrawings", 
                 items: [
-                    { id: "D1", name: "The Cure", img: "works/The_cure.jpeg" },
-                    { id: "D2", name: "Raven", img: "works/Raven.png" },
-                    { id: "D3", name: "Raven with red outline", img: "works/RAVEN-red.jpeg" },
-                    { id: "D4", name: "Kakadu", img: "works/Cockatoo.png" },
-                    { id: "D5", name: "-", img: "works/Greennn.jpeg" },
-                    { id: "D6", name: "GÓRY", img: "works/gory.png" },
-                    { id: "D7", name: "FANTASY LION", img: "works/lion.png" },
-                    { id: "D8", name: "-", img: "works/wilk.png" },
-                    { id: "D9", name: "-", img: "works/wilkz.png" },
-                    { id: "D10", name: "Raven", img: "works/ravens.jpg" },
-                    { id: "D11", name: "Orłosęp", img: "works/vulture.jpg" },
-                    { id: "D12", name: "-", img: "works/red.jpg" },
-                    { id: "D13", name: "SCP 701", img: "works/scpp.png" },
-                    { id: "D14", name: "Crow", img: "works/obraz_2025-10-20_184556781.png" },
-                    { id: "D15", name: "-", img: "works/slomce.png" },
-                    { id: "D16", name: "-", img: "works/chiny.png" },
+                    { id: "D1", name: { en: "The Cure", pl: "The Cure" }, img: "works/The_cure.jpeg" },
+                    { id: "D2", name: { en: "Raven", pl: "Kruk" }, img: "works/Raven.png" },
+                    { id: "D3", name: { en: "Raven with red outline", pl: "Kruk z czerwonym konturem" }, img: "works/RAVEN-red.jpeg" },
+                    { id: "D4", name: { en: "Cockatoo", pl: "Kakadu" }, img: "works/Cockatoo.png" },
+                    { id: "D5", name: { en: "-", pl: "-" }, img: "works/Greennn.jpeg" },
+                    { id: "D6", name: { en: "MOUNTAINS", pl: "GÓRY" }, img: "works/gory.png" },
+                    { id: "D7", name: { en: "FANTASY LION", pl: "FANTASY LEW" }, img: "works/lion.png" },
+                    { id: "D8", name: { en: "-", pl: "-" }, img: "works/wilk.png" },
+                    { id: "D9", name: { en: "-", pl: "-" }, img: "works/wilkz.png" },
+                    { id: "D10", name: { en: "Raven", pl: "Kruk" }, img: "works/ravens.jpg" },
+                    { id: "D11", name: { en: "Bearded Vulture", pl: "Orłosęp" }, img: "works/vulture.jpg" },
+                    { id: "D12", name: { en: "-", pl: "-" }, img: "works/red.jpg" },
+                    { id: "D13", name: { en: "SCP 701", pl: "SCP 701" }, img: "works/scpp.png" },
+                    { id: "D14", name: { en: "Crow", pl: "Wrona" }, img: "works/obraz_2025-10-20_184556781.png" },
+                    { id: "D15", name: { en: "-", pl: "-" }, img: "works/slomce.png" },
+                    { id: "D16", name: { en: "-", pl: "-" }, img: "works/chiny.png" },
                 ] 
             },
             animations: { 
                 filename: "GALLERY_2D_ANIM.DIR", 
                 descKey: "catAnimations", 
                 items: [
-                    { id: "A1", name: "Bearded Vulture sketch", img: "works/bearded.gif" },
-                    { id: "A2", name: "Sketch -", img: "works/grivet.gif" },
-                    { id: "A3", name: "Hand test", img: "works/hand.gif" },
-                    { id: "A4", name: "Scene for my animation", img: "works/Animation2.gif" },
-                    { id: "A5", name: "Scene for my animation", img: "works/Animation6.gif" },
-                    { id: "A6", name: "Taniec", img: "works/testdance.gif" },
-                    { id: "A7", name: "Scene for Fundamental Paper Education", img: "works/fundamental.gif" },
-                    { id: "A8", name: "Kula", img: "works/kula.gif" },
+                    { id: "A1", name: { en: "Bearded Vulture sketch", pl: "Szkic orłosępa" }, img: "works/bearded.gif" },
+                    { id: "A2", name: { en: "Sketch -", pl: "Szkic -" }, img: "works/grivet.gif" },
+                    { id: "A3", name: { en: "Hand test", pl: "Test dłoni" }, img: "works/hand.gif" },
+                    { id: "A4", name: { en: "Scene for my animation", pl: "Scena do mojej animacji" }, img: "works/Animation2.gif" },
+                    { id: "A5", name: { en: "Scene for my animation", pl: "Scena do mojej animacji" }, img: "works/Animation6.gif" },
+                    { id: "A6", name: { en: "Dance", pl: "Taniec" }, img: "works/testdance.gif" },
+                    { id: "A7", name: { en: "Scene for Fundamental Paper Education", pl: "Scena do Fundamental Paper Education" }, img: "works/fundamental.gif" },
+                    { id: "A8", name: { en: "Ball", pl: "Kula" }, img: "works/kula.gif" },
                 ] 
             },
             models3d: {
                 filename: "GALLERY_3D.DIR",
                 descKey: "catModels3d",
                 items: [
-                    { id: "3D1", name: "Crystals - Blender", img: "works/crystals.png" }
+                    { id: "3D1", name: { en: "Crystals - Blender", pl: "Kryształy - Blender" }, img: "works/crystals.png" }
+                    { id: "3D2", name: { en: "Shard - Blender", pl: "Shard - Blender" }, img: "works/SHARD.png" }
+                    { id: "3D3", name: { en: "Pumpkin - Blender", pl: "Dynia - Blender" }, img: "works/PUMPKIN.png" }
+                    { id: "3D4", name: { en: "Donut - Blender", pl: "Donut - Blender" }, img: "works/DONUT.png" }
                 ]
             }
         };
@@ -649,6 +659,13 @@
         let currentActiveCategory = 'graphics';
         let currentLightboxList = [];
         let currentLightboxIndex = 0;
+
+        function getItemName(item) {
+            if (typeof item.name === 'object') {
+                return item.name[currentLang] || item.name.en;
+            }
+            return item.name;
+        }
 
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playBeep(freq = 440, type = 'sine', duration = 0.05) {
@@ -727,15 +744,16 @@
             gridContainer.innerHTML = '';
 
             category.items.forEach((item, index) => {
+                const itemTitle = getItemName(item);
                 gridContainer.innerHTML += `
                     <div onclick="openLightboxFromGrid('${catKey}', ${index})" class="project-card bg-black/20 dark:bg-black/30 light:bg-stone-50 border-2 border-olive-border p-2.5 rounded cursor-pointer group">
                         <div class="flex justify-between items-center text-[10px] font-mono text-olive-muted border-b-2 border-olive-border pb-1.5 mb-2">
                             <span>${item.id}.IMG</span><div class="flex space-x-1"><span>_</span><span>□</span><span>X</span></div>
                         </div>
                         <div class="square-card-box overflow-hidden border-2 border-olive-border bg-black/40 relative rounded">
-                            <img src="${item.img}" alt="${item.name}" onerror="this.onerror=null; generateCanvasFallback(this, '${item.name}', '#a3b18a', '#1a1d17');" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                            <img src="${item.img}" alt="${itemTitle}" onerror="this.onerror=null; generateCanvasFallback(this, '${itemTitle}', '#a3b18a', '#1a1d17');" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
                         </div>
-                        <div class="mt-2 text-center font-display font-semibold text-xs sm:text-sm dark:text-slate-200 light:text-oliveLight-text truncate py-1">${item.name}</div>
+                        <div class="mt-2 text-center font-display font-semibold text-xs sm:text-sm dark:text-slate-200 light:text-oliveLight-text truncate py-1">${itemTitle}</div>
                     </div>`;
             });
 
@@ -761,13 +779,14 @@
 
         function showLightbox() {
             const item = currentLightboxList[currentLightboxIndex];
+            const itemTitle = getItemName(item);
             const imgEl = document.getElementById('lightbox-img');
             
             imgEl.src = item.img;
-            imgEl.onerror = function() { generateCanvasFallback(this, item.name, '#a3b18a', '#1a1d17'); };
+            imgEl.onerror = function() { generateCanvasFallback(this, itemTitle, '#a3b18a', '#1a1d17'); };
 
-            document.getElementById('lightbox-title').innerText = `VIEWER // ${item.name}`;
-            document.getElementById('lightbox-caption').innerText = item.name;
+            document.getElementById('lightbox-title').innerText = `VIEWER // ${itemTitle}`;
+            document.getElementById('lightbox-caption').innerText = itemTitle;
             document.getElementById('lightbox-counter').innerText = `${currentLightboxIndex + 1} / ${currentLightboxList.length}`;
 
             const lightbox = document.getElementById('lightbox');
@@ -809,18 +828,24 @@
         function setLanguage(lang) {
             playBeep(750, 'sine', 0.05);
             currentLang = lang;
+            document.documentElement.lang = lang;
             
             document.getElementById('welcome-subtitle').innerText = i18n[lang].subtitle;
             document.getElementById('welcome-label-theme').innerText = i18n[lang].labelTheme;
             document.getElementById('welcome-label-lang').innerText = i18n[lang].labelLang;
             document.getElementById('welcome-btn-enter').innerHTML = i18n[lang].btnEnter;
 
+            document.getElementById('theme-label').innerText = i18n[lang].themeLabel;
+            document.getElementById('bio-greeting').innerText = i18n[lang].bioGreeting;
             document.getElementById('bio-text').innerText = i18n[lang].bio;
+            document.getElementById('tools-label').innerText = i18n[lang].toolsLabel;
+            document.getElementById('status-label').innerText = i18n[lang].statusLabel;
             document.getElementById('title-programs').innerText = i18n[lang].programsTitle;
             document.getElementById('title-collab').innerText = i18n[lang].collabTitle;
             document.getElementById('footer-thankyou').innerText = i18n[lang].thankYou;
             document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
-            document.getElementById('category-desc').innerText = i18n[lang][categoriesData[currentActiveCategory].descKey];
+
+            renderCategoryGrid(currentActiveCategory);
             
             const btnPlW = document.getElementById('welcome-lang-pl');
             const btnEnW = document.getElementById('welcome-lang-en');
@@ -850,8 +875,7 @@
         });
 
         window.addEventListener('DOMContentLoaded', () => {
-            renderCategoryGrid('graphics');
-            setLanguage('pl');
+            setLanguage('en');
             setTheme('dark');
         });
     </script>
