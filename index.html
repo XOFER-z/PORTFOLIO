@@ -466,7 +466,7 @@
                 THANK YOU FOR YOUR ATTENTION :)
             </h2>
 
-            <div class="flex justify-center">
+            <div class="flex flex-wrap justify-center items-center gap-3">
                 <a href="https://hakowfex.carrd.co/" target="_blank" rel="noopener noreferrer" 
                    onclick="playBeep(600, 'sine', 0.05)"
                    class="inline-flex items-center gap-2 font-display font-semibold text-sm px-6 py-3.5 rounded border-2 border-olive-accent bg-olive-accent text-black hover:opacity-90 transition-all shadow-md tracking-wide uppercase">
@@ -475,12 +475,38 @@
                     </svg>
                     <span id="btn-otherlinks">OTHER LINKS</span>
                 </a>
+
+                <button onclick="toggleContactEmail()" 
+                        class="inline-flex items-center gap-2 font-display font-semibold text-sm px-6 py-3.5 rounded border-2 border-olive-accent bg-transparent text-olive-accent hover:bg-olive-accent hover:text-black transition-all shadow-md tracking-wide uppercase cursor-pointer">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span id="btn-contact-email">KONTAKT</span>
+                </button>
             </div>
 
-            <div class="inline-block border-2 border-olive-border bg-black/20 dark:bg-black/30 light:bg-stone-50 px-5 py-2.5 rounded">
-                <span class="font-mono text-lg text-olive-accent font-semibold">
-                    @xofer_graphics
-                </span>
+            <!-- CONTACT EMAIL BOX (HIDDEN BY DEFAULT) -->
+            <div id="contact-email-box" class="hidden max-w-md mx-auto border-2 border-olive-accent bg-black/30 dark:bg-black/40 light:bg-stone-100 p-4 rounded-lg shadow-lg transition-all">
+                <div class="flex justify-between items-center border-b border-olive-border pb-2 mb-3 font-mono text-xs text-olive-muted">
+                    <span>DIRECT_MAIL.SYS</span>
+                    <button onclick="toggleContactEmail()" class="hover:text-olive-accent px-1.5">X</button>
+                </div>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <a href="mailto:xofer.artist@gmail.com" class="font-mono text-base sm:text-lg text-olive-highlight hover:underline font-semibold break-all">
+                        xofer.artist@gmail.com
+                    </a>
+                    <button onclick="copyEmail()" id="btn-copy-email" class="font-mono text-xs px-3 py-1.5 rounded border border-olive-border bg-olive-panel hover:border-olive-accent text-olive-accent transition-all shrink-0">
+                        COPY
+                    </button>
+                </div>
+            </div>
+
+            <div>
+                <div class="inline-block border-2 border-olive-border bg-black/20 dark:bg-black/30 light:bg-stone-50 px-5 py-2.5 rounded">
+                    <span class="font-mono text-lg text-olive-accent font-semibold">
+                        @xofer_graphics
+                    </span>
+                </div>
             </div>
         </footer>
 
@@ -538,6 +564,9 @@
                 collabTitle: "PEOPLE & TEAMS I COLLABORATE WITH",
                 thankYou: "THANK YOU FOR YOUR ATTENTION :)",
                 otherLinks: "OTHER LINKS",
+                contactBtn: "CONTACT",
+                copyBtn: "COPY",
+                copiedBtn: "COPIED!",
                 catGraphics: "My graphic design works. Posters.",
                 catIllustrations: "Digital illustrations. Hand-drawn.",
                 catDrawings: "Hand-drawn sketches on regular paper / in a sketchbook.",
@@ -558,6 +587,9 @@
                 collabTitle: "OSOBY I ZESPOŁY, Z KTÓRYMI WSPÓŁPRACUJĘ",
                 thankYou: "DZIĘKUJĘ ZA UWAGĘ :)",
                 otherLinks: "INNE LINKI",
+                contactBtn: "KONTAKT",
+                copyBtn: "KOPIUJ",
+                copiedBtn: "SKOPIOWANO!",
                 catGraphics: "Moje prace graficzne. Plakaty.",
                 catIllustrations: "Ilustracje cyfrowe. Narysowane ręcznie.",
                 catDrawings: "Rysunki narysowane ręcznie na zwykłym papierze/w szkicowniku.",
@@ -825,6 +857,22 @@
             showLightbox();
         }
 
+        function toggleContactEmail() {
+            playBeep(620, 'sine', 0.05);
+            const box = document.getElementById('contact-email-box');
+            box.classList.toggle('hidden');
+        }
+
+        function copyEmail() {
+            playBeep(800, 'sine', 0.06);
+            navigator.clipboard.writeText('xofer.artist@gmail.com');
+            const btn = document.getElementById('btn-copy-email');
+            btn.innerText = i18n[currentLang].copiedBtn;
+            setTimeout(() => {
+                btn.innerText = i18n[currentLang].copyBtn;
+            }, 2000);
+        }
+
         function setLanguage(lang) {
             playBeep(750, 'sine', 0.05);
             currentLang = lang;
@@ -844,6 +892,8 @@
             document.getElementById('title-collab').innerText = i18n[lang].collabTitle;
             document.getElementById('footer-thankyou').innerText = i18n[lang].thankYou;
             document.getElementById('btn-otherlinks').innerText = i18n[lang].otherLinks;
+            document.getElementById('btn-contact-email').innerText = i18n[lang].contactBtn;
+            document.getElementById('btn-copy-email').innerText = i18n[lang].copyBtn;
 
             renderCategoryGrid(currentActiveCategory);
             
